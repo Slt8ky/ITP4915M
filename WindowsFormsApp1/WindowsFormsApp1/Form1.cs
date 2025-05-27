@@ -54,34 +54,42 @@ namespace WindowsFormsApp1
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string query = "SELECT * FROM staff";
-
-            using (MySqlConnection connection = ConnectSql())
+            try
             {
-                MySqlCommand command = new MySqlCommand(query, connection);
-                MySqlDataReader reader = command.ExecuteReader();
+                string query = "SELECT * FROM staff";
 
-                string username = null;
-                string password = null;
-                while (reader.Read())
+                using (MySqlConnection connection = ConnectSql())
                 {
-                    username = reader.GetString("username");
-                    password = reader.GetString("password");
-                    if (txtUsername.Text == username && HashPassword(txtPassword.Text) == password)
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    MySqlDataReader reader = command.ExecuteReader();
+
+                    string username = null;
+                    string password = null;
+                    while (reader.Read())
                     {
-                        this.Hide(); // Hide the login form
-                        PerformSql($"INSERT INTO `event` (`event_id`, `event_type`, `event_date`, `event_content`) VALUES (NULL, 'login', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}', '{username} is logged in');");
-                        break;
+                        username = reader.GetString("username");
+                        password = reader.GetString("password");
+                        if (txtUsername.Text == username && HashPassword(txtPassword.Text) == password)
+                        {
+                            this.Hide(); // Hide the login form
+                            PerformSql($"INSERT INTO `event` (`event_id`, `event_type`, `event_date`, `event_content`) VALUES (NULL, 'login', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}', '{username} is logged in');");
+                            break;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Login failed. Please check your username and password.");
+                            txtPassword.Clear(); // Clear the password field
+                            txtPassword.Focus(); // Set focus back to the password field
+                            return;
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Login failed. Please check your username and password.");
-                        txtPassword.Clear(); // Clear the password field
-                        txtPassword.Focus(); // Set focus back to the password field
-                        return;
-                    }
+                    reader.Close();
                 }
-                reader.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Cannot connect to database!");
+                return;
             }
         }
 
