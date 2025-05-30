@@ -41,7 +41,7 @@
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.btnLogin.Location = new System.Drawing.Point(557, 330);
+            this.btnLogin.Location = new System.Drawing.Point(556, 308);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(251, 51);
             this.btnLogin.TabIndex = 0;
@@ -52,18 +52,18 @@
             // txtUsername
             // 
             this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUsername.Location = new System.Drawing.Point(613, 219);
+            this.txtUsername.Location = new System.Drawing.Point(613, 202);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(195, 13);
+            this.txtUsername.Size = new System.Drawing.Size(195, 15);
             this.txtUsername.TabIndex = 1;
             // 
             // txtPassword
             // 
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPassword.Location = new System.Drawing.Point(613, 282);
+            this.txtPassword.Location = new System.Drawing.Point(613, 260);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '✦';
-            this.txtPassword.Size = new System.Drawing.Size(195, 13);
+            this.txtPassword.Size = new System.Drawing.Size(195, 15);
             this.txtPassword.TabIndex = 2;
             this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
@@ -71,9 +71,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(556, 220);
+            this.label1.Location = new System.Drawing.Point(556, 203);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.Size = new System.Drawing.Size(51, 12);
             this.label1.TabIndex = 3;
             this.label1.Text = "Username";
             // 
@@ -81,16 +81,16 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(556, 283);
+            this.label2.Location = new System.Drawing.Point(556, 261);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.Size = new System.Drawing.Size(48, 12);
             this.label2.TabIndex = 4;
             this.label2.Text = "Password";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.panel1.Location = new System.Drawing.Point(557, 308);
+            this.panel1.Location = new System.Drawing.Point(557, 284);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(250, 2);
             this.panel1.TabIndex = 5;
@@ -98,18 +98,18 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.panel2.Location = new System.Drawing.Point(558, 245);
+            this.panel2.Location = new System.Drawing.Point(558, 226);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(250, 2);
             this.panel2.TabIndex = 6;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(903, 507);
+            this.ClientSize = new System.Drawing.Size(829, 468);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);

@@ -56,7 +56,7 @@ namespace WindowsFormsApp1
         {
             try
             {
-                string query = "SELECT * FROM staff";
+                string query = "select * from staff";
 
                 using (MySqlConnection connection = ConnectSql())
                 {
@@ -72,6 +72,8 @@ namespace WindowsFormsApp1
                         if (txtUsername.Text == username && HashPassword(txtPassword.Text) == password)
                         {
                             this.Hide(); // Hide the login form
+                            Form2 form2 = new Form2();
+                            form2.Show();
                             PerformSql($"INSERT INTO `event` (`event_id`, `event_type`, `event_date`, `event_content`) VALUES (NULL, 'login', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}', '{username} is logged in');");
                             break;
                         }
