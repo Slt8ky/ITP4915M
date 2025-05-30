@@ -7,10 +7,14 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Rectangle = iTextSharp.text.Rectangle;
 
 namespace WindowsFormsApp1
 {
@@ -160,7 +164,7 @@ namespace WindowsFormsApp1
 
             dtTable.DataSource = dataTable; // Set the DataSource of DataGridView to the DataTable
         }
-        
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string columnQuery = $"DESCRIBE `{cbTableSelect.SelectedItem.ToString()}`;"; // Use backticks for table names
@@ -287,8 +291,8 @@ namespace WindowsFormsApp1
                     Border = Rectangle.NO_BORDER
                 });
 
-                string[] textString = {$"Table: {cbTableSelect.SelectedItem.ToString()}"};
-                for (int i=0;i<textString.Length;i++)
+                string[] textString = { $"Table: {cbTableSelect.SelectedItem.ToString()}" };
+                for (int i = 0; i < textString.Length; i++)
                 {
                     PdfPCell headerCell = new PdfPCell(new Phrase(textString[i]))
                     {
@@ -306,7 +310,7 @@ namespace WindowsFormsApp1
                 // Add footer
                 PdfPTable footer = new PdfPTable(1);
                 footer.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
-                footer.AddCell(new PdfPCell(new Phrase($"Generated at: {DateTime.Now.ToString()}")) 
+                footer.AddCell(new PdfPCell(new Phrase($"Generated at: {DateTime.Now.ToString()}"))
                 {
                     HorizontalAlignment = Element.ALIGN_RIGHT,
                     Border = Rectangle.NO_BORDER

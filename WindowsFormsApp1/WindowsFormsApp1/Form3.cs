@@ -43,7 +43,7 @@ namespace WindowsFormsApp1
         private void UploadMessageToDatabase(string message)
         {
             string queryString = "INSERT INTO MESSAGE (`message_content`, `created_at`, `staff_id`) VALUES ()";
-            MySqlCommand command = new MySqlCommand(queryString, conn); 
+            MySqlCommand command = new MySqlCommand(queryString, conn);
             command.ExecuteNonQuery();
         }
 

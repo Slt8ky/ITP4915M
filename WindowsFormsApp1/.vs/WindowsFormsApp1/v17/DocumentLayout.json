@@ -1,19 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\slt8ky\\Desktop\\project\\WindowsFormsApp1\\",
+  "WorkspaceRootPath": "C:\\Users\\slt8ky\\source\\repos\\default\\WindowsFormsApp1\\",
   "Documents": [
     {
-<<<<<<< HEAD
-      "AbsoluteMoniker": "D:0:0:{66D84002-F03A-416A-AB42-46A09E9E19B8}|WindowsFormsApp1\\WindowsFormsApp1.csproj|c:\\users\\slt8ky\\desktop\\project\\windowsformsapp1\\windowsformsapp1\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{66D84002-F03A-416A-AB42-46A09E9E19B8}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{66D84002-F03A-416A-AB42-46A09E9E19B8}|WindowsFormsApp1\\WindowsFormsApp1.csproj|C:\\Users\\slt8ky\\Desktop\\project\\WindowsFormsApp1\\windowsformsapp1\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{66D84002-F03A-416A-AB42-46A09E9E19B8}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-=======
-      "AbsoluteMoniker": "D:0:0:{66D84002-F03A-416A-AB42-46A09E9E19B8}|WindowsFormsApp1\\WindowsFormsApp1.csproj|c:\\users\\240015806\\desktop\\project\\windowsformsapp1\\windowsformsapp1\\form3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{66D84002-F03A-416A-AB42-46A09E9E19B8}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\form3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
->>>>>>> 3d1cea26d2fe393338274baab3819e9f2945388d
+      "AbsoluteMoniker": "D:0:0:{16E12B80-6D14-43A7-B780-61402E677897}|WindowsFormsApp1\\WindowsFormsApp1.csproj|c:\\users\\slt8ky\\source\\repos\\default\\windowsformsapp1\\windowsformsapp1\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16E12B80-6D14-43A7-B780-61402E677897}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,7 +14,6 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-<<<<<<< HEAD
           "SelectedChildIndex": 1,
           "Children": [
             {
@@ -34,42 +24,14 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Form2.cs",
-              "DocumentMoniker": "C:\\Users\\slt8ky\\Desktop\\project\\WindowsFormsApp1\\WindowsFormsApp1\\Form2.cs",
+              "DocumentMoniker": "C:\\Users\\slt8ky\\source\\repos\\default\\WindowsFormsApp1\\WindowsFormsApp1\\Form2.cs",
               "RelativeDocumentMoniker": "WindowsFormsApp1\\Form2.cs",
-              "ToolTip": "C:\\Users\\slt8ky\\Desktop\\project\\WindowsFormsApp1\\WindowsFormsApp1\\Form2.cs",
+              "ToolTip": "C:\\Users\\slt8ky\\source\\repos\\default\\WindowsFormsApp1\\WindowsFormsApp1\\Form2.cs",
               "RelativeToolTip": "WindowsFormsApp1\\Form2.cs",
-              "ViewState": "AgIAAEABAAAAAAAAAAAYwGcBAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAC8BAAAAAAAAAAAEwCcBAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T08:46:11.776Z",
+              "WhenOpened": "2025-05-30T12:22:21.94Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Form2.cs [\u8A2D\u8A08]",
-              "DocumentMoniker": "C:\\Users\\slt8ky\\Desktop\\project\\WindowsFormsApp1\\WindowsFormsApp1\\Form2.cs",
-              "RelativeDocumentMoniker": "WindowsFormsApp1\\Form2.cs",
-              "ToolTip": "C:\\Users\\slt8ky\\Desktop\\project\\WindowsFormsApp1\\WindowsFormsApp1\\Form2.cs [\u8A2D\u8A08]",
-              "RelativeToolTip": "WindowsFormsApp1\\Form2.cs [\u8A2D\u8A08]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T08:35:10.441Z",
-              "EditorCaption": " [\u8A2D\u8A08]"
-=======
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form3.cs",
-              "DocumentMoniker": "C:\\Users\\240015806\\Desktop\\project\\WindowsFormsApp1\\WindowsFormsApp1\\Form3.cs",
-              "RelativeDocumentMoniker": "WindowsFormsApp1\\Form3.cs",
-              "ToolTip": "C:\\Users\\240015806\\Desktop\\project\\WindowsFormsApp1\\WindowsFormsApp1\\Form3.cs",
-              "RelativeToolTip": "WindowsFormsApp1\\Form3.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA0AAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-30T01:56:01.275Z",
-              "EditorCaption": ""
->>>>>>> 3d1cea26d2fe393338274baab3819e9f2945388d
             }
           ]
         }
