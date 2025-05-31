@@ -1,15 +1,11 @@
 ﻿using MySql.Data.MySqlClient; // Ensure you have MySQL.Data package installed
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using TextBox = System.Windows.Forms.TextBox;
 
 namespace WindowsFormsApp1
 {
@@ -18,6 +14,11 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
+        }
+
+        public class Account
+        {
+            public Dictionary<string, object> Data { get; set; } = new Dictionary<string, object>();
         }
 
         public static string HashPassword(string password)
@@ -42,57 +43,81 @@ namespace WindowsFormsApp1
             return connection;
         }
 
-        private void PerformSql(string sqlQuery)
-        {
-            using (MySqlConnection connection = ConnectSql())
-            {
-                using (MySqlCommand command = new MySqlCommand(sqlQuery, connection))
-                {
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
-                string query = "select * from staff";
+                bool isLogined = false;
 
-                using (MySqlConnection connection = ConnectSql())
+                using (MySqlConnection conn = ConnectSql())
                 {
-                    MySqlCommand command = new MySqlCommand(query, connection);
-                    MySqlDataReader reader = command.ExecuteReader();
-
-                    string username = null;
-                    string password = null;
-                    while (reader.Read())
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM STAFF WHERE username = @username AND password = @password;", conn))
                     {
-                        username = reader.GetString("username");
-                        password = reader.GetString("password");
-                        if (txtUsername.Text == username && HashPassword(txtPassword.Text) == password)
-                        {
-                            this.Hide(); // Hide the login form
-                            Form2 form2 = new Form2();
-                            form2.Show();
-                            PerformSql($"INSERT INTO `event` (`event_id`, `event_type`, `event_date`, `event_content`) VALUES (NULL, 'login', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}', '{username} is logged in');");
-                            break;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Login failed. Please check your username and password.");
-                            txtPassword.Clear(); // Clear the password field
-                            txtPassword.Focus(); // Set focus back to the password field
-                            return;
-                        }
+                        cmd.Parameters.AddWithValue("@username", txtUsername.Text);
+                        cmd.Parameters.AddWithValue("@password", HashPassword(txtPassword.Text));
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        isLogined = count > 0;
                     }
-                    reader.Close();
+
+                    if (isLogined)
+                    {
+                        List<string> columnName = new List<string>();
+                        List<string> data = new List<string>();
+
+                        using (MySqlCommand cmd = new MySqlCommand("SHOW COLUMNS FROM STAFF", conn))
+                        {
+                            using (MySqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    columnName.Add(reader.GetString(0));
+                                }
+                            }
+                        }
+
+                        using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM STAFF WHERE username = @username", conn))
+                        {
+                            cmd.Parameters.AddWithValue("@username", txtUsername.Text);
+                            using (MySqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    for (int i = 0; i < columnName.Count; i++)
+                                    {
+                                        data.Add(reader[i].ToString());
+                                    }
+                                }
+                            }
+                        }
+
+                        Account currentUser = new Account();
+                        for (int i = 0; i < columnName.Count; i++)
+                        {
+                            currentUser.Data[columnName[i]] = data[i];
+                        }
+
+                        using (MySqlCommand cmd = new MySqlCommand("INSERT INTO event (event_type, event_content, staff_id) VALUES (@event_type, @event_content, @staff_id)", conn))
+                        {
+                            cmd.Parameters.AddWithValue("@event_type", "login");
+                            cmd.Parameters.AddWithValue("@event_content", "User logged in");
+                            cmd.Parameters.AddWithValue("@staff_id", currentUser.Data["staff_id"].ToString());
+                            cmd.ExecuteNonQuery(); // Execute the insert command
+                        }
+
+                        MessageBox.Show("Login successful!");
+                        Form2 form2 = new Form2(currentUser);
+                        form2.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid username or password.");
+                    }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Cannot connect to database!");
-                return;
+                MessageBox.Show($"Error: {ex.Message}");
             }
         }
 
@@ -103,6 +128,20 @@ namespace WindowsFormsApp1
                 btnLogin_Click(sender, e);
                 e.SuppressKeyPress = true; // Prevents the "ding" sound on Enter
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // Create a new label
+            TextBox myTextBox = new TextBox();
+
+            // Set properties
+            myTextBox.Text = HashPassword("123");
+            myTextBox.Location = new System.Drawing.Point(5, 5); // X, Y position
+            myTextBox.Size = new System.Drawing.Size(TextRenderer.MeasureText(myTextBox.Text, myTextBox.Font).Width+5, 30); // Width, Height
+            myTextBox.ReadOnly = true; // Make it read-only to behave like a label
+            // Add the label to the form
+            this.Controls.Add(myTextBox);
         }
     }
 }

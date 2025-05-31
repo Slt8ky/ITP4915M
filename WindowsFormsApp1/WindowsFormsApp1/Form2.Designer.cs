@@ -39,9 +39,11 @@
             this.lbDate = new System.Windows.Forms.Label();
             this.dtDateSelect = new System.Windows.Forms.DateTimePicker();
             this.cbDateSelect = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnDeleteRecord = new System.Windows.Forms.Button();
+            this.panelInsert = new System.Windows.Forms.Panel();
+            this.btnInsert = new System.Windows.Forms.Button();
+            this.txtUserInfo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,17 +54,17 @@
             this.dtTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dtTable.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dtTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtTable.Location = new System.Drawing.Point(12, 12);
+            this.dtTable.Location = new System.Drawing.Point(12, 33);
             this.dtTable.Name = "dtTable";
             this.dtTable.ReadOnly = true;
             this.dtTable.RowTemplate.Height = 24;
-            this.dtTable.Size = new System.Drawing.Size(1240, 422);
+            this.dtTable.Size = new System.Drawing.Size(876, 422);
             this.dtTable.TabIndex = 0;
             // 
             // cbTableSelect
             // 
             this.cbTableSelect.FormattingEnabled = true;
-            this.cbTableSelect.Location = new System.Drawing.Point(65, 440);
+            this.cbTableSelect.Location = new System.Drawing.Point(62, 478);
             this.cbTableSelect.Name = "cbTableSelect";
             this.cbTableSelect.Size = new System.Drawing.Size(200, 20);
             this.cbTableSelect.TabIndex = 1;
@@ -70,7 +72,7 @@
             // cbColumnSelect
             // 
             this.cbColumnSelect.FormattingEnabled = true;
-            this.cbColumnSelect.Location = new System.Drawing.Point(65, 466);
+            this.cbColumnSelect.Location = new System.Drawing.Point(62, 504);
             this.cbColumnSelect.Name = "cbColumnSelect";
             this.cbColumnSelect.Size = new System.Drawing.Size(200, 20);
             this.cbColumnSelect.TabIndex = 2;
@@ -78,7 +80,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 443);
+            this.label1.Location = new System.Drawing.Point(9, 481);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 12);
             this.label1.TabIndex = 3;
@@ -87,7 +89,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 469);
+            this.label2.Location = new System.Drawing.Point(9, 507);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 12);
             this.label2.TabIndex = 4;
@@ -95,7 +97,7 @@
             // 
             // txtTarget
             // 
-            this.txtTarget.Location = new System.Drawing.Point(318, 466);
+            this.txtTarget.Location = new System.Drawing.Point(315, 504);
             this.txtTarget.Name = "txtTarget";
             this.txtTarget.Size = new System.Drawing.Size(176, 22);
             this.txtTarget.TabIndex = 5;
@@ -103,7 +105,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(274, 471);
+            this.label3.Location = new System.Drawing.Point(271, 509);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 12);
             this.label3.TabIndex = 6;
@@ -111,9 +113,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(12, 622);
+            this.btnSearch.Location = new System.Drawing.Point(12, 600);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(158, 47);
+            this.btnSearch.Size = new System.Drawing.Size(479, 47);
             this.btnSearch.TabIndex = 7;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -122,7 +124,7 @@
             // lbDate
             // 
             this.lbDate.AutoSize = true;
-            this.lbDate.Location = new System.Drawing.Point(13, 499);
+            this.lbDate.Location = new System.Drawing.Point(10, 537);
             this.lbDate.Name = "lbDate";
             this.lbDate.Size = new System.Drawing.Size(33, 12);
             this.lbDate.TabIndex = 8;
@@ -130,7 +132,7 @@
             // 
             // dtDateSelect
             // 
-            this.dtDateSelect.Location = new System.Drawing.Point(65, 492);
+            this.dtDateSelect.Location = new System.Drawing.Point(62, 530);
             this.dtDateSelect.Name = "dtDateSelect";
             this.dtDateSelect.Size = new System.Drawing.Size(200, 22);
             this.dtDateSelect.TabIndex = 9;
@@ -142,23 +144,16 @@
             ">= (After and equle)",
             "<= (Before and equle)",
             "= (Exact)"});
-            this.cbDateSelect.Location = new System.Drawing.Point(65, 520);
+            this.cbDateSelect.Location = new System.Drawing.Point(62, 558);
             this.cbDateSelect.Name = "cbDateSelect";
             this.cbDateSelect.Size = new System.Drawing.Size(200, 20);
             this.cbDateSelect.TabIndex = 10;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(591, 437);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(660, 22);
-            this.textBox1.TabIndex = 11;
-            // 
             // btnDownload
             // 
-            this.btnDownload.Location = new System.Drawing.Point(176, 622);
+            this.btnDownload.Location = new System.Drawing.Point(13, 653);
             this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(158, 47);
+            this.btnDownload.Size = new System.Drawing.Size(236, 47);
             this.btnDownload.TabIndex = 12;
             this.btnDownload.Text = "Export to PDF";
             this.btnDownload.UseVisualStyleBackColor = true;
@@ -166,22 +161,51 @@
             // 
             // btnDeleteRecord
             // 
-            this.btnDeleteRecord.Location = new System.Drawing.Point(340, 622);
+            this.btnDeleteRecord.Location = new System.Drawing.Point(255, 653);
             this.btnDeleteRecord.Name = "btnDeleteRecord";
-            this.btnDeleteRecord.Size = new System.Drawing.Size(158, 47);
+            this.btnDeleteRecord.Size = new System.Drawing.Size(236, 47);
             this.btnDeleteRecord.TabIndex = 13;
             this.btnDeleteRecord.Text = "Delete Record";
             this.btnDeleteRecord.UseVisualStyleBackColor = true;
             this.btnDeleteRecord.Click += new System.EventHandler(this.btnDeleteRecord_Click);
             // 
+            // panelInsert
+            // 
+            this.panelInsert.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelInsert.Location = new System.Drawing.Point(894, 33);
+            this.panelInsert.Name = "panelInsert";
+            this.panelInsert.Size = new System.Drawing.Size(358, 369);
+            this.panelInsert.TabIndex = 14;
+            // 
+            // btnInsert
+            // 
+            this.btnInsert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInsert.Location = new System.Drawing.Point(894, 408);
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.Size = new System.Drawing.Size(358, 47);
+            this.btnInsert.TabIndex = 15;
+            this.btnInsert.Text = "Insert Record";
+            this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+            // 
+            // txtUserInfo
+            // 
+            this.txtUserInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtUserInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.txtUserInfo.Location = new System.Drawing.Point(894, 460);
+            this.txtUserInfo.Name = "txtUserInfo";
+            this.txtUserInfo.Padding = new System.Windows.Forms.Padding(10);
+            this.txtUserInfo.Size = new System.Drawing.Size(358, 240);
+            this.txtUserInfo.TabIndex = 16;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.ClientSize = new System.Drawing.Size(1264, 715);
+            this.Controls.Add(this.txtUserInfo);
             this.Controls.Add(this.btnDeleteRecord);
             this.Controls.Add(this.btnDownload);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.cbDateSelect);
             this.Controls.Add(this.dtDateSelect);
             this.Controls.Add(this.lbDate);
@@ -193,6 +217,8 @@
             this.Controls.Add(this.cbColumnSelect);
             this.Controls.Add(this.cbTableSelect);
             this.Controls.Add(this.dtTable);
+            this.Controls.Add(this.panelInsert);
+            this.Controls.Add(this.btnInsert);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form2";
             this.Text = "Form2";
@@ -216,8 +242,10 @@
         private System.Windows.Forms.Label lbDate;
         private System.Windows.Forms.DateTimePicker dtDateSelect;
         private System.Windows.Forms.ComboBox cbDateSelect;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnDownload;
         private System.Windows.Forms.Button btnDeleteRecord;
+        private System.Windows.Forms.Panel panelInsert;
+        private System.Windows.Forms.Button btnInsert;
+        private System.Windows.Forms.Label txtUserInfo;
     }
 }

@@ -10,27 +10,38 @@ using System.Data.Common;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static WindowsFormsApp1.Form1;
 using Rectangle = iTextSharp.text.Rectangle;
+using TextBox = System.Windows.Forms.TextBox;
 
 namespace WindowsFormsApp1
 {
     public partial class Form2 : Form
     {
+        private Account currentUser;
+        string username = "admin"; // Default username, can be set from Form1
         private MySqlConnection conn;
 
         public Form2()
         {
             InitializeComponent();
         }
+        public Form2(Account currentUser)
+        {
+            InitializeComponent();
+            this.currentUser = currentUser;
+        }
 
         private void Form2_Load(object sender, EventArgs e)
         {
             ConnectDatabase(); // Connect to the database and load tables and columns
             cbDateSelect.SelectedIndex = 1; // Set the default selection for cbDateSelect
+            txtUserInfo.Text += $"Username: {currentUser.Data["username"].ToString()}";
         }
 
         private void ConnectDatabase()
@@ -45,7 +56,24 @@ namespace WindowsFormsApp1
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "System");
+            }
+        }
+
+
+
+        private void LoadAccount(string event_type)
+        {
+            string query = $"SELECT * FROM `staff` WHERE `staff_name` = {username}";
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+            {
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                    }
+                }
             }
         }
 
@@ -63,7 +91,7 @@ namespace WindowsFormsApp1
                 cbTableSelect.Items.Clear(); // Clear existing items in cbTableSelect
 
                 // Whitelist of tables to include
-                string[] whitelistItems = { "report", "product", "warehouse" };
+                string[] whitelistItems = { "report", "product", "warehouse", "item"};
                 HashSet<string> whitelistSet = new HashSet<string>(whitelistItems);
 
                 while (tableReader.Read())
@@ -95,7 +123,7 @@ namespace WindowsFormsApp1
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "System");
             }
         }
 
@@ -105,42 +133,45 @@ namespace WindowsFormsApp1
 
             try
             {
-                // Load columns
                 string columnQuery = $"DESCRIBE `{tableName}`;";
                 MySqlCommand columnCmd = new MySqlCommand(columnQuery, conn);
                 MySqlDataReader columnReader = columnCmd.ExecuteReader();
 
-                cbColumnSelect.Items.Clear(); // Clear existing items in cbColumnSelect
+                panelInsert.Controls.Clear(); // Clear existing controls
 
-                bool hasDate = false;
+                int yPos = 10; // Starting position for controls
+                cbColumnSelect.Items.Clear();
                 while (columnReader.Read())
                 {
                     string columnName = columnReader.GetString(0);
+                    Label label = new Label
+                    {
+                        Text = columnName,
+                        Location = new Point(10, yPos),
+                        AutoSize = true
+                    };
+
+                    TextBox textBox = new TextBox
+                    {
+                        Name = columnName,
+                        Location = new Point(120, yPos),
+                        Width = 200
+                    };
+
                     cbColumnSelect.Items.Add(columnName);
+                    panelInsert.Controls.Add(label);
+                    panelInsert.Controls.Add(textBox);
 
-                    if (columnName == "created_at")
-                        hasDate = true;
+                    yPos += 30; // Move down for the next control
                 }
+                if (cbColumnSelect.Items.Count > 0)
+                    cbColumnSelect.SelectedIndex = 0;
                 columnReader.Close();
-
-                // Show or hide date controls based on presence of 'created_at'
-                if (hasDate)
-                {
-                    lbDate.Show();
-                    dtDateSelect.Show();
-                    cbDateSelect.Show();
-                }
-                else
-                {
-                    lbDate.Hide();
-                    dtDateSelect.Hide();
-                    cbDateSelect.Hide();
-                }
-                LoadDataToDataGridView($"SELECT * FROM `{tableName}`;");
+                LoadDataToDataGridView($"SELECT * FROM `{cbTableSelect.SelectedItem.ToString()}`");
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "System");
             }
         }
 
@@ -218,7 +249,6 @@ namespace WindowsFormsApp1
                     query += "WHERE ";
                 query += $"`{cbColumnSelect.SelectedItem}` LIKE '{txtTarget.Text}'"; // Use single quotes for string values
             }
-            textBox1.Text = query; // Display the query in textBox1
 
             // Load data into DataGridView
             LoadDataToDataGridView(query);
@@ -263,11 +293,11 @@ namespace WindowsFormsApp1
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "System");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "System");
             }
         }
 
@@ -389,26 +419,73 @@ namespace WindowsFormsApp1
                         textString += ", ";
                     }
                 }
-                MessageBox.Show(textString);
                 try
                 {
-                    string query = $"DELETE FROM `{cbTableSelect.SelectedItem.ToString()}` WHERE `{cbColumnSelect.Items[0]}` IN ({textString})";
-                    MessageBox.Show(query);
-                    MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.ExecuteNonQuery();
-                    LoadColumnsAndData(cbTableSelect.SelectedItem.ToString());
+                    DialogResult dialogResult = MessageBox.Show($"{items.Length} Items affected.\nConfirm delete?\n\n{cbColumnSelect.Items[0]}: {textString}\nDate: {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}\nStaff name: username", "Confirm Deletion", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        string query = $"DELETE FROM `{cbTableSelect.SelectedItem.ToString()}` WHERE `{cbColumnSelect.Items[0]}` IN ({textString})";
+                        using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                        {
+                            cmd.ExecuteNonQuery();
+                            LoadColumnsAndData(cbTableSelect.SelectedItem.ToString());
+                        }
+
+                        string insertEventQuery = "INSERT INTO event (`event_type`, `event_content`) VALUES ('delete_item', @deleteContent);";
+                        using (MySqlCommand cmd = new MySqlCommand(insertEventQuery, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@deleteContent", query);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                    }
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message, "System");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message, "System");
                 }
             } else
             {
-                MessageBox.Show("You must select at least one row of record");
+                MessageBox.Show("You must select at least one row of record", "System");
+            }
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            if (cbTableSelect.SelectedItem == null) return; // No table selected
+
+            string tableName = cbTableSelect.SelectedItem.ToString();
+            List<string> columnNames = new List<string>();
+            List<string> values = new List<string>();
+
+            foreach (Control control in panelInsert.Controls)
+            {
+                if (control is TextBox textBox)
+                {
+                    columnNames.Add(textBox.Name);
+                    values.Add($"'{textBox.Text}'"); // Use single quotes for SQL
+                }
+            }
+
+            string columns = string.Join(", ", columnNames);
+            string valueString = string.Join(", ", values);
+            string query = $"INSERT INTO `{tableName}` ({columns}) VALUES ({valueString});";
+
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.ExecuteNonQuery();
+                    LoadDataToDataGridView($"SELECT * FROM `{cbTableSelect.SelectedItem.ToString()}`");
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "System");
             }
         }
     }
