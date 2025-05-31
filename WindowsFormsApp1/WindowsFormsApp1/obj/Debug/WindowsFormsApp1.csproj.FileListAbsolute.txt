@@ -88,3 +88,4 @@ C:\Users\slt8ky\Desktop\ITP4915M\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Win
 C:\Users\slt8ky\Desktop\ITP4915M\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsF.A1EEDF9B.Up2Date
 C:\Users\slt8ky\Desktop\ITP4915M\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\slt8ky\Desktop\ITP4915M\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\slt8ky\Desktop\ITP4915M\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form2.resources

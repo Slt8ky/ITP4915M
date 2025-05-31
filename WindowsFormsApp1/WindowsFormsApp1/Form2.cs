@@ -64,7 +64,13 @@ namespace WindowsFormsApp1
 
                 while (tableReader.Read())
                 {
-                    cbTableSelect.Items.Add(tableReader.GetString(0));
+                    string column = tableReader.GetString(0);
+                    string[] whitelistItems = { "item", "product", "warehouse" };
+                    foreach (string whitelistItem in whitelistItems)
+                    {
+                        if (column == whitelistItem)
+                            cbTableSelect.Items.Add(column);
+                    }
                 }
 
                 tableReader.Close();
@@ -358,6 +364,49 @@ namespace WindowsFormsApp1
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnDeleteRecord_Click(object sender, EventArgs e)
+        {
+            if (dtTable.SelectedRows.Count>0)
+            {
+                string[] items = new string[dtTable.SelectedRows.Count];
+                string textString = "";
+                int i = 0;
+                for (int row = dtTable.SelectedRows.Count - 1; row >= 0; row--)
+                {
+                    items[i] = dtTable.SelectedRows[row].Cells[0].Value.ToString();
+                    i++;
+                }
+                for (i = 0; i < items.Length; i++)
+                {
+                    textString += items[i];
+                    if (i != items.Length - 1)
+                    {
+                        textString += ", ";
+                    }
+                }
+                MessageBox.Show(textString);
+                try
+                {
+                    string query = $"DELETE FROM `{cbTableSelect.SelectedItem.ToString()}` WHERE `{cbColumnSelect.Items[0]}` IN ({textString})";
+                    MessageBox.Show(query);
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.ExecuteNonQuery();
+                    LoadColumnsAndData(cbTableSelect.SelectedItem.ToString());
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            } else
+            {
+                MessageBox.Show("You must select at least one row of record");
             }
         }
     }

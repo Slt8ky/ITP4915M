@@ -41,6 +41,7 @@
             this.cbDateSelect = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnDownload = new System.Windows.Forms.Button();
+            this.btnDeleteRecord = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -163,11 +164,22 @@
             this.btnDownload.UseVisualStyleBackColor = true;
             this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
+            // btnDeleteRecord
+            // 
+            this.btnDeleteRecord.Location = new System.Drawing.Point(340, 622);
+            this.btnDeleteRecord.Name = "btnDeleteRecord";
+            this.btnDeleteRecord.Size = new System.Drawing.Size(158, 47);
+            this.btnDeleteRecord.TabIndex = 13;
+            this.btnDeleteRecord.Text = "Delete Record";
+            this.btnDeleteRecord.UseVisualStyleBackColor = true;
+            this.btnDeleteRecord.Click += new System.EventHandler(this.btnDeleteRecord_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.btnDeleteRecord);
             this.Controls.Add(this.btnDownload);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.cbDateSelect);
@@ -206,5 +218,6 @@
         private System.Windows.Forms.ComboBox cbDateSelect;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnDownload;
+        private System.Windows.Forms.Button btnDeleteRecord;
     }
 }
