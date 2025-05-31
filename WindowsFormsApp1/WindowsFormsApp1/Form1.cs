@@ -129,19 +129,5 @@ namespace WindowsFormsApp1
                 e.SuppressKeyPress = true; // Prevents the "ding" sound on Enter
             }
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            // Create a new label
-            TextBox myTextBox = new TextBox();
-
-            // Set properties
-            myTextBox.Text = HashPassword("123");
-            myTextBox.Location = new System.Drawing.Point(5, 5); // X, Y position
-            myTextBox.Size = new System.Drawing.Size(TextRenderer.MeasureText(myTextBox.Text, myTextBox.Font).Width+5, 30); // Width, Height
-            myTextBox.ReadOnly = true; // Make it read-only to behave like a label
-            // Add the label to the form
-            this.Controls.Add(myTextBox);
-        }
     }
 }
