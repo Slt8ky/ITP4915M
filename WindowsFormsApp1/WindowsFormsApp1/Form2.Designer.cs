@@ -144,7 +144,7 @@
             "= (Exact)"});
             this.cbDateSelect.Location = new System.Drawing.Point(65, 520);
             this.cbDateSelect.Name = "cbDateSelect";
-            this.cbDateSelect.Size = new System.Drawing.Size(121, 20);
+            this.cbDateSelect.Size = new System.Drawing.Size(200, 20);
             this.cbDateSelect.TabIndex = 10;
             // 
             // textBox1

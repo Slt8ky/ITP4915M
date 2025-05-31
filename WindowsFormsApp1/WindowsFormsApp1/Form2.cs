@@ -62,14 +62,16 @@ namespace WindowsFormsApp1
 
                 cbTableSelect.Items.Clear(); // Clear existing items in cbTableSelect
 
+                // Whitelist of tables to include
+                string[] whitelistItems = { "report", "product", "warehouse" };
+                HashSet<string> whitelistSet = new HashSet<string>(whitelistItems);
+
                 while (tableReader.Read())
                 {
-                    string column = tableReader.GetString(0);
-                    string[] whitelistItems = { "item", "product", "warehouse" };
-                    foreach (string whitelistItem in whitelistItems)
+                    string tableName = tableReader.GetString(0);
+                    if (whitelistSet.Contains(tableName))
                     {
-                        if (column == whitelistItem)
-                            cbTableSelect.Items.Add(column);
+                        cbTableSelect.Items.Add(tableName);
                     }
                 }
 
