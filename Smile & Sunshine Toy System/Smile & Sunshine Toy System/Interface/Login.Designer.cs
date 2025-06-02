@@ -39,7 +39,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(498, 158);
+            this.label1.Location = new System.Drawing.Point(499, 180);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 12);
             this.label1.TabIndex = 0;
@@ -48,7 +48,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(498, 199);
+            this.label2.Location = new System.Drawing.Point(499, 221);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 12);
             this.label2.TabIndex = 1;
@@ -56,21 +56,21 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(558, 148);
+            this.txtUsername.Location = new System.Drawing.Point(559, 170);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(162, 22);
             this.txtUsername.TabIndex = 2;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(558, 189);
+            this.txtPassword.Location = new System.Drawing.Point(559, 211);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(162, 22);
             this.txtPassword.TabIndex = 3;
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(500, 231);
+            this.btnLogin.Location = new System.Drawing.Point(501, 253);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(220, 48);
             this.btnLogin.TabIndex = 4;
@@ -84,7 +84,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(800, 418);
+            this.ClientSize = new System.Drawing.Size(800, 456);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
