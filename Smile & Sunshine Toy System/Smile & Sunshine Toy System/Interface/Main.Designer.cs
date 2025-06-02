@@ -48,27 +48,30 @@
             // 
             this.dgvData.AllowUserToAddRows = false;
             this.dgvData.AllowUserToDeleteRows = false;
-            this.dgvData.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dgvData.BackgroundColor = System.Drawing.Color.White;
+            this.dgvData.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvData.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvData.Location = new System.Drawing.Point(88, 45);
+            this.dgvData.Location = new System.Drawing.Point(88, 42);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowTemplate.Height = 24;
-            this.dgvData.Size = new System.Drawing.Size(837, 557);
+            this.dgvData.Size = new System.Drawing.Size(837, 548);
             this.dgvData.TabIndex = 0;
             this.dgvData.SelectionChanged += new System.EventHandler(this.dgvData_SelectionChanged);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Location = new System.Drawing.Point(963, 46);
+            this.panel1.Location = new System.Drawing.Point(963, 42);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(301, 510);
+            this.panel1.Size = new System.Drawing.Size(301, 499);
             this.panel1.TabIndex = 1;
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Thistle;
-            this.button1.Location = new System.Drawing.Point(963, 581);
+            this.button1.Location = new System.Drawing.Point(963, 568);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(301, 33);
             this.button1.TabIndex = 2;
@@ -80,7 +83,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(107, 643);
+            this.label1.Location = new System.Drawing.Point(118, 628);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 12);
             this.label1.TabIndex = 3;
@@ -89,7 +92,7 @@
             // cbTable
             // 
             this.cbTable.FormattingEnabled = true;
-            this.cbTable.Location = new System.Drawing.Point(147, 639);
+            this.cbTable.Location = new System.Drawing.Point(158, 624);
             this.cbTable.Name = "cbTable";
             this.cbTable.Size = new System.Drawing.Size(187, 20);
             this.cbTable.TabIndex = 4;
@@ -99,7 +102,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(338, 643);
+            this.label2.Location = new System.Drawing.Point(349, 628);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 12);
             this.label2.TabIndex = 5;
@@ -108,21 +111,21 @@
             // cbColumn
             // 
             this.cbColumn.FormattingEnabled = true;
-            this.cbColumn.Location = new System.Drawing.Point(390, 639);
+            this.cbColumn.Location = new System.Drawing.Point(401, 624);
             this.cbColumn.Name = "cbColumn";
             this.cbColumn.Size = new System.Drawing.Size(187, 20);
             this.cbColumn.TabIndex = 6;
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(581, 639);
+            this.txtValue.Location = new System.Drawing.Point(592, 624);
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(218, 22);
             this.txtValue.TabIndex = 7;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(803, 636);
+            this.btnSearch.Location = new System.Drawing.Point(814, 621);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(80, 27);
             this.btnSearch.TabIndex = 8;
@@ -135,7 +138,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(588, 679);
+            this.label3.Location = new System.Drawing.Point(599, 664);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(203, 12);
             this.label3.TabIndex = 9;
@@ -144,7 +147,7 @@
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnDelete.Location = new System.Drawing.Point(1125, 634);
+            this.btnDelete.Location = new System.Drawing.Point(1125, 619);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(139, 32);
             this.btnDelete.TabIndex = 11;
@@ -155,7 +158,7 @@
             // btnUpdate
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.Wheat;
-            this.btnUpdate.Location = new System.Drawing.Point(963, 634);
+            this.btnUpdate.Location = new System.Drawing.Point(963, 619);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(139, 32);
             this.btnUpdate.TabIndex = 12;
@@ -168,8 +171,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1346, 711);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ClientSize = new System.Drawing.Size(1346, 694);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.label3);
@@ -182,8 +185,11 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvData);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
