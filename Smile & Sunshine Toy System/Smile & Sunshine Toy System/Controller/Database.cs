@@ -7,7 +7,7 @@ namespace Smile___Sunshine_Toy_System
     {
         private static readonly Database instance = new Database();
         private MySqlConnection connection;
-        private string connectionString = "server=127.0.0.1;uid=root;database=default;Convert Zero Datetime=true;";
+        private string connectionString = "server=125.59.53.16;uid=root;database=default;Convert Zero Datetime=true;";
 
         private Database()
         {

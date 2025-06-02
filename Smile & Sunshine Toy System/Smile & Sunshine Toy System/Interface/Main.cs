@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using static Mysqlx.Expect.Open.Types;
 
 namespace Smile___Sunshine_Toy_System.Interface
 {
@@ -234,11 +235,15 @@ namespace Smile___Sunshine_Toy_System.Interface
 
         private void GetTextBoxValues(out List<string> values)
         {
+
             values = new List<string>();
             for (int i = 0; i < panel1.Controls.Count; i += 2) // Assuming labels and textboxes are added in pairs
             {
                 TextBox textBox = (TextBox)panel1.Controls[i + 1]; // TextBox is the next control after Label
-                values.Add(string.IsNullOrEmpty(textBox.Text) ? "NULL" : textBox.Text); // Collect values from textboxes
+                string result = (string.IsNullOrEmpty(textBox.Text)) ? "Null" :
+                                (textBox.Text.All(char.IsDigit)) ? textBox.Text :
+                                $"\"{textBox.Text}\"";
+                values.Add(result); // Collect values from textboxes
             }
         }
 
