@@ -83,7 +83,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(118, 628);
+            this.label1.Location = new System.Drawing.Point(94, 629);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 12);
             this.label1.TabIndex = 3;
@@ -92,7 +92,7 @@
             // cbTable
             // 
             this.cbTable.FormattingEnabled = true;
-            this.cbTable.Location = new System.Drawing.Point(158, 624);
+            this.cbTable.Location = new System.Drawing.Point(132, 625);
             this.cbTable.Name = "cbTable";
             this.cbTable.Size = new System.Drawing.Size(187, 20);
             this.cbTable.TabIndex = 4;
@@ -102,7 +102,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(349, 628);
+            this.label2.Location = new System.Drawing.Point(323, 629);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 12);
             this.label2.TabIndex = 5;
@@ -111,21 +111,21 @@
             // cbColumn
             // 
             this.cbColumn.FormattingEnabled = true;
-            this.cbColumn.Location = new System.Drawing.Point(401, 624);
+            this.cbColumn.Location = new System.Drawing.Point(373, 625);
             this.cbColumn.Name = "cbColumn";
             this.cbColumn.Size = new System.Drawing.Size(187, 20);
             this.cbColumn.TabIndex = 6;
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(592, 624);
+            this.txtValue.Location = new System.Drawing.Point(588, 624);
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(218, 22);
             this.txtValue.TabIndex = 7;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(814, 621);
+            this.btnSearch.Location = new System.Drawing.Point(822, 621);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(80, 27);
             this.btnSearch.TabIndex = 8;
@@ -173,15 +173,15 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1346, 694);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.cbColumn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbTable);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvData);

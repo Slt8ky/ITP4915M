@@ -101,7 +101,7 @@ namespace Smile___Sunshine_Toy_System.Interface
                 Label dynamicLabel = new Label
                 {
                     Text = columnNames[i], // Set the text for the label to the column name
-                    Location = new System.Drawing.Point(0, startingY + (i * spacing) + 3), // Adjust Y position for each Label
+                    Location = new Point(0, startingY + (i * spacing) + 3), // Adjust Y position for each Label
                     Size = new System.Drawing.Size(maxLabelWidth + 10, 30) // Set width based on max length
                 };
 

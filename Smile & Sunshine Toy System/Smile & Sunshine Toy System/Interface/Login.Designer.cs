@@ -56,6 +56,7 @@
             // 
             // txtUsername
             // 
+            this.txtUsername.BackColor = System.Drawing.Color.White;
             this.txtUsername.Location = new System.Drawing.Point(559, 170);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(162, 22);
@@ -63,6 +64,7 @@
             // 
             // txtPassword
             // 
+            this.txtPassword.BackColor = System.Drawing.Color.White;
             this.txtPassword.Location = new System.Drawing.Point(559, 211);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(162, 22);
