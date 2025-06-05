@@ -21,7 +21,8 @@ namespace Smile___Sunshine_Toy_System
             if (loginController.ValidateCredentials(username, password)) // Call the method
             {
                 this.Hide(); // Hide the login form
-                Main mainForm = new Main(); // Create an instance of the main form
+                loginController.GetUser(txtUsername.Text);
+                Main mainForm = new Main(txtUsername.Text.ToString()); // Create an instance of the main form
                 mainForm.Show(); // Show the main form
             }
             else

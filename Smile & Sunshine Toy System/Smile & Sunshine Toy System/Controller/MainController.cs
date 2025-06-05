@@ -1,238 +1,274 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Google.Protobuf.WellKnownTypes;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace Smile___Sunshine_Toy_System.Controller
 {
-    public class MainController
+    internal class MainController
     {
-        // Method to get table names
-        public string[] GetTableNames()
+        private RichTextBox rtbDisplay;
+        private String username;
+        private List<String> user;
+
+        public MainController(RichTextBox rtbDisplay, String username)
         {
-            List<string> tables = new List<string>();
-            var connection = Database.Instance.GetConnection();
+            this.rtbDisplay = rtbDisplay;
+            this.username = username;
+        }
 
-            try
+        public List<string> GetUser(string username)
+        {
+            List<string> results = new List<string>();
+            string query = $"SELECT * FROM STAFF WHERE `username` = @username"; // Use parameterized query to prevent SQL injection
+
+            using (var connection = Database.Instance.Connection)
             {
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open(); // Open the connection if it is closed
-                }
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
 
-                string query = "SHOW TABLES;";
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    using (var reader = command.ExecuteReader())
+                    // Use parameterized query
+                    command.Parameters.AddWithValue("@username", username);
+
+                    try
                     {
-                        while (reader.Read())
+                        using (var reader = command.ExecuteReader())
                         {
-                            tables.Add(reader[0].ToString());
+                            while (reader.Read())
+                            {
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    results.Add(reader.GetValue(i)?.ToString());
+                                }
+                            }
                         }
                     }
+                    catch (MySqlException ex)
+                    {
+                        throw new Exception($"Error executing query: {ex.Message}");
+                    }
                 }
             }
-            catch (MySqlException ex)
-            {
-                // Handle database exceptions (optional)
-                throw new Exception($"Error retrieving table names: {ex.Message}");
-            }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Close(); // Close the connection
-                }
-            }
-
-            return tables.ToArray();
+            user = results;
+            Console.WriteLine(String.Join(", ", results));
+            return results;
         }
 
-        // Method to get column names from a specific table
-        public string[] GetColumnNames(string tableName)
+        public List<string> GetTable()
         {
-            List<string> columns = new List<string>();
-            var connection = Database.Instance.GetConnection();
-
-            try
+            List<string> results = new List<string>();
+            string query = "SHOW TABLES";
+            using (var connection = Database.Instance.Connection)
             {
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open(); // Open the connection if it is closed
-                }
-
-                string query = $"SHOW COLUMNS FROM `{tableName}`;";
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    using (var reader = command.ExecuteReader())
+                    try
                     {
-                        while (reader.Read())
+                        using (var reader = command.ExecuteReader())
                         {
-                            columns.Add(reader["Field"].ToString());
+                            while (reader.Read())
+                            {
+                                results.Add(reader.GetString(0));
+                            }
                         }
                     }
-                }
-            }
-            catch (MySqlException ex)
-            {
-                // Handle database exceptions (optional)
-                throw new Exception($"Error retrieving column names from {tableName}: {ex.Message}");
-            }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Close(); // Close the connection
-                }
-            }
-
-            return columns.ToArray();
-        }
-
-        // Method to load data from a specified table
-        public DataTable LoadData(string tableName)
-        {
-            var dataTable = new DataTable();
-            var connection = Database.Instance.GetConnection();
-
-            try
-            {
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();
-                }
-
-                string query = $"SELECT * FROM `{tableName}`;";
-                using (var command = new MySqlCommand(query, connection))
-                {
-                    using (var adapter = new MySqlDataAdapter(command))
+                    catch (MySqlException ex)
                     {
-                        adapter.Fill(dataTable); // Fill the DataTable with the fetched data
+                        throw new Exception($"Error executing query: {ex.Message}");
                     }
                 }
             }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(tableName + " " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Close();
-                }
-            }
-
-            return dataTable; // Return the populated DataTable
+            return results;
         }
 
-        public void DeleteRecord(string tableName, string column, string id)
+        public List<string> GetTableStructure(string tableName)
         {
-            var connection = Database.Instance.GetConnection();
+            List<string> results = new List<string>();
+            string query = $"DESCRIBE `{tableName}`"; // Using backticks for table names
 
-            try
+            using (var connection = Database.Instance.Connection)
             {
-                if (connection.State == ConnectionState.Closed)
-                {
+                if (connection.State != System.Data.ConnectionState.Open)
                     connection.Open();
-                }
-
-                // Use the column name directly in the query
-                string query = $"DELETE FROM `{tableName}` WHERE `{column}` = @id;";
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@id", id);
-                    command.ExecuteNonQuery();
-                }
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(tableName + " " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Close();
-                }
-            }
-        }
-
-        public void UpdateRecord(string tableName, string[] columns, string[] values, string id)
-        {
-            var connection = Database.Instance.GetConnection();
-
-            try
-            {
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();
-                }
-
-                // Construct the SET part of the query
-                string setClause = string.Join(", ", columns.Select((col, index) => $"{col} = @value{index}"));
-
-                string query = $"UPDATE `{tableName}` SET {setClause} WHERE `{columns[0]}` = @id;"; // Assuming first column is the primary key
-
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    // Add parameters for the values
-                    for (int i = 0; i < values.Length; i++)
+                    try
                     {
-                        command.Parameters.AddWithValue($"@value{i}", values[i]);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                results.Add(reader.GetString(0)); // This retrieves the field names
+                            }
+                        }
                     }
-                    command.Parameters.AddWithValue("@id", id); // Primary key parameter
-                    command.ExecuteNonQuery();
+                    catch (MySqlException ex)
+                    {
+                        throw new Exception($"Error executing query: {ex.Message}");
+                    }
                 }
             }
-            catch (MySqlException ex)
+            return results;
+        }
+
+        public List<List<string>> GetRecord(string tableName, string criteria = null)
+        {
+            List<List<string>> results = new List<List<string>>();
+            string query = $"SELECT * FROM `{tableName}`"; // Use backticks for table names
+            if (!String.IsNullOrEmpty(criteria))
             {
-                MessageBox.Show(tableName + " " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                query += $" WHERE {criteria}"; // Append criteria if provided
+                Log(query); // Log the query
             }
-            finally
+            Console.WriteLine(query);
+            // Append date in black
+            rtbDisplay.SelectionColor = Color.Black;
+            rtbDisplay.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} - ");
+            rtbDisplay.SelectionColor = Color.Orange;
+            rtbDisplay.AppendText($" [LOOKUP] ");
+            rtbDisplay.SelectionColor = Color.Purple;
+            rtbDisplay.AppendText($"{query}{Environment.NewLine}");
+            rtbDisplay.SelectionStart = rtbDisplay.Text.Length; // Move the caret to the end
+            rtbDisplay.ScrollToCaret(); // Scroll to the caret position
+
+            // Reset selection color to default
+            rtbDisplay.SelectionColor = rtbDisplay.ForeColor;
+            using (var connection = Database.Instance.Connection)
             {
-                if (connection.State == ConnectionState.Open)
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+
+                using (var command = new MySqlCommand(query, connection))
                 {
-                    connection.Close();
+                    try
+                    {
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                List<string> row = new List<string>();
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    row.Add(reader[i]?.ToString() ?? string.Empty); // Convert to string, handle nulls
+                                }
+                                results.Add(row); // Add the row to the results
+                            }
+                        }
+                    }
+                    catch (MySqlException ex)
+                    {
+                        throw new Exception($"Error executing query: {ex.Message}");
+                    }
+                }
+            }
+            return results;
+        }
+
+        public void Log(string queryString)
+        {
+            string query = "INSERT INTO `event` (`event_type`, `event_content`, `staff_id`) VALUES (@eventType, @eventContent, @staffId);";
+
+            using (var connection = Database.Instance.Connection)
+            {
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    // Using parameters to prevent SQL injection
+                    command.Parameters.AddWithValue("@eventType", "lookup_item");
+                    command.Parameters.AddWithValue("@eventContent", queryString);
+                    command.Parameters.AddWithValue("@staffId", user[0]); // Ensure this is an integer if staff_id is an integer in the database
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (MySqlException ex)
+                    {
+                        throw new Exception($"Error executing log query: {ex.Message}");
+                    }
                 }
             }
         }
 
-        public void InsertRecord(string tableName, string[] columns, string[] values)
+        public void InsertRecord(string tableName, String values)
         {
-            var connection = Database.Instance.GetConnection();
-
-            try
+            string query = $"INSERT INTO `{tableName}` VALUES ({values})"; // Use backticks for table names
+            using (var connection = Database.Instance.Connection)
             {
-                if (connection.State == ConnectionState.Closed)
-                {
+                if (connection.State != System.Data.ConnectionState.Open)
                     connection.Open();
-                }
-
-                // Construct the SET part of the query
-                string setColumn = string.Join(", ", columns);
-                string setValue = string.Join(", ", values);
-
-
-                string query = $"INSERT INTO `{tableName}` ({setColumn}) VALUES ({setValue})"; // Assuming first column is the primary key
-                Console.WriteLine(query); // Debugging line to check the query
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    command.ExecuteNonQuery();
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (MySqlException ex)
+                    {
+                        rtbDisplay.SelectionColor = Color.Black;
+                        rtbDisplay.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} - ");
+                        rtbDisplay.SelectionColor = Color.Red;
+                        rtbDisplay.AppendText($" [ERROR] ");
+                        rtbDisplay.SelectionColor = Color.Purple;
+                        rtbDisplay.AppendText($"{ex.Message}{Environment.NewLine}");
+                        rtbDisplay.SelectionStart = rtbDisplay.Text.Length; // Move the caret to the end
+                        rtbDisplay.ScrollToCaret(); // Scroll to the caret position
+                        return;
+                    }
+                    rtbDisplay.SelectionColor = Color.Black;
+                    rtbDisplay.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} - ");
+                    rtbDisplay.SelectionColor = Color.Green;
+                    rtbDisplay.AppendText($" [INSERT] ");
+                    rtbDisplay.SelectionColor = Color.Purple;
+                    rtbDisplay.AppendText($"{query}{Environment.NewLine}");
+                    rtbDisplay.SelectionStart = rtbDisplay.Text.Length; // Move the caret to the end
+                    rtbDisplay.ScrollToCaret(); // Scroll to the caret position
                 }
             }
-            catch (MySqlException ex)
+        }
+
+        public void DeleteRecord(string tableName, String queryString)
+        {
+            string query = $"DELETE FROM `{tableName}` WHERE {queryString}"; // Use backticks for table names
+            using (var connection = Database.Instance.Connection)
             {
-                MessageBox.Show(tableName + " " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+                using (var command = new MySqlCommand(query, connection))
                 {
-                    connection.Close();
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (MySqlException ex)
+                    {
+                        rtbDisplay.SelectionColor = Color.Black;
+                        rtbDisplay.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} - ");
+                        rtbDisplay.SelectionColor = Color.Red;
+                        rtbDisplay.AppendText($" [ERROR] ");
+                        rtbDisplay.SelectionColor = Color.Purple;
+                        rtbDisplay.AppendText($"{ex.Message}{Environment.NewLine}");
+                        rtbDisplay.SelectionStart = rtbDisplay.Text.Length; // Move the caret to the end
+                        rtbDisplay.ScrollToCaret(); // Scroll to the caret position
+                        return;
+                    }
+                    rtbDisplay.SelectionColor = Color.Black;
+                    rtbDisplay.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} - ");
+                    rtbDisplay.SelectionColor = Color.Red;
+                    rtbDisplay.AppendText($" [DELETE] ");
+                    rtbDisplay.SelectionColor = Color.Purple;
+                    rtbDisplay.AppendText($"{query}{Environment.NewLine}");
+                    rtbDisplay.SelectionStart = rtbDisplay.Text.Length; // Move the caret to the end
+                    rtbDisplay.ScrollToCaret(); // Scroll to the caret position
                 }
             }
         }

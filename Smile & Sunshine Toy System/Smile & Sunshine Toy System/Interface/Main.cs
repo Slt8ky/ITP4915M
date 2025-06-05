@@ -1,283 +1,218 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Mysqlx.Resultset;
+using MySqlX.XDevAPI.Relational;
 using Smile___Sunshine_Toy_System.Controller;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Mysqlx.Expect.Open.Types;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using TextBox = System.Windows.Forms.TextBox;
 
 namespace Smile___Sunshine_Toy_System.Interface
 {
     public partial class Main : Form
     {
         private MainController mainController;
-        public Main()
+        private String username;
+        private List<String> user;
+        private List<String> table;
+        private List<String> column;
+        private List<String> selectedRow;
+
+        public Main(string username)
         {
             InitializeComponent();
-            mainController = new MainController();
+            this.username = username;
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
-            LoadTableNames();
+            mainController = new MainController(rtbDisplay, username);
+            user = mainController.GetUser(username);
+            table = mainController.GetTable();
+            loadTableAndColumn();
+            //Console.WriteLine(string.Join(", ", column));
         }
 
-        private void LoadTableNames()
+        private void loadTableAndColumn()
         {
-            string[] allowedTables = { "item", "product", "warehouse" }; // Whitelist of table names
-            string[] allTables = mainController.GetTableNames();
-
-            // Filter and add allowed tables to cbTable
-            cbTable.Items.Clear(); // Clear existing items
-            foreach (var table in allTables)
+            Boolean isWhiteList = false;
+            List<String> whiteList = new List<string> {"item", "product", "warehouse"};
+            foreach (String t in table)
             {
-                //cbTable.Items.Add(table);
-
-                if (allowedTables.Contains(table))
+                if (whiteList.Contains(t) && isWhiteList)
                 {
-                    cbTable.Items.Add(table);
-                }
+                    cbTable.Items.Add(t);
+                } else if (!isWhiteList)
+                    cbTable.Items.Add(t);
             }
-
-            // Optionally, select the first item if any
             if (cbTable.Items.Count > 0)
             {
                 cbTable.SelectedIndex = 0;
-                LoadColumnNames(cbTable.SelectedItem.ToString()); // Load columns for the first selected table
-                LoadDataIntoDataGridView(cbTable.SelectedItem.ToString()); // Load data into DataGridView
+                column = mainController.GetTableStructure(cbTable.SelectedItem.ToString());
+                foreach (String c in column)
+                {
+                    cbColumn.Items.Add(c);
+                }
+                if (cbColumn.Items.Count > 0)
+                    cbColumn.SelectedIndex = 0;
             }
         }
 
         private void cbTable_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Load columns when the selected table changes
-            if (cbTable.SelectedItem != null)
+            cbColumn.Items.Clear();
+            column = mainController.GetTableStructure(cbTable.SelectedItem.ToString());
+            SetupListView();
+            foreach (String c in column)
             {
-                LoadColumnNames(cbTable.SelectedItem.ToString());
-                LoadDataIntoDataGridView(cbTable.SelectedItem.ToString()); // Load data into DataGridView
-                CreateColumns(cbTable.SelectedItem.ToString());
+                cbColumn.Items.Add(c);
             }
-        }
-
-        private void LoadColumnNames(string tableName)
-        {
-            string[] columnNames = mainController.GetColumnNames(tableName);
-            cbColumn.Items.Clear(); // Clear existing items
-            cbColumn.Items.AddRange(columnNames); // Add new column names
             if (cbColumn.Items.Count > 0)
-            {
                 cbColumn.SelectedIndex = 0;
+        }
+
+        private void SetupListView(String criteria = null)
+        {
+            LoadPanel();
+            // Clear existing items and columns
+            lvTable.Items.Clear();
+            lvTable.Columns.Clear();
+
+            // Set ListView properties
+            lvTable.View = View.Details; // Set the view to details
+            lvTable.MultiSelect = true; // Allow multiple selection
+            lvTable.FullRowSelect = true; // Select full row
+            lvTable.GridLines = true; // Show grid lines
+            // Define columns based on the selected table
+            string selectedTable = cbTable.SelectedItem.ToString(); // Get the selected table name
+            List<string> columnNames = column; // Retrieve column names for the selected table
+
+            foreach (string col in columnNames)
+            {
+                lvTable.Columns.Add(col, col.Length*20);
+            }
+
+            // Retrieve data from the database
+            List<List<string>> items = mainController.GetRecord(selectedTable, criteria); // Get records from the selected table
+
+            // Populate the ListView with the retrieved data
+            foreach (var row in items)
+            {
+                ListViewItem listViewItem = new ListViewItem(row[0]); // First column value
+                for (int i = 1; i < row.Count; i++)
+                {
+                    listViewItem.SubItems.Add(row[i]); // Add subsequent column values
+                }
+                lvTable.Items.Add(listViewItem); // Add the complete row to the ListView
             }
         }
 
-        private void CreateColumns(string tableName)
+        private void lvTable_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Clear existing controls in the panel
-            panel1.Controls.Clear();
-
-            // Get column names for the selected table
-            string[] columnNames = mainController.GetColumnNames(tableName);
-            int numberOfBoxes = columnNames.Length; // Number of TextBoxes based on column count
-            int startingY = 10; // Starting Y position
-            int spacing = 40; // Spacing between TextBoxes
-
-            // Calculate maximum length for labels
-            int maxLabelWidth = 0;
-            foreach (var columnName in columnNames)
+            if (lvTable.SelectedItems.Count == 1)
             {
-                // Measure the width of the column name
-                using (Graphics g = panel1.CreateGraphics())
+                List<string> row = new List<string>();
+
+                // Get the first selected item
+                ListViewItem selectedItem = lvTable.SelectedItems[0];
+                int startIndex = 1;
+                // Use a for loop to iterate over sub-items of the selected item
+                for (int i = 0; i < selectedItem.SubItems.Count; i++)
                 {
-                    int width = (int)g.MeasureString(columnName, panel1.Font).Width;
-                    maxLabelWidth = Math.Max(maxLabelWidth, width);
+                    row.Add(selectedItem.SubItems[i].Text); // Add the text of each sub-item to the list
+                    pnlColumn.Controls[startIndex].Text = selectedItem.SubItems[i].Text;
+                    startIndex += 2;
+                }
+            } else
+            {
+                // Use a for loop to iterate over sub-items of the selected item
+                for (int i = 1; i < pnlColumn.Controls.Count; i+=2)
+                {
+                    pnlColumn.Controls[i].Text = "";
                 }
             }
-
-            for (int i = 0; i < numberOfBoxes; i++)
-            {
-                // Create a new Label
-                Label dynamicLabel = new Label
-                {
-                    Text = columnNames[i], // Set the text for the label to the column name
-                    Location = new Point(0, startingY + (i * spacing) + 3), // Adjust Y position for each Label
-                    Size = new System.Drawing.Size(maxLabelWidth + 10, 30) // Set width based on max length
-                };
-
-                // Add the Label to the panel
-                panel1.Controls.Add(dynamicLabel);
-
-                // Create a new TextBox with fixed width
-                TextBox dynamicTextBox = new TextBox
-                {
-                    Location = new System.Drawing.Point(maxLabelWidth + 20, startingY + (i * spacing)), // Adjust X position to fit TextBox
-                    Size = new System.Drawing.Size(200, 30) // Fixed width of 200
-                };
-
-                // Add the TextBox to the panel
-                panel1.Controls.Add(dynamicTextBox);
-            }
         }
-        private void LoadDataIntoDataGridView(string tableName)
-        {
-            try
-            {
-                dgvData.DataSource = null; // Clear existing data
-                DataTable data = mainController.LoadData(tableName); // Call the method from MainController
-                dgvData.DataSource = data; // Bind the DataTable to the DataGridView
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading data: {ex.Message}");
-            }
-        }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string tableName = cbTable.SelectedItem.ToString();
-            string columnName = cbColumn.SelectedItem.ToString();
-            string v = txtValue.Text; // Assuming txtValue is the TextBox for search input
-            LoadDataWithSearch(tableName, columnName, v);
+            if (!string.IsNullOrWhiteSpace(txtValue.Text))
+            {
+                SetupListView($"`{cbColumn.SelectedItem.ToString()}` = \"{txtValue.Text}\"");
+            } else
+            {
+                MessageBox.Show("Please enter a value to search.", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void LoadDataWithSearch(string tableName, string columnName, string txtValue)
+        private void LoadPanel()
         {
-            try
+            pnlColumn.Controls.Clear();
+            int startY = 10;
+            int gap = 40; // Adjusted gap for better spacing
+
+            foreach (string item in column)
             {
-                dgvData.DataSource = null; // Clear existing data
-                string query = $"SELECT * FROM `{tableName}`";
-
-                if (!string.IsNullOrEmpty(txtValue))
+                // Create and configure the label
+                Label lblColumn = new Label
                 {
-                    query += $" WHERE `{columnName}` LIKE @value";
-                }
+                    Text = item,
+                    Location = new Point(10, startY),
+                    AutoSize = true
+                };
 
-                var dataTable = new DataTable();
-                using (var connection = Database.Instance.GetConnection())
+                // Create and configure the textbox
+                TextBox txtRecord = new TextBox
                 {
-                    using (var command = new MySqlCommand(query, connection))
-                    {
-                        if (!string.IsNullOrEmpty(txtValue))
-                        {
-                            command.Parameters.AddWithValue("@value", txtValue);
-                        }
+                    Location = new Point(120, startY), // Position next to the label
+                    Width = 200, // Set the width
+                    Height = 30 // Set the height
+                };
 
-                        using (var adapter = new MySqlDataAdapter(command))
-                        {
-                            adapter.Fill(dataTable); // Fill the DataTable with the fetched data
-                        }
-                    }
+                if (item.Contains("_id"))
+                {
+                    txtRecord.ReadOnly = true;
+                    txtRecord.BackColor = Color.LightGray; // Make it read-only and visually distinct
                 }
+                // Add controls to the panel
+                pnlColumn.Controls.Add(lblColumn);
+                pnlColumn.Controls.Add(txtRecord);
 
-                dgvData.DataSource = dataTable; // Bind the DataTable to the DataGridView
+                // Update the starting Y position for the next control
+                startY += gap;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading data: {ex.Message}");
-            }
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            string values = string.Join(", ",
+                pnlColumn.Controls.OfType<TextBox>()
+                .Select(tb => string.IsNullOrWhiteSpace(tb.Text) ? "NULL" : $"\"{tb.Text}\""));
+            Console.WriteLine(values);
+            mainController.InsertRecord(cbTable.SelectedItem.ToString(), values);
+            SetupListView();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            // Ensure the user has selected rows
-            if (dgvData.SelectedRows.Count == 0)
+            int selectedRow = lvTable.SelectedItems.Count;
+            if (selectedRow == 1)
             {
-                MessageBox.Show("Please select at least one row to delete.");
-                return;
+                mainController.DeleteRecord(cbTable.SelectedItem.ToString(), $"`{pnlColumn.Controls[0].Text}` = {pnlColumn.Controls.OfType<TextBox>().ToList()[0].Text}");
+                SetupListView();
+            } else if (selectedRow > 1)
+            {
+                MessageBox.Show("You can delete one record only per time", "Delete Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            // Confirm deletion
-            var confirmResult = MessageBox.Show("Are you sure you want to delete the selected row(s)?",
-                                                 "Confirm Delete",
-                                                 MessageBoxButtons.YesNo);
-            if (confirmResult != DialogResult.Yes)
-            {
-                return; // User cancelled the deletion
-            }
-
-            // Get the selected table name
-            string tableName = cbTable.SelectedItem.ToString();
-            string column = cbColumn.SelectedItem.ToString(); // Get the selected column name for the primary key
-
-            // Loop through selected rows and delete them
-            foreach (DataGridViewRow row in dgvData.SelectedRows)
-            {
-                // Assuming the first cell contains the primary key
-                string id = row.Cells[0].Value.ToString(); // Adjust this based on your primary key column
-                                                           // Call the method to delete the record
-                mainController.DeleteRecord(tableName, column, id);
-            }
-
-            // Reload data to reflect changes
-            LoadDataIntoDataGridView(tableName);
-        }
-
-        private void dgvData_SelectionChanged(object sender, EventArgs e)
-        {
-            // Populate textboxes with the selected row values
-            if (dgvData.SelectedRows.Count == 1)
-            {
-                var selectedRow = dgvData.SelectedRows[0];
-                for (int i = 0; i < panel1.Controls.Count; i += 2) // Assuming labels and textboxes are added in pairs
-                {
-                    TextBox textBox = (TextBox)panel1.Controls[i + 1]; // TextBox is the next control after Label
-                    textBox.Text = selectedRow.Cells[i / 2].Value?.ToString(); // Populate text box with the cell value
-                }
-            } else
-            {
-                for (int i = 0; i < panel1.Controls.Count; i += 2) // Assuming labels and textboxes are added in pairs
-                {
-                    TextBox textBox = (TextBox)panel1.Controls[i + 1]; // TextBox is the next control after Label
-                    textBox.Text = ""; // Populate text box with the cell value
-                }
-            }
-        }
-
-        private void GetTextBoxValues(out List<string> values)
-        {
-
-            values = new List<string>();
-            for (int i = 0; i < panel1.Controls.Count; i += 2) // Assuming labels and textboxes are added in pairs
-            {
-                TextBox textBox = (TextBox)panel1.Controls[i + 1]; // TextBox is the next control after Label
-                string result = (string.IsNullOrEmpty(textBox.Text)) ? "Null" :
-                                (textBox.Text.All(char.IsDigit)) ? textBox.Text :
-                                $"\"{textBox.Text}\"";
-                values.Add(result); // Collect values from textboxes
-            }
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            if (dgvData.SelectedRows.Count > 0)
-            {
-                // Get the selected row and its ID
-                var selectedRow = dgvData.SelectedRows[0];
-                string id = selectedRow.Cells[0].Value.ToString(); // Assuming the first cell is the ID
-                string table = cbTable.SelectedItem.ToString();
-
-                string[] columns = mainController.GetColumnNames(table); // Get column names
-                GetTextBoxValues(out List<string> values); // Get values from textboxes
-
-                // Call the method to update the record
-                mainController.UpdateRecord(table, columns, values.ToArray(), id);
-
-                // Reload data to reflect changes
-                LoadDataIntoDataGridView(table);
-                MessageBox.Show("Record updated successfully.");
-            }
-            else
-            {
-                MessageBox.Show("Please select a row to update.");
-            }
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string table = cbTable.SelectedItem.ToString();
-            string[] columns = mainController.GetColumnNames(table); // Get column names
-            GetTextBoxValues(out List<string> values);
-            mainController.InsertRecord(table, columns, values.ToArray());
-            LoadDataIntoDataGridView(table); // Reload data to reflect changes
+            foreach (lvTable.SelectedItems.Count)
         }
     }
 }
