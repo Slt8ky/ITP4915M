@@ -42,24 +42,31 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.lvTable = new System.Windows.Forms.ListView();
             this.rtbDisplay = new System.Windows.Forms.RichTextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.gbColumn = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.gbColumn.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlColumn
             // 
-            this.pnlColumn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlColumn.Location = new System.Drawing.Point(1174, 12);
+            this.pnlColumn.Location = new System.Drawing.Point(7, 21);
             this.pnlColumn.Name = "pnlColumn";
-            this.pnlColumn.Size = new System.Drawing.Size(344, 622);
+            this.pnlColumn.Size = new System.Drawing.Size(330, 595);
             this.pnlColumn.TabIndex = 1;
             // 
             // btnInsert
             // 
             this.btnInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnInsert.Location = new System.Drawing.Point(1174, 699);
+            this.btnInsert.Location = new System.Drawing.Point(6, 62);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(344, 53);
+            this.btnInsert.Size = new System.Drawing.Size(331, 32);
             this.btnInsert.TabIndex = 2;
             this.btnInsert.Text = "Insert Record";
             this.btnInsert.UseVisualStyleBackColor = false;
@@ -144,19 +151,20 @@
             // btnUpdate
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnUpdate.Location = new System.Drawing.Point(1174, 640);
+            this.btnUpdate.Location = new System.Drawing.Point(7, 21);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(169, 53);
+            this.btnUpdate.Size = new System.Drawing.Size(162, 32);
             this.btnUpdate.TabIndex = 5;
             this.btnUpdate.Text = "Update Record";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnDelete.Location = new System.Drawing.Point(1349, 640);
+            this.btnDelete.Location = new System.Drawing.Point(175, 21);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(169, 53);
+            this.btnDelete.Size = new System.Drawing.Size(162, 32);
             this.btnDelete.TabIndex = 6;
             this.btnDelete.Text = "Delete Record";
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -164,37 +172,78 @@
             // 
             // lvTable
             // 
+            this.lvTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lvTable.HideSelection = false;
-            this.lvTable.Location = new System.Drawing.Point(18, 12);
+            this.lvTable.Location = new System.Drawing.Point(10, 21);
             this.lvTable.Name = "lvTable";
-            this.lvTable.Size = new System.Drawing.Size(1150, 740);
+            this.lvTable.Size = new System.Drawing.Size(1140, 701);
             this.lvTable.TabIndex = 7;
             this.lvTable.UseCompatibleStateImageBehavior = false;
             this.lvTable.SelectedIndexChanged += new System.EventHandler(this.lvTable_SelectedIndexChanged);
             // 
             // rtbDisplay
             // 
-            this.rtbDisplay.Location = new System.Drawing.Point(270, 759);
+            this.rtbDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbDisplay.Location = new System.Drawing.Point(6, 21);
             this.rtbDisplay.Name = "rtbDisplay";
             this.rtbDisplay.ReadOnly = true;
             this.rtbDisplay.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rtbDisplay.Size = new System.Drawing.Size(1248, 201);
+            this.rtbDisplay.Size = new System.Drawing.Size(1234, 168);
             this.rtbDisplay.TabIndex = 8;
             this.rtbDisplay.Text = "";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnInsert);
+            this.groupBox3.Controls.Add(this.btnUpdate);
+            this.groupBox3.Controls.Add(this.btnDelete);
+            this.groupBox3.Location = new System.Drawing.Point(1174, 640);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(344, 111);
+            this.groupBox3.TabIndex = 9;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Control Panel";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.pnlColumn);
+            this.groupBox4.Location = new System.Drawing.Point(1174, 12);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(344, 622);
+            this.groupBox4.TabIndex = 10;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Column";
+            // 
+            // gbColumn
+            // 
+            this.gbColumn.Controls.Add(this.lvTable);
+            this.gbColumn.Location = new System.Drawing.Point(12, 12);
+            this.gbColumn.Name = "gbColumn";
+            this.gbColumn.Size = new System.Drawing.Size(1156, 739);
+            this.gbColumn.TabIndex = 11;
+            this.gbColumn.TabStop = false;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.rtbDisplay);
+            this.groupBox5.Location = new System.Drawing.Point(271, 758);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(1247, 201);
+            this.groupBox5.TabIndex = 12;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Log";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1530, 972);
-            this.Controls.Add(this.rtbDisplay);
-            this.Controls.Add(this.lvTable);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnInsert);
-            this.Controls.Add(this.pnlColumn);
+            this.Controls.Add(this.gbColumn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Main";
@@ -204,6 +253,10 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.gbColumn.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -223,5 +276,9 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.ListView lvTable;
         private System.Windows.Forms.RichTextBox rtbDisplay;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox gbColumn;
+        private System.Windows.Forms.GroupBox groupBox5;
     }
 }

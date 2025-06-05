@@ -38,7 +38,6 @@ namespace Smile___Sunshine_Toy_System.Interface
             user = mainController.GetUser(username);
             table = mainController.GetTable();
             loadTableAndColumn();
-            //Console.WriteLine(string.Join(", ", column));
         }
 
         private void loadTableAndColumn()
@@ -82,6 +81,7 @@ namespace Smile___Sunshine_Toy_System.Interface
         private void SetupListView(String criteria = null)
         {
             LoadPanel();
+            gbColumn.Text = $"Table: {cbTable.SelectedItem.ToString()}";
             // Clear existing items and columns
             lvTable.Items.Clear();
             lvTable.Columns.Clear();
@@ -97,7 +97,7 @@ namespace Smile___Sunshine_Toy_System.Interface
 
             foreach (string col in columnNames)
             {
-                lvTable.Columns.Add(col, col.Length*20);
+                lvTable.Columns.Add(col, col.Length*10);
             }
 
             // Retrieve data from the database
@@ -171,12 +171,13 @@ namespace Smile___Sunshine_Toy_System.Interface
                 // Create and configure the textbox
                 TextBox txtRecord = new TextBox
                 {
+                    Name = item,
                     Location = new Point(120, startY), // Position next to the label
                     Width = 200, // Set the width
                     Height = 30 // Set the height
                 };
 
-                if (item.Contains("_id"))
+                if (item.Contains(column[0]))
                 {
                     txtRecord.ReadOnly = true;
                     txtRecord.BackColor = Color.LightGray; // Make it read-only and visually distinct
@@ -202,17 +203,30 @@ namespace Smile___Sunshine_Toy_System.Interface
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            int selectedRow = lvTable.SelectedItems.Count;
-            if (selectedRow == 1)
+            foreach (ListViewItem item in lvTable.SelectedItems)
             {
-                mainController.DeleteRecord(cbTable.SelectedItem.ToString(), $"`{pnlColumn.Controls[0].Text}` = {pnlColumn.Controls.OfType<TextBox>().ToList()[0].Text}");
-                SetupListView();
-            } else if (selectedRow > 1)
-            {
-                MessageBox.Show("You can delete one record only per time", "Delete Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine(item.Text);
+                mainController.DeleteRecord(cbTable.SelectedItem.ToString(), $"`{pnlColumn.Controls[0].Text}` = {item.Text}");
             }
+            SetupListView();
+        }
 
-            foreach (lvTable.SelectedItems.Count)
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (lvTable.SelectedItems.Count == 1)
+            {
+                string setClause = string.Join(", ",
+                    pnlColumn.Controls.OfType<TextBox>()
+                    .Select(tb => $"`{tb.Name}` = {(string.IsNullOrWhiteSpace(tb.Text) ? "NULL" : $"\"{tb.Text}\"")}"));
+
+                string whereClause = $"`{pnlColumn.Controls[0].Text}` = {lvTable.SelectedItems[0].Text}"; // Assuming the first column is the primary key
+                mainController.UpdateRecord(cbTable.SelectedItem.ToString(), setClause, whereClause);
+                SetupListView();
+            }
+            else
+            {
+                MessageBox.Show("Please select exactly one row to update.", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

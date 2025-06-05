@@ -125,7 +125,7 @@ namespace Smile___Sunshine_Toy_System.Controller
             if (!String.IsNullOrEmpty(criteria))
             {
                 query += $" WHERE {criteria}"; // Append criteria if provided
-                Log(query); // Log the query
+                Log("lookup_item", query); // Log the query
             }
             Console.WriteLine(query);
             // Append date in black
@@ -171,7 +171,7 @@ namespace Smile___Sunshine_Toy_System.Controller
             return results;
         }
 
-        public void Log(string queryString)
+        public void Log(string event_type, string event_content)
         {
             string query = "INSERT INTO `event` (`event_type`, `event_content`, `staff_id`) VALUES (@eventType, @eventContent, @staffId);";
 
@@ -183,8 +183,8 @@ namespace Smile___Sunshine_Toy_System.Controller
                 using (var command = new MySqlCommand(query, connection))
                 {
                     // Using parameters to prevent SQL injection
-                    command.Parameters.AddWithValue("@eventType", "lookup_item");
-                    command.Parameters.AddWithValue("@eventContent", queryString);
+                    command.Parameters.AddWithValue("@eventType", event_type);
+                    command.Parameters.AddWithValue("@eventContent", event_content);
                     command.Parameters.AddWithValue("@staffId", user[0]); // Ensure this is an integer if staff_id is an integer in the database
 
                     try
@@ -214,14 +214,7 @@ namespace Smile___Sunshine_Toy_System.Controller
                     }
                     catch (MySqlException ex)
                     {
-                        rtbDisplay.SelectionColor = Color.Black;
-                        rtbDisplay.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} - ");
-                        rtbDisplay.SelectionColor = Color.Red;
-                        rtbDisplay.AppendText($" [ERROR] ");
-                        rtbDisplay.SelectionColor = Color.Purple;
-                        rtbDisplay.AppendText($"{ex.Message}{Environment.NewLine}");
-                        rtbDisplay.SelectionStart = rtbDisplay.Text.Length; // Move the caret to the end
-                        rtbDisplay.ScrollToCaret(); // Scroll to the caret position
+                        LogError(ex);
                         return;
                     }
                     rtbDisplay.SelectionColor = Color.Black;
@@ -232,6 +225,7 @@ namespace Smile___Sunshine_Toy_System.Controller
                     rtbDisplay.AppendText($"{query}{Environment.NewLine}");
                     rtbDisplay.SelectionStart = rtbDisplay.Text.Length; // Move the caret to the end
                     rtbDisplay.ScrollToCaret(); // Scroll to the caret position
+                    Log("insert_item", query); // Log the query
                 }
             }
         }
@@ -251,14 +245,7 @@ namespace Smile___Sunshine_Toy_System.Controller
                     }
                     catch (MySqlException ex)
                     {
-                        rtbDisplay.SelectionColor = Color.Black;
-                        rtbDisplay.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} - ");
-                        rtbDisplay.SelectionColor = Color.Red;
-                        rtbDisplay.AppendText($" [ERROR] ");
-                        rtbDisplay.SelectionColor = Color.Purple;
-                        rtbDisplay.AppendText($"{ex.Message}{Environment.NewLine}");
-                        rtbDisplay.SelectionStart = rtbDisplay.Text.Length; // Move the caret to the end
-                        rtbDisplay.ScrollToCaret(); // Scroll to the caret position
+                        LogError(ex);
                         return;
                     }
                     rtbDisplay.SelectionColor = Color.Black;
@@ -269,8 +256,53 @@ namespace Smile___Sunshine_Toy_System.Controller
                     rtbDisplay.AppendText($"{query}{Environment.NewLine}");
                     rtbDisplay.SelectionStart = rtbDisplay.Text.Length; // Move the caret to the end
                     rtbDisplay.ScrollToCaret(); // Scroll to the caret position
+                    Log("delete_item", query); // Log the query
                 }
             }
+        }
+
+        public void UpdateRecord(String tableName, String setsetClause, String whereClause)
+        {
+            string query = $"UPDATE `{tableName}` SET {setsetClause} WHERE {whereClause}"; // Use backticks for table names
+            Console.WriteLine(query);
+            using (var connection = Database.Instance.Connection)
+            {
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (MySqlException ex)
+                    {
+                        LogError(ex);
+                        return;
+                    }
+                    rtbDisplay.SelectionColor = Color.Black;
+                    rtbDisplay.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} - ");
+                    rtbDisplay.SelectionColor = Color.Brown;
+                    rtbDisplay.AppendText($" [UPDATE] ");
+                    rtbDisplay.SelectionColor = Color.Purple;
+                    rtbDisplay.AppendText($"{query}{Environment.NewLine}");
+                    rtbDisplay.SelectionStart = rtbDisplay.Text.Length; // Move the caret to the end
+                    rtbDisplay.ScrollToCaret(); // Scroll to the caret position
+                    Log("update_item", query); // Log the query
+                }
+            }
+        }
+
+        private void LogError(MySqlException ex)
+        {
+            rtbDisplay.SelectionColor = Color.Black;
+            rtbDisplay.AppendText($"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - ");
+            rtbDisplay.SelectionColor = Color.Red;
+            rtbDisplay.AppendText($" [ERROR] ");
+            rtbDisplay.SelectionColor = Color.Purple;
+            rtbDisplay.AppendText($"{ex.Message}{Environment.NewLine}");
+            rtbDisplay.SelectionStart = rtbDisplay.Text.Length; // Move the caret to the end
+            rtbDisplay.ScrollToCaret(); // Scroll to the caret position
         }
     }
 }
