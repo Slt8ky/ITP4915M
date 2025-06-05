@@ -177,7 +177,7 @@ namespace Smile___Sunshine_Toy_System.Interface
                     Height = 30 // Set the height
                 };
 
-                if (item.Contains(column[0]))
+                if (item.Contains(column[0])||item.Contains("created_at"))
                 {
                     txtRecord.ReadOnly = true;
                     txtRecord.BackColor = Color.LightGray; // Make it read-only and visually distinct

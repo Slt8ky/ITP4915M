@@ -24,12 +24,6 @@ CREATE TABLE `event` (
   `staff_id` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `event` (`event_id`, `event_type`, `event_date`, `event_content`, `staff_id`) VALUES
-(26, 'login', '2025-06-01 04:17:55', 'User logged in', 3),
-(27, 'login', '2025-06-01 04:20:59', 'User logged in', 3),
-(28, 'login', '2025-06-01 04:22:35', 'User logged in', 3),
-(29, 'login', '2025-06-01 04:32:07', 'User logged in', 4);
-
 CREATE TABLE `item` (
   `item_id` int(3) NOT NULL,
   `item_description` varchar(30) NOT NULL,
@@ -59,18 +53,6 @@ CREATE TABLE `report` (
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `report` (`report_id`, `report_name`, `report_file`, `created_at`) VALUES
-(63, '', '', '0000-00-00 00:00:00'),
-(65, '', '', '0000-00-00 00:00:00'),
-(66, '', '', '0000-00-00 00:00:00'),
-(68, '', '', '0000-00-00 00:00:00'),
-(69, '', '', '0000-00-00 00:00:00'),
-(70, '', '', '0000-00-00 00:00:00'),
-(71, '', '', '0000-00-00 00:00:00'),
-(72, '', '', '0000-00-00 00:00:00'),
-(73, '', '', '0000-00-00 00:00:00'),
-(74, '', '', '0000-00-00 00:00:00');
-
 CREATE TABLE `staff` (
   `staff_id` int(2) NOT NULL,
   `username` varchar(20) NOT NULL,
@@ -81,18 +63,13 @@ CREATE TABLE `staff` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `staff` (`staff_id`, `username`, `password`, `email`, `phone_number`, `dept_id`) VALUES
-(3, 'root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', '', 0, 1),
-(4, 'peter', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '', 0, 1);
+(3, 'root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', '', 0, 1);
 
 CREATE TABLE `warehouse` (
   `warehouse_id` int(2) NOT NULL,
   `warehouse_name` varchar(20) NOT NULL,
   `warehouse_location` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-INSERT INTO `warehouse` (`warehouse_id`, `warehouse_name`, `warehouse_location`) VALUES
-(12, '122', '3'),
-(13, '21', '23');
 
 
 ALTER TABLE `department`
