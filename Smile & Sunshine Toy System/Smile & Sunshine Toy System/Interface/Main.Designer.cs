@@ -43,30 +43,37 @@
             this.lvTable = new System.Windows.Forms.ListView();
             this.rtbDisplay = new System.Windows.Forms.RichTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnPDF = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.gbColumn = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tc1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.gbColumn.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.tc1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlColumn
             // 
             this.pnlColumn.Location = new System.Drawing.Point(7, 21);
             this.pnlColumn.Name = "pnlColumn";
-            this.pnlColumn.Size = new System.Drawing.Size(330, 595);
+            this.pnlColumn.Size = new System.Drawing.Size(310, 517);
             this.pnlColumn.TabIndex = 1;
             // 
             // btnInsert
             // 
             this.btnInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnInsert.Location = new System.Drawing.Point(6, 62);
+            this.btnInsert.Location = new System.Drawing.Point(6, 71);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(331, 32);
+            this.btnInsert.Size = new System.Drawing.Size(311, 32);
             this.btnInsert.TabIndex = 2;
             this.btnInsert.Text = "Insert Record";
             this.btnInsert.UseVisualStyleBackColor = false;
@@ -151,7 +158,7 @@
             // btnUpdate
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnUpdate.Location = new System.Drawing.Point(7, 21);
+            this.btnUpdate.Location = new System.Drawing.Point(7, 30);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(162, 32);
             this.btnUpdate.TabIndex = 5;
@@ -162,9 +169,9 @@
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnDelete.Location = new System.Drawing.Point(175, 21);
+            this.btnDelete.Location = new System.Drawing.Point(175, 30);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(162, 32);
+            this.btnDelete.Size = new System.Drawing.Size(142, 32);
             this.btnDelete.TabIndex = 6;
             this.btnDelete.Text = "Delete Record";
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -194,28 +201,41 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnPDF);
             this.groupBox3.Controls.Add(this.btnInsert);
             this.groupBox3.Controls.Add(this.btnUpdate);
             this.groupBox3.Controls.Add(this.btnDelete);
-            this.groupBox3.Location = new System.Drawing.Point(1174, 640);
+            this.groupBox3.Location = new System.Drawing.Point(6, 550);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(344, 111);
+            this.groupBox3.Size = new System.Drawing.Size(324, 158);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Control Panel";
             // 
+            // btnPDF
+            // 
+            this.btnPDF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnPDF.Location = new System.Drawing.Point(7, 109);
+            this.btnPDF.Name = "btnPDF";
+            this.btnPDF.Size = new System.Drawing.Size(310, 32);
+            this.btnPDF.TabIndex = 9;
+            this.btnPDF.Text = "Export to PDF";
+            this.btnPDF.UseVisualStyleBackColor = false;
+            this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.pnlColumn);
-            this.groupBox4.Location = new System.Drawing.Point(1174, 12);
+            this.groupBox4.Location = new System.Drawing.Point(6, 6);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(344, 622);
+            this.groupBox4.Size = new System.Drawing.Size(324, 544);
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Column";
             // 
             // gbColumn
             // 
+            this.gbColumn.Controls.Add(this.checkBox1);
             this.gbColumn.Controls.Add(this.lvTable);
             this.gbColumn.Location = new System.Drawing.Point(12, 12);
             this.gbColumn.Name = "gbColumn";
@@ -233,15 +253,56 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Log";
             // 
+            // tc1
+            // 
+            this.tc1.Controls.Add(this.tabPage1);
+            this.tc1.Controls.Add(this.tabPage2);
+            this.tc1.Location = new System.Drawing.Point(1174, 12);
+            this.tc1.Name = "tc1";
+            this.tc1.SelectedIndex = 0;
+            this.tc1.Size = new System.Drawing.Size(344, 740);
+            this.tc1.TabIndex = 8;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox3);
+            this.tabPage1.Controls.Add(this.groupBox4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(336, 714);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Record Manage";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(336, 714);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "PDF Format";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(362, 587);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(77, 16);
+            this.checkBox1.TabIndex = 8;
+            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1530, 972);
             this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.tc1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbColumn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -256,7 +317,10 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.gbColumn.ResumeLayout(false);
+            this.gbColumn.PerformLayout();
             this.groupBox5.ResumeLayout(false);
+            this.tc1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -280,5 +344,10 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox gbColumn;
         private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button btnPDF;
+        private System.Windows.Forms.TabControl tc1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

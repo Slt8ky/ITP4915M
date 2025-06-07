@@ -304,5 +304,41 @@ namespace Smile___Sunshine_Toy_System.Controller
             rtbDisplay.SelectionStart = rtbDisplay.Text.Length; // Move the caret to the end
             rtbDisplay.ScrollToCaret(); // Scroll to the caret position
         }
+
+        public List<string> GetFilteredRecord(string tableName, string columns)
+        {
+            List<string> results = new List<string>();
+            string query = $"SELECT {columns} FROM `{tableName}`"; // Use backticks for table names
+
+            // Reset selection color to default
+            rtbDisplay.SelectionColor = rtbDisplay.ForeColor;
+            using (var connection = Database.Instance.Connection)
+            {
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    try
+                    {
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    results.Add(reader.GetValue(i)?.ToString());
+                                }
+                            }
+                        }
+                    }
+                    catch (MySqlException ex)
+                    {
+                        throw new Exception($"Error executing query: {ex.Message}");
+                    }
+                }
+            }
+            return results;
+        }
     }
 }

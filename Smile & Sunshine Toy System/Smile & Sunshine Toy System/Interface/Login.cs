@@ -14,20 +14,26 @@ namespace Smile___Sunshine_Toy_System
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            var username = txtUsername.Text;
-            var password = txtPassword.Text;
+            try
+            {
+                var username = txtUsername.Text;
+                var password = txtPassword.Text;
 
-            var loginController = new LoginController();
-            if (loginController.ValidateCredentials(username, password)) // Call the method
+                var loginController = new LoginController();
+                if (loginController.ValidateCredentials(username, password)) // Call the method
+                {
+                    this.Hide(); // Hide the login form
+                    loginController.GetUser(txtUsername.Text);
+                    Main mainForm = new Main(txtUsername.Text.ToString()); // Create an instance of the main form
+                    mainForm.Show(); // Show the main form
+                }
+                else
+                {
+                    MessageBox.Show("Invalid username or password.");
+                }
+            } catch (Exception ex)
             {
-                this.Hide(); // Hide the login form
-                loginController.GetUser(txtUsername.Text);
-                Main mainForm = new Main(txtUsername.Text.ToString()); // Create an instance of the main form
-                mainForm.Show(); // Show the main form
-            }
-            else
-            {
-                MessageBox.Show("Invalid username or password.");
+                Console.WriteLine(ex.Message);
             }
         }
 

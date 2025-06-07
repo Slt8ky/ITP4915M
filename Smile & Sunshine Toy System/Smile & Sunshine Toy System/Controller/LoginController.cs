@@ -15,7 +15,6 @@ namespace Smile___Sunshine_Toy_System.Controller
         {
             var hashedPassword = HashPassword(password);
             var connection = Database.Instance.Connection;
-
             string query = "SELECT COUNT(*) FROM staff WHERE username = @username AND password = @password";
 
             using (var command = new MySqlCommand(query, connection))

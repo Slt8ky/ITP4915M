@@ -1,4 +1,6 @@
-﻿using Mysqlx.Resultset;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Mysqlx.Resultset;
 using MySqlX.XDevAPI.Relational;
 using Smile___Sunshine_Toy_System.Controller;
 using System;
@@ -7,12 +9,22 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
+
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using Button = System.Windows.Forms.Button;
+using CheckBox = System.Windows.Forms.CheckBox;
+using Font = iTextSharp.text.Font;
+using GroupBox = System.Windows.Forms.GroupBox;
+using PdfDocument = iTextSharp.text.pdf.PdfDocument;
+using PdfWriter = iTextSharp.text.pdf.PdfWriter;
 using TextBox = System.Windows.Forms.TextBox;
 
 namespace Smile___Sunshine_Toy_System.Interface
@@ -25,6 +37,8 @@ namespace Smile___Sunshine_Toy_System.Interface
         private List<String> table;
         private List<String> column;
         private List<String> selectedRow;
+        private Stream stream;
+        private GroupBox gbPDF_Column;
 
         public Main(string username)
         {
@@ -81,6 +95,7 @@ namespace Smile___Sunshine_Toy_System.Interface
         private void SetupListView(String criteria = null)
         {
             LoadPanel();
+            LoadPDFView();
             gbColumn.Text = $"Table: {cbTable.SelectedItem.ToString()}";
             // Clear existing items and columns
             lvTable.Items.Clear();
@@ -227,6 +242,122 @@ namespace Smile___Sunshine_Toy_System.Interface
             {
                 MessageBox.Show("Please select exactly one row to update.", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void LoadPDFView()
+        {
+            int startY = 15;
+            int gap = 20; // Adjusted gap for better spacing
+            tabPage2.Controls.Clear(); // Clear existing controls in the PDF tab
+            gbPDF_Column = new GroupBox
+            {
+                Text = "PDF Columns",
+                Location = new Point(10, 10),
+            };
+            foreach (string column in column)
+            {
+                Label label = new Label
+                {
+                    Text = column,
+                    Location = new Point(10, startY),
+                    AutoSize = true
+                };
+                CheckBox checkBox = new CheckBox
+                {
+                    Name = column,
+                    Checked = true,
+                    Location = new Point(300-30, startY),
+                    AutoSize = true
+                };
+                gbPDF_Column.Controls.Add(label);
+                gbPDF_Column.Controls.Add(checkBox);
+                gbPDF_Column.Size = new Size(300, startY + 20);
+                startY += gap; // Move down for the next label
+            }
+            tabPage2.Controls.Add(gbPDF_Column); // Add the group box to the PDF tab
+            Button btnExport = new Button
+            {
+                Text = "Export",
+                BackColor = Color.LightBlue,
+                Location = new Point(10, 15),
+                Size = new Size(300-20, 50)
+            };
+            btnExport.Click += new EventHandler(btnExport_Click);
+            GroupBox gbPDF_Export = new GroupBox
+            {
+                Text = "Export",
+                Location = new Point(10, tabPage2.Size.Height-80),
+                Size = new Size(300, btnExport.Size.Height+30)
+            };
+            gbPDF_Export.Controls.Add(btnExport);
+            tabPage2.Controls.Add(gbPDF_Export); // Add the group box to the PDF tab
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            string defaultFileName = "record.pdf";
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                FileName = defaultFileName,
+                Filter = "PDF Files (*.pdf)|*.pdf",
+                Title = "Save a PDF File"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+
+
+
+                using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create, FileAccess.Write, FileShare.None))
+                using (Document document = new Document(PageSize.A4.Rotate()))
+                using (PdfWriter writer = PdfWriter.GetInstance(document, fs))
+                {
+                    document.Open();
+                    document.SetMargins(0, 0, 0, 0);
+                    int colcount = 0; // Initialize column count
+                    List<string> selectedColumns = new List<string>();
+
+                    // First, determine the count of checked checkboxes and add headers
+                    foreach (Control control in gbPDF_Column.Controls)
+                    {
+                        if (control is CheckBox checkBox && checkBox.Checked)
+                        {
+                            selectedColumns.Add(checkBox.Name);
+                            colcount++; // Increment the column count for each checked checkbox
+                        }
+                    }
+
+                    // Create the PdfPTable with the number of checked columns
+                    PdfPTable table = new PdfPTable(colcount);
+
+                    // Add headers to the table
+                    foreach (string column in selectedColumns)
+                    {
+                        table.AddCell(column); // Add each checked column name as a header
+                    }
+                    List<String> records = mainController.GetFilteredRecord(cbTable.SelectedItem.ToString(), String.Join(", ", selectedColumns.Select(column => $"`{column}`")));
+
+                    // Add data rows
+                    foreach (String record in records)
+                    {
+                        table.AddCell(record);
+                    }
+
+                    // Add the table to the document
+                    document.Add(table);
+
+                    // Close the document
+                    document.Close();
+                }
+
+                MessageBox.Show("PDF generated successfully.");
+            }
+        }
+
+        private void btnPDF_Click(object sender, EventArgs e)
+        {
+            tc1.SelectedIndex = 1; // Switch to the PDF tab
         }
     }
 }
