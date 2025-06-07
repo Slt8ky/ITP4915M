@@ -97,7 +97,7 @@
             // 
             this.btnSearch.Location = new System.Drawing.Point(10, 101);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(187, 31);
+            this.btnSearch.Size = new System.Drawing.Size(193, 31);
             this.btnSearch.TabIndex = 7;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -268,9 +268,9 @@
             // 
             this.btnReload.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReload.BackgroundImage")));
             this.btnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnReload.Location = new System.Drawing.Point(203, 101);
+            this.btnReload.Location = new System.Drawing.Point(209, 101);
             this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(36, 31);
+            this.btnReload.Size = new System.Drawing.Size(31, 31);
             this.btnReload.TabIndex = 8;
             this.btnReload.UseVisualStyleBackColor = true;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
