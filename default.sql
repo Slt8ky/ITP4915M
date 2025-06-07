@@ -10,7 +10,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `afterservicefeedback` (
   `clientID` int(4) NOT NULL,
   `orderID` int(4) NOT NULL,
-  `DataOfFeedback` datetime NOT NULL,
+  `DataOfFeedback` varchar(20) NOT NULL,
   `feedbackType` varchar(50) NOT NULL,
   `feedbackDetail` text NOT NULL,
   `contactType` varchar(50) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE `afterservicefeedback` (
 
 CREATE TABLE `department` (
   `dept_id` int(2) NOT NULL,
-  `dept_name` varchar(20) NOT NULL
+  `dept_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `event` (
@@ -39,8 +39,7 @@ CREATE TABLE `item` (
   `item_price` decimal(4,0) NOT NULL,
   `item_quantity` int(10) NOT NULL,
   `warehouse_id` int(2) NOT NULL,
-  `created_at` date NOT NULL DEFAULT current_timestamp(),
-  `updated_at` date NOT NULL
+  `created_at` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `product` (
@@ -71,12 +70,23 @@ CREATE TABLE `staff` (
   `dept_id` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+INSERT INTO `staff` (`staff_id`, `username`, `password`, `email`, `phone_number`, `dept_id`) VALUES
+(3, 'root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', '', 0, 1),
+(6, 'peter', '026ad9b14a7453b7488daa0c6acbc258b1506f52c441c7c465474c1a564394ff', 'peter@gmail.com', 27436357, 2),
+(7, 'cindy', '002340b41aee7da76f4201bf18776291a812f796e20678c563b77b5b6c47c8a1', 'cindy@gmail.com', 26484753, 3),
+(8, 'alex', '4135aa9dc1b842a653dea846903ddb95bfb8c5a10c504a7fa16e10bc31d1fdf0', 'alex@gmail.com', 24679385, 4),
+(9, 'leo', '8535e86c8118bbbb0a18ac72d15d3a2b37b18d1bce1611fc60165f322cf57386', 'leo@gmail.com', 285963856, 5),
+(10, 'ivy', '254ac4523be56a1a724c4cd50437cfe343f0b4403d1c5a4def8ee8ce3259b9ad', 'ivy@gmail.com', 26479966, 6);
+
 CREATE TABLE `warehouse` (
   `warehouse_id` int(2) NOT NULL,
   `warehouse_name` varchar(20) NOT NULL,
   `warehouse_location` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+ALTER TABLE `afterservicefeedback`
+  ADD PRIMARY KEY (`clientID`);
 
 ALTER TABLE `department`
   ADD PRIMARY KEY (`dept_id`);
@@ -105,6 +115,9 @@ ALTER TABLE `warehouse`
   ADD PRIMARY KEY (`warehouse_id`);
 
 
+ALTER TABLE `afterservicefeedback`
+  MODIFY `clientID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 ALTER TABLE `department`
   MODIFY `dept_id` int(2) NOT NULL AUTO_INCREMENT;
 
@@ -121,7 +134,7 @@ ALTER TABLE `report`
   MODIFY `report_id` int(3) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `staff`
-  MODIFY `staff_id` int(2) NOT NULL AUTO_INCREMENT;
+  MODIFY `staff_id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 ALTER TABLE `warehouse`
   MODIFY `warehouse_id` int(2) NOT NULL AUTO_INCREMENT;
