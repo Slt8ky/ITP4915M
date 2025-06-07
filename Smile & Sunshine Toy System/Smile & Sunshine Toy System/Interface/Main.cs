@@ -1,29 +1,16 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
-using Mysqlx.Resultset;
-using MySqlX.XDevAPI.Relational;
 using Smile___Sunshine_Toy_System.Controller;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
-
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using Button = System.Windows.Forms.Button;
 using CheckBox = System.Windows.Forms.CheckBox;
-using Font = iTextSharp.text.Font;
 using GroupBox = System.Windows.Forms.GroupBox;
-using PdfDocument = iTextSharp.text.pdf.PdfDocument;
 using PdfWriter = iTextSharp.text.pdf.PdfWriter;
 using TextBox = System.Windows.Forms.TextBox;
 
@@ -37,6 +24,8 @@ namespace Smile___Sunshine_Toy_System.Interface
         private List<String> table;
         private List<String> column;
         private GroupBox gbPDF_Column;
+        private int dept_id;
+        List<String> whiteList;
 
         public Main(string username)
         {
@@ -48,14 +37,86 @@ namespace Smile___Sunshine_Toy_System.Interface
         {
             mainController = new MainController(rtbDisplay, username);
             user = mainController.GetUser(username);
+            this.Text = $"Smile & Sunshine Toy System - [Staff ID: {user[0]}] [User: {user[1]}]"; // Set the form title with username and department
             table = mainController.GetTable();
             loadTableAndColumn();
+            Int32.TryParse(user[user.Count - 1], out dept_id);
+            // Example usage
+            switch (dept_id)
+            {
+                case 1: // Administrator
+                    break;
+                case 2: // Quality Controller
+                    tc1.Visible = false; // Hide the tab control for Quality Controller
+                    gbColumn.Size = new Size(1506, gbColumn.Size.Height); // Adjust the size of the group box
+                    break;
+                case 3: // Accounting Department
+                    btnDelete.Visible = false; // Hide the delete button for Accounting Department
+                    btnInsert.Visible = false; // Hide the delete button for Accounting Department
+                    btnUpdate.Size = new Size(btnInsert.Size.Width, btnInsert.Size.Height); // Adjust the size of the update button
+                    groupBox3.Location = new Point(groupBox3.Location.X, 640); // Move the group box up
+                    groupBox3.Size = new Size(groupBox3.Size.Width, 60); // Move the group box up
+                    gbColumnPanel.Size = new Size(gbColumnPanel.Size.Width, tc1.Size.Height-groupBox3.Size.Height); // Adjust the size of the column panel
+                    break;
+                case 4: // Material Procurement and Management
+                    break;
+                case 5: // Production department
+                    break;
+                case 6: // Service department
+                    Customer_Feedback customer_Feedback = new Customer_Feedback(); // Create a new instance of Customer_Feedback
+                    customer_Feedback.Show();
+                    this.Close(); // Hide the main form for Service department
+                    break;
+                default:
+                    MessageBox.Show("Invalid department ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+            }
+            Console.WriteLine(dept_id);
         }
 
         private void loadTableAndColumn()
         {
             Boolean isWhiteList = false;
-            List<String> whiteList = new List<string> {"item", "product", "warehouse"};
+            //afterservicefeedback
+            //department
+            //event
+            //item
+            //product
+            //report
+            //staff
+            //warehouse
+            Int32.TryParse(user[user.Count - 1], out dept_id);
+
+            if (dept_id != 1) // If the user is not an admin
+            {
+                isWhiteList = true; // Set the whitelist flag to true
+            }
+
+            switch (dept_id)
+            {
+                case 1: // Administrator
+                    whiteList = new List<String> { "afterservicefeedback", "department", "event", "item", "product", "report", "staff", "warehouse" };
+                    break;
+                case 2: // Quality Controller
+                    whiteList = new List<String> { "item", "product", "report" };
+                    break;
+                case 3: // Accounting Department
+                    whiteList = new List<String> { "product", "report", "warehouse" };
+                    break;
+                case 4: // Material Procurement and Management
+                    whiteList = new List<String> { "item", "product", "report", "warehouse" };
+                    break;
+                case 5: // Production department
+                    whiteList = new List<String> { "item", "product", "report", "warehouse" };
+                    break;
+                case 6: // Production department
+                    whiteList = new List<String> {};
+                    break;
+                default:
+                    MessageBox.Show("Invalid department ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+            }
+
             foreach (String t in table)
             {
                 if (whiteList.Contains(t) && isWhiteList)
@@ -141,15 +202,15 @@ namespace Smile___Sunshine_Toy_System.Interface
                 for (int i = 0; i < selectedItem.SubItems.Count; i++)
                 {
                     row.Add(selectedItem.SubItems[i].Text); // Add the text of each sub-item to the list
-                    pnlColumn.Controls[startIndex].Text = selectedItem.SubItems[i].Text;
+                    gbColumnPanel.Controls[startIndex].Text = selectedItem.SubItems[i].Text;
                     startIndex += 2;
                 }
             } else
             {
                 // Use a for loop to iterate over sub-items of the selected item
-                for (int i = 1; i < pnlColumn.Controls.Count; i+=2)
+                for (int i = 1; i < gbColumnPanel.Controls.Count; i+=2)
                 {
-                    pnlColumn.Controls[i].Text = "";
+                    gbColumnPanel.Controls[i].Text = "";
                 }
             }
         }
@@ -167,8 +228,8 @@ namespace Smile___Sunshine_Toy_System.Interface
 
         private void LoadPanel()
         {
-            pnlColumn.Controls.Clear();
-            int startY = 10;
+            gbColumnPanel.Controls.Clear();
+            int startY = 25;
             int gap = 40; // Adjusted gap for better spacing
 
             foreach (string item in column)
@@ -195,9 +256,15 @@ namespace Smile___Sunshine_Toy_System.Interface
                     txtRecord.ReadOnly = true;
                     txtRecord.BackColor = Color.LightGray; // Make it read-only and visually distinct
                 }
+                if (dept_id==3 && !item.Contains("price")) // If the user is from the accounting department and the column is price
+                {
+                    txtRecord.ReadOnly = true; // Make it read-only
+                    txtRecord.BackColor = Color.LightGray; // Make it visually distinct
+                }
+
                 // Add controls to the panel
-                pnlColumn.Controls.Add(lblColumn);
-                pnlColumn.Controls.Add(txtRecord);
+                gbColumnPanel.Controls.Add(lblColumn);
+                gbColumnPanel.Controls.Add(txtRecord);
 
                 // Update the starting Y position for the next control
                 startY += gap;
@@ -207,7 +274,7 @@ namespace Smile___Sunshine_Toy_System.Interface
         private void btnInsert_Click(object sender, EventArgs e)
         {
             string values = string.Join(", ",
-                pnlColumn.Controls.OfType<TextBox>()
+                gbColumnPanel.Controls.OfType<TextBox>()
                 .Select(tb => string.IsNullOrWhiteSpace(tb.Text) ? "NULL" : $"\"{tb.Text}\""));
             Console.WriteLine(values);
             mainController.InsertRecord(cbTable.SelectedItem.ToString(), values);
@@ -219,7 +286,7 @@ namespace Smile___Sunshine_Toy_System.Interface
             foreach (ListViewItem item in lvTable.SelectedItems)
             {
                 Console.WriteLine(item.Text);
-                mainController.DeleteRecord(cbTable.SelectedItem.ToString(), $"`{pnlColumn.Controls[0].Text}` = {item.Text}");
+                mainController.DeleteRecord(cbTable.SelectedItem.ToString(), $"`{gbColumnPanel.Controls[0].Text}` = {item.Text}");
             }
             SetupListView();
         }
@@ -229,10 +296,10 @@ namespace Smile___Sunshine_Toy_System.Interface
             if (lvTable.SelectedItems.Count == 1)
             {
                 string setClause = string.Join(", ",
-                    pnlColumn.Controls.OfType<TextBox>()
+                    gbColumnPanel.Controls.OfType<TextBox>()
                     .Select(tb => $"`{tb.Name}` = {(string.IsNullOrWhiteSpace(tb.Text) ? "NULL" : $"\"{tb.Text}\"")}"));
 
-                string whereClause = $"`{pnlColumn.Controls[0].Text}` = {lvTable.SelectedItems[0].Text}"; // Assuming the first column is the primary key
+                string whereClause = $"`{gbColumnPanel.Controls[0].Text}` = {lvTable.SelectedItems[0].Text}"; // Assuming the first column is the primary key
                 mainController.UpdateRecord(cbTable.SelectedItem.ToString(), setClause, whereClause);
                 SetupListView();
             }
@@ -356,6 +423,11 @@ namespace Smile___Sunshine_Toy_System.Interface
         private void btnPDF_Click(object sender, EventArgs e)
         {
             tc1.SelectedIndex = 1; // Switch to the PDF tab
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            SetupListView();
         }
     }
 }
