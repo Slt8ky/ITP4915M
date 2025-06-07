@@ -36,8 +36,6 @@ namespace Smile___Sunshine_Toy_System.Interface
         private List<String> user;
         private List<String> table;
         private List<String> column;
-        private List<String> selectedRow;
-        private Stream stream;
         private GroupBox gbPDF_Column;
 
         public Main(string username)

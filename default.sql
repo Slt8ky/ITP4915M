@@ -1,5 +1,4 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -8,13 +7,23 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 
+CREATE TABLE `afterservicefeedback` (
+  `clientID` int(4) NOT NULL,
+  `orderID` int(4) NOT NULL,
+  `DataOfFeedback` datetime NOT NULL,
+  `feedbackType` varchar(50) NOT NULL,
+  `feedbackDetail` text NOT NULL,
+  `contactType` varchar(50) NOT NULL,
+  `contactInfo` varchar(100) NOT NULL,
+  `Interaction` text NOT NULL,
+  `productID` int(4) NOT NULL,
+  `staffID` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 CREATE TABLE `department` (
   `dept_id` int(2) NOT NULL,
   `dept_name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-INSERT INTO `department` (`dept_id`, `dept_name`) VALUES
-(1, 'Administrator');
 
 CREATE TABLE `event` (
   `event_id` int(255) NOT NULL,
@@ -62,9 +71,6 @@ CREATE TABLE `staff` (
   `dept_id` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `staff` (`staff_id`, `username`, `password`, `email`, `phone_number`, `dept_id`) VALUES
-(3, 'root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', '', 0, 1);
-
 CREATE TABLE `warehouse` (
   `warehouse_id` int(2) NOT NULL,
   `warehouse_name` varchar(20) NOT NULL,
@@ -100,25 +106,25 @@ ALTER TABLE `warehouse`
 
 
 ALTER TABLE `department`
-  MODIFY `dept_id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `dept_id` int(2) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `event`
-  MODIFY `event_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `event_id` int(255) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `item`
-  MODIFY `item_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `item_id` int(3) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `product`
-  MODIFY `product_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `product_id` int(3) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `report`
-  MODIFY `report_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `report_id` int(3) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `staff`
-  MODIFY `staff_id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `staff_id` int(2) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `warehouse`
-  MODIFY `warehouse_id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `warehouse_id` int(2) NOT NULL AUTO_INCREMENT;
 
 
 ALTER TABLE `event`
@@ -133,7 +139,6 @@ ALTER TABLE `product`
 
 ALTER TABLE `staff`
   ADD CONSTRAINT `fk_dept_id` FOREIGN KEY (`dept_id`) REFERENCES `department` (`dept_id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
