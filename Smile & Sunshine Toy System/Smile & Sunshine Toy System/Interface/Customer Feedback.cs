@@ -1,7 +1,9 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data;
+using System.Net;
+using System.Net.Mail;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace Smile___Sunshine_Toy_System.Interface
 {
@@ -232,6 +234,28 @@ namespace Smile___Sunshine_Toy_System.Interface
                 con.Close();
             }
             UpLoadData();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string fromMail = "slt8ky@gmail.com";
+            string fromPassword = "tbnk wkpv snrz dreu";
+
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress(fromMail);
+            message.Subject = "Test Subject";
+            message.To.Add(new MailAddress("slt8ky@gmail.com"));
+            message.Body = "<html><body> Test Body </body></html>";
+            message.IsBodyHtml = true;
+
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential(fromMail, fromPassword),
+                EnableSsl = true,
+            };
+
+            smtpClient.Send(message);
         }
     }
 }

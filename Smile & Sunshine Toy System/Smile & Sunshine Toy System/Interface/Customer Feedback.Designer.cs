@@ -58,6 +58,7 @@
             this.ExitButton = new System.Windows.Forms.Button();
             this.StaffText = new System.Windows.Forms.Label();
             this.FBTSConnectBT = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ViewFBData)).BeginInit();
             this.SuspendLayout();
@@ -401,12 +402,23 @@
             this.FBTSConnectBT.UseVisualStyleBackColor = false;
             this.FBTSConnectBT.Click += new System.EventHandler(this.FBTSConnectBT_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(510, 17);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(167, 45);
+            this.button1.TabIndex = 31;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Customer_Feedback
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
             this.ClientSize = new System.Drawing.Size(1234, 695);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.FBTSConnectBT);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.DeleteButton);
@@ -461,5 +473,6 @@
         private System.Windows.Forms.Label StaffText;
         private System.Windows.Forms.ComboBox FBCType;
         private System.Windows.Forms.Button FBTSConnectBT;
+        private System.Windows.Forms.Button button1;
     }
 }
