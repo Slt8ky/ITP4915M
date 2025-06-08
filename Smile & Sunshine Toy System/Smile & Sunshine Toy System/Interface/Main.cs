@@ -12,6 +12,7 @@ using Button = System.Windows.Forms.Button;
 using CheckBox = System.Windows.Forms.CheckBox;
 using GroupBox = System.Windows.Forms.GroupBox;
 using PdfWriter = iTextSharp.text.pdf.PdfWriter;
+using Rectangle = iTextSharp.text.Rectangle;
 using TextBox = System.Windows.Forms.TextBox;
 
 namespace Smile___Sunshine_Toy_System.Interface
@@ -37,35 +38,34 @@ namespace Smile___Sunshine_Toy_System.Interface
         {
             mainController = new MainController(rtbDisplay, username);
             user = mainController.GetUser(username);
-            this.Text = $"Smile & Sunshine Toy System - [Staff ID: {user[0]}] [User: {user[1]}]"; // Set the form title with username and department
+            this.Text = $"Smile & Sunshine Toy System - [Staff ID: {user[0]}] [User: {user[1]}]";
             table = mainController.GetTable();
             loadTableAndColumn();
             Int32.TryParse(user[user.Count - 1], out dept_id);
-            // Example usage
             switch (dept_id)
             {
-                case 1: // Administrator
+                case 1:
                     break;
-                case 2: // Quality Controller
-                    tc1.Visible = false; // Hide the tab control for Quality Controller
-                    gbColumn.Size = new Size(1506, gbColumn.Size.Height); // Adjust the size of the group box
+                case 2:
+                    tc1.TabPages.RemoveAt(0);
+                    tc1.SelectedIndex = 0;
                     break;
-                case 3: // Accounting Department
-                    btnDelete.Visible = false; // Hide the delete button for Accounting Department
-                    btnInsert.Visible = false; // Hide the delete button for Accounting Department
-                    btnUpdate.Size = new Size(btnInsert.Size.Width, btnInsert.Size.Height); // Adjust the size of the update button
-                    groupBox3.Location = new Point(groupBox3.Location.X, 640); // Move the group box up
-                    groupBox3.Size = new Size(groupBox3.Size.Width, 60); // Move the group box up
-                    gbColumnPanel.Size = new Size(gbColumnPanel.Size.Width, tc1.Size.Height-groupBox3.Size.Height); // Adjust the size of the column panel
+                case 3:
+                    btnDelete.Visible = false;
+                    btnInsert.Visible = false;
+                    btnUpdate.Size = new Size(btnInsert.Size.Width, btnInsert.Size.Height);
+                    groupBox3.Location = new Point(groupBox3.Location.X, 640);
+                    groupBox3.Size = new Size(groupBox3.Size.Width, 60);
+                    gbColumnPanel.Size = new Size(gbColumnPanel.Size.Width, tc1.Size.Height - groupBox3.Size.Height);
                     break;
-                case 4: // Material Procurement and Management
+                case 4:
                     break;
-                case 5: // Production department
+                case 5:
                     break;
-                case 6: // Service department
-                    Customer_Feedback customer_Feedback = new Customer_Feedback(); // Create a new instance of Customer_Feedback
+                case 6:
+                    Customer_Feedback customer_Feedback = new Customer_Feedback();
                     customer_Feedback.Show();
-                    this.Close(); // Hide the main form for Service department
+                    this.Close();
                     break;
                 default:
                     MessageBox.Show("Invalid department ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -77,40 +77,32 @@ namespace Smile___Sunshine_Toy_System.Interface
         private void loadTableAndColumn()
         {
             Boolean isWhiteList = false;
-            //afterservicefeedback
-            //department
-            //event
-            //item
-            //product
-            //report
-            //staff
-            //warehouse
             Int32.TryParse(user[user.Count - 1], out dept_id);
 
-            if (dept_id != 1) // If the user is not an admin
+            if (dept_id != 1)
             {
-                isWhiteList = true; // Set the whitelist flag to true
+                isWhiteList = true;
             }
 
             switch (dept_id)
             {
-                case 1: // Administrator
+                case 1:
                     whiteList = new List<String> { "afterservicefeedback", "department", "event", "item", "product", "report", "staff", "warehouse" };
                     break;
-                case 2: // Quality Controller
-                    whiteList = new List<String> { "item", "product", "report" };
+                case 2:
+                    whiteList = new List<String> { "item", "product" };
                     break;
-                case 3: // Accounting Department
-                    whiteList = new List<String> { "product", "report", "warehouse" };
+                case 3:
+                    whiteList = new List<String> { "product", "warehouse" };
                     break;
-                case 4: // Material Procurement and Management
-                    whiteList = new List<String> { "item", "product", "report", "warehouse" };
+                case 4:
+                    whiteList = new List<String> { "item", "product", "warehouse" };
                     break;
-                case 5: // Production department
-                    whiteList = new List<String> { "item", "product", "report", "warehouse" };
+                case 5:
+                    whiteList = new List<String> { "item", "product", "warehouse" };
                     break;
-                case 6: // Production department
-                    whiteList = new List<String> {};
+                case 6:
+                    whiteList = new List<String> { };
                     break;
                 default:
                     MessageBox.Show("Invalid department ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -122,8 +114,11 @@ namespace Smile___Sunshine_Toy_System.Interface
                 if (whiteList.Contains(t) && isWhiteList)
                 {
                     cbTable.Items.Add(t);
-                } else if (!isWhiteList)
+                }
+                else if (!isWhiteList)
+                {
                     cbTable.Items.Add(t);
+                }
             }
             if (cbTable.Items.Count > 0)
             {
@@ -156,36 +151,30 @@ namespace Smile___Sunshine_Toy_System.Interface
             LoadPanel();
             LoadPDFView();
             gbColumn.Text = $"Table: {cbTable.SelectedItem.ToString()}";
-            // Clear existing items and columns
             lvTable.Items.Clear();
             lvTable.Columns.Clear();
-
-            // Set ListView properties
-            lvTable.View = View.Details; // Set the view to details
-            lvTable.MultiSelect = true; // Allow multiple selection
-            lvTable.FullRowSelect = true; // Select full row
-            lvTable.GridLines = true; // Show grid lines
-            // Define columns based on the selected table
-            string selectedTable = cbTable.SelectedItem.ToString(); // Get the selected table name
-            List<string> columnNames = column; // Retrieve column names for the selected table
+            lvTable.View = View.Details;
+            lvTable.MultiSelect = true;
+            lvTable.FullRowSelect = true;
+            lvTable.GridLines = true;
+            string selectedTable = cbTable.SelectedItem.ToString();
+            List<string> columnNames = column;
 
             foreach (string col in columnNames)
             {
-                lvTable.Columns.Add(col, col.Length*10);
+                lvTable.Columns.Add(col, col.Length * 10);
             }
 
-            // Retrieve data from the database
-            List<List<string>> items = mainController.GetRecord(selectedTable, criteria); // Get records from the selected table
+            List<List<string>> items = mainController.GetRecord(selectedTable, criteria);
 
-            // Populate the ListView with the retrieved data
             foreach (var row in items)
             {
-                ListViewItem listViewItem = new ListViewItem(row[0]); // First column value
+                ListViewItem listViewItem = new ListViewItem(row[0]);
                 for (int i = 1; i < row.Count; i++)
                 {
-                    listViewItem.SubItems.Add(row[i]); // Add subsequent column values
+                    listViewItem.SubItems.Add(row[i]);
                 }
-                lvTable.Items.Add(listViewItem); // Add the complete row to the ListView
+                lvTable.Items.Add(listViewItem);
             }
         }
 
@@ -194,21 +183,18 @@ namespace Smile___Sunshine_Toy_System.Interface
             if (lvTable.SelectedItems.Count == 1)
             {
                 List<string> row = new List<string>();
-
-                // Get the first selected item
                 ListViewItem selectedItem = lvTable.SelectedItems[0];
                 int startIndex = 1;
-                // Use a for loop to iterate over sub-items of the selected item
                 for (int i = 0; i < selectedItem.SubItems.Count; i++)
                 {
-                    row.Add(selectedItem.SubItems[i].Text); // Add the text of each sub-item to the list
+                    row.Add(selectedItem.SubItems[i].Text);
                     gbColumnPanel.Controls[startIndex].Text = selectedItem.SubItems[i].Text;
                     startIndex += 2;
                 }
-            } else
+            }
+            else
             {
-                // Use a for loop to iterate over sub-items of the selected item
-                for (int i = 1; i < gbColumnPanel.Controls.Count; i+=2)
+                for (int i = 1; i < gbColumnPanel.Controls.Count; i += 2)
                 {
                     gbColumnPanel.Controls[i].Text = "";
                 }
@@ -220,7 +206,8 @@ namespace Smile___Sunshine_Toy_System.Interface
             if (!string.IsNullOrWhiteSpace(txtValue.Text))
             {
                 SetupListView($"`{cbColumn.SelectedItem.ToString()}` = \"{txtValue.Text}\"");
-            } else
+            }
+            else
             {
                 MessageBox.Show("Please enter a value to search.", "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -230,11 +217,10 @@ namespace Smile___Sunshine_Toy_System.Interface
         {
             gbColumnPanel.Controls.Clear();
             int startY = 25;
-            int gap = 40; // Adjusted gap for better spacing
+            int gap = 40;
 
             foreach (string item in column)
             {
-                // Create and configure the label
                 Label lblColumn = new Label
                 {
                     Text = item,
@@ -242,31 +228,27 @@ namespace Smile___Sunshine_Toy_System.Interface
                     AutoSize = true
                 };
 
-                // Create and configure the textbox
                 TextBox txtRecord = new TextBox
                 {
                     Name = item,
-                    Location = new Point(120, startY), // Position next to the label
-                    Width = 200, // Set the width
-                    Height = 30 // Set the height
+                    Location = new Point(120, startY),
+                    Width = 200,
+                    Height = 30
                 };
 
-                if (item.Contains(column[0])||item.Contains("created_at"))
+                if (item.Contains(column[0]) || item.Contains("created_at"))
                 {
                     txtRecord.ReadOnly = true;
-                    txtRecord.BackColor = Color.LightGray; // Make it read-only and visually distinct
+                    txtRecord.BackColor = Color.LightGray;
                 }
-                if (dept_id==3 && !item.Contains("price")) // If the user is from the accounting department and the column is price
+                if (dept_id == 3 && !item.Contains("price"))
                 {
-                    txtRecord.ReadOnly = true; // Make it read-only
-                    txtRecord.BackColor = Color.LightGray; // Make it visually distinct
+                    txtRecord.ReadOnly = true;
+                    txtRecord.BackColor = Color.LightGray;
                 }
 
-                // Add controls to the panel
                 gbColumnPanel.Controls.Add(lblColumn);
                 gbColumnPanel.Controls.Add(txtRecord);
-
-                // Update the starting Y position for the next control
                 startY += gap;
             }
         }
@@ -299,7 +281,7 @@ namespace Smile___Sunshine_Toy_System.Interface
                     gbColumnPanel.Controls.OfType<TextBox>()
                     .Select(tb => $"`{tb.Name}` = {(string.IsNullOrWhiteSpace(tb.Text) ? "NULL" : $"\"{tb.Text}\"")}"));
 
-                string whereClause = $"`{gbColumnPanel.Controls[0].Text}` = {lvTable.SelectedItems[0].Text}"; // Assuming the first column is the primary key
+                string whereClause = $"`{gbColumnPanel.Controls[0].Text}` = {lvTable.SelectedItems[0].Text}";
                 mainController.UpdateRecord(cbTable.SelectedItem.ToString(), setClause, whereClause);
                 SetupListView();
             }
@@ -312,8 +294,8 @@ namespace Smile___Sunshine_Toy_System.Interface
         private void LoadPDFView()
         {
             int startY = 15;
-            int gap = 20; // Adjusted gap for better spacing
-            tabPage2.Controls.Clear(); // Clear existing controls in the PDF tab
+            int gap = 20;
+            tabPage2.Controls.Clear();
             gbPDF_Column = new GroupBox
             {
                 Text = "PDF Columns",
@@ -331,36 +313,36 @@ namespace Smile___Sunshine_Toy_System.Interface
                 {
                     Name = column,
                     Checked = true,
-                    Location = new Point(300-30, startY),
+                    Location = new Point(300 - 30, startY),
                     AutoSize = true
                 };
                 gbPDF_Column.Controls.Add(label);
                 gbPDF_Column.Controls.Add(checkBox);
                 gbPDF_Column.Size = new Size(300, startY + 20);
-                startY += gap; // Move down for the next label
+                startY += gap;
             }
-            tabPage2.Controls.Add(gbPDF_Column); // Add the group box to the PDF tab
-            Button btnExport = new Button
+            tabPage2.Controls.Add(gbPDF_Column);
+            Button btnExportPDF = new Button
             {
                 Text = "Export",
                 BackColor = Color.LightBlue,
                 Location = new Point(10, 15),
-                Size = new Size(300-20, 50)
+                Size = new Size(300 - 20, 50)
             };
-            btnExport.Click += new EventHandler(btnExport_Click);
+            btnExportPDF.Click += new EventHandler(btnExportPDF_Click);
             GroupBox gbPDF_Export = new GroupBox
             {
                 Text = "Export",
-                Location = new Point(10, tabPage2.Size.Height-80),
-                Size = new Size(300, btnExport.Size.Height+30)
+                Location = new Point(10, tabPage2.Size.Height - 80),
+                Size = new Size(300, btnExportPDF.Size.Height + 30)
             };
-            gbPDF_Export.Controls.Add(btnExport);
-            tabPage2.Controls.Add(gbPDF_Export); // Add the group box to the PDF tab
+            gbPDF_Export.Controls.Add(btnExportPDF);
+            tabPage2.Controls.Add(gbPDF_Export);
         }
 
-        private void btnExport_Click(object sender, EventArgs e)
+        private void btnExportPDF_Click(object sender, EventArgs e)
         {
-            string defaultFileName = "record.pdf";
+            string defaultFileName = $"{cbTable.SelectedItem.ToString()}.pdf";
 
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
@@ -371,58 +353,48 @@ namespace Smile___Sunshine_Toy_System.Interface
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-
-
-
                 using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create, FileAccess.Write, FileShare.None))
                 using (Document document = new Document(PageSize.A4.Rotate()))
                 using (PdfWriter writer = PdfWriter.GetInstance(document, fs))
                 {
                     document.Open();
                     document.SetMargins(0, 0, 0, 0);
-                    int colcount = 0; // Initialize column count
+                    int colcount = 0;
                     List<string> selectedColumns = new List<string>();
-
-                    // First, determine the count of checked checkboxes and add headers
                     foreach (Control control in gbPDF_Column.Controls)
                     {
                         if (control is CheckBox checkBox && checkBox.Checked)
                         {
                             selectedColumns.Add(checkBox.Name);
-                            colcount++; // Increment the column count for each checked checkbox
+                            colcount++;
                         }
                     }
-
-                    // Create the PdfPTable with the number of checked columns
                     PdfPTable table = new PdfPTable(colcount);
-
-                    // Add headers to the table
                     foreach (string column in selectedColumns)
                     {
-                        table.AddCell(column); // Add each checked column name as a header
+                        table.AddCell(column);
                     }
                     List<String> records = mainController.GetFilteredRecord(cbTable.SelectedItem.ToString(), String.Join(", ", selectedColumns.Select(column => $"`{column}`")));
-
-                    // Add data rows
                     foreach (String record in records)
                     {
                         table.AddCell(record);
                     }
-
-                    // Add the table to the document
+                    PdfPCell total_record = new PdfPCell(new Phrase($"Total Records: {records.Count / column.Count}"));
+                    total_record.HorizontalAlignment = Element.ALIGN_RIGHT;
+                    total_record.Border = Rectangle.NO_BORDER;
+                    total_record.Colspan = 3;
+                    table.AddCell(total_record);
                     document.Add(table);
-
-                    // Close the document
                     document.Close();
                 }
-
-                MessageBox.Show("PDF generated successfully.");
+                mainController.Log("generate_report");
+                MessageBox.Show("PDF generated successfully.", "System");
             }
         }
 
         private void btnPDF_Click(object sender, EventArgs e)
         {
-            tc1.SelectedIndex = 1; // Switch to the PDF tab
+            tc1.SelectedIndex = 1;
         }
 
         private void btnReload_Click(object sender, EventArgs e)

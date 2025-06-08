@@ -239,13 +239,38 @@ namespace Smile___Sunshine_Toy_System.Interface
         private void button1_Click(object sender, EventArgs e)
         {
             string fromMail = "slt8ky@gmail.com";
-            string fromPassword = "tbnk wkpv snrz dreu";
+            string fromPassword = "eerh wyie iojm nxjr";
+            string htmlBody = $@"
+            <html>
+                <body style='margin: 0; padding: 0; background: #1D1D1D;'>
+                    <table width='100%' cellpadding='0' cellspacing='0' style='background: #1D1D1D;'>
+                        <tr>
+                            <td align='center' style='background: linear-gradient(to right, #6a0dad, #ff7e5f); padding: 20px;'>
+                                <h1 style='color: white; font-family: Arial, sans-serif; margin: 0;'>Smile & SunShine Toy</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align='center' style='background: #2c2c2c; color: #eebc85; padding: 40px; border-radius: 10px;'>
+                                <h2 style='font-family: Arial, sans-serif; font-weight: lighter; letter-spacing: 5px; margin: 0;'>Service Department</h2>
+                                <hr style='border: 1px solid #eebc85; width: 50%; margin: 20px auto;'>
+                                <p style='font-family: Arial, sans-serif; color: #eebc85; font-size: 18px; word-break: break-all;'>
+                                    {FBInteraction.Text.ToString()}
+                                    <br>
+                                    If you have any further questions, please feel free to contact us through Gmail - 
+                                    <a href='mailto:slt8ky@gmail.com' style='text-decoration: underline; color: #eebc85; margin-top: 20px;'>slt8ky@gmail.com</a>.
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </body>
+            </html>";
 
+            // Create a MailMessage
             MailMessage message = new MailMessage();
             message.From = new MailAddress(fromMail);
-            message.Subject = "Test Subject";
             message.To.Add(new MailAddress("slt8ky@gmail.com"));
-            message.Body = "<html><body> Test Body </body></html>";
+            message.Subject = "Smile & Sunshine Toy";
+            message.Body = htmlBody;
             message.IsBodyHtml = true;
 
             var smtpClient = new SmtpClient("smtp.gmail.com")

@@ -23,7 +23,7 @@ namespace Smile___Sunshine_Toy_System.Controller
         public List<string> GetUser(string username)
         {
             List<string> results = new List<string>();
-            string query = $"SELECT * FROM STAFF WHERE `username` = @username"; // Use parameterized query to prevent SQL injection
+            string query = $"SELECT * FROM STAFF WHERE `username` = @username";
 
             using (var connection = Database.Instance.Connection)
             {
@@ -32,7 +32,6 @@ namespace Smile___Sunshine_Toy_System.Controller
 
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    // Use parameterized query
                     command.Parameters.AddWithValue("@username", username);
 
                     try
@@ -55,7 +54,6 @@ namespace Smile___Sunshine_Toy_System.Controller
                 }
             }
             user = results;
-            Console.WriteLine(String.Join(", ", results));
             return results;
         }
 
@@ -91,7 +89,7 @@ namespace Smile___Sunshine_Toy_System.Controller
         public List<string> GetTableStructure(string tableName)
         {
             List<string> results = new List<string>();
-            string query = $"DESCRIBE `{tableName}`"; // Using backticks for table names
+            string query = $"DESCRIBE `{tableName}`";
 
             using (var connection = Database.Instance.Connection)
             {
@@ -105,7 +103,7 @@ namespace Smile___Sunshine_Toy_System.Controller
                         {
                             while (reader.Read())
                             {
-                                results.Add(reader.GetString(0)); // This retrieves the field names
+                                results.Add(reader.GetString(0));
                             }
                         }
                     }
@@ -121,24 +119,20 @@ namespace Smile___Sunshine_Toy_System.Controller
         public List<List<string>> GetRecord(string tableName, string criteria = null)
         {
             List<List<string>> results = new List<List<string>>();
-            string query = $"SELECT * FROM `{tableName}`"; // Use backticks for table names
+            string query = $"SELECT * FROM `{tableName}`";
             if (!String.IsNullOrEmpty(criteria))
             {
-                query += $" WHERE {criteria}"; // Append criteria if provided
-                Log("lookup_item", query); // Log the query
+                query += $" WHERE {criteria}";
+                Log("lookup_item", query);
             }
-            Console.WriteLine(query);
-            // Append date in black
             rtbDisplay.SelectionColor = Color.Black;
             rtbDisplay.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} - ");
             rtbDisplay.SelectionColor = Color.Orange;
             rtbDisplay.AppendText($" [LOOKUP] ");
             rtbDisplay.SelectionColor = Color.Purple;
             rtbDisplay.AppendText($"{query}{Environment.NewLine}");
-            rtbDisplay.SelectionStart = rtbDisplay.Text.Length; // Move the caret to the end
-            rtbDisplay.ScrollToCaret(); // Scroll to the caret position
-
-            // Reset selection color to default
+            rtbDisplay.SelectionStart = rtbDisplay.Text.Length;
+            rtbDisplay.ScrollToCaret();
             rtbDisplay.SelectionColor = rtbDisplay.ForeColor;
             using (var connection = Database.Instance.Connection)
             {
@@ -156,9 +150,9 @@ namespace Smile___Sunshine_Toy_System.Controller
                                 List<string> row = new List<string>();
                                 for (int i = 0; i < reader.FieldCount; i++)
                                 {
-                                    row.Add(reader[i]?.ToString() ?? string.Empty); // Convert to string, handle nulls
+                                    row.Add(reader[i]?.ToString() ?? string.Empty);
                                 }
-                                results.Add(row); // Add the row to the results
+                                results.Add(row);
                             }
                         }
                     }
@@ -171,7 +165,7 @@ namespace Smile___Sunshine_Toy_System.Controller
             return results;
         }
 
-        public void Log(string event_type, string event_content)
+        public void Log(string event_type, string event_content = "")
         {
             string query = "INSERT INTO `event` (`event_type`, `event_content`, `staff_id`) VALUES (@eventType, @eventContent, @staffId);";
 
@@ -182,10 +176,9 @@ namespace Smile___Sunshine_Toy_System.Controller
 
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    // Using parameters to prevent SQL injection
                     command.Parameters.AddWithValue("@eventType", event_type);
                     command.Parameters.AddWithValue("@eventContent", event_content);
-                    command.Parameters.AddWithValue("@staffId", user[0]); // Ensure this is an integer if staff_id is an integer in the database
+                    command.Parameters.AddWithValue("@staffId", user[0]);
 
                     try
                     {
@@ -201,7 +194,7 @@ namespace Smile___Sunshine_Toy_System.Controller
 
         public void InsertRecord(string tableName, String values)
         {
-            string query = $"INSERT INTO `{tableName}` VALUES ({values})"; // Use backticks for table names
+            string query = $"INSERT INTO `{tableName}` VALUES ({values})";
             using (var connection = Database.Instance.Connection)
             {
                 if (connection.State != System.Data.ConnectionState.Open)
@@ -223,16 +216,16 @@ namespace Smile___Sunshine_Toy_System.Controller
                     rtbDisplay.AppendText($" [INSERT] ");
                     rtbDisplay.SelectionColor = Color.Purple;
                     rtbDisplay.AppendText($"{query}{Environment.NewLine}");
-                    rtbDisplay.SelectionStart = rtbDisplay.Text.Length; // Move the caret to the end
-                    rtbDisplay.ScrollToCaret(); // Scroll to the caret position
-                    Log("insert_item", query); // Log the query
+                    rtbDisplay.SelectionStart = rtbDisplay.Text.Length;
+                    rtbDisplay.ScrollToCaret();
+                    Log("insert_item", query);
                 }
             }
         }
 
         public void DeleteRecord(string tableName, String queryString)
         {
-            string query = $"DELETE FROM `{tableName}` WHERE {queryString}"; // Use backticks for table names
+            string query = $"DELETE FROM `{tableName}` WHERE {queryString}";
             using (var connection = Database.Instance.Connection)
             {
                 if (connection.State != System.Data.ConnectionState.Open)
@@ -254,17 +247,16 @@ namespace Smile___Sunshine_Toy_System.Controller
                     rtbDisplay.AppendText($" [DELETE] ");
                     rtbDisplay.SelectionColor = Color.Purple;
                     rtbDisplay.AppendText($"{query}{Environment.NewLine}");
-                    rtbDisplay.SelectionStart = rtbDisplay.Text.Length; // Move the caret to the end
-                    rtbDisplay.ScrollToCaret(); // Scroll to the caret position
-                    Log("delete_item", query); // Log the query
+                    rtbDisplay.SelectionStart = rtbDisplay.Text.Length;
+                    rtbDisplay.ScrollToCaret();
+                    Log("delete_item", query);
                 }
             }
         }
 
         public void UpdateRecord(String tableName, String setsetClause, String whereClause)
         {
-            string query = $"UPDATE `{tableName}` SET {setsetClause} WHERE {whereClause}"; // Use backticks for table names
-            Console.WriteLine(query);
+            string query = $"UPDATE `{tableName}` SET {setsetClause} WHERE {whereClause}";
             using (var connection = Database.Instance.Connection)
             {
                 if (connection.State != System.Data.ConnectionState.Open)
@@ -286,9 +278,9 @@ namespace Smile___Sunshine_Toy_System.Controller
                     rtbDisplay.AppendText($" [UPDATE] ");
                     rtbDisplay.SelectionColor = Color.Purple;
                     rtbDisplay.AppendText($"{query}{Environment.NewLine}");
-                    rtbDisplay.SelectionStart = rtbDisplay.Text.Length; // Move the caret to the end
-                    rtbDisplay.ScrollToCaret(); // Scroll to the caret position
-                    Log("update_item", query); // Log the query
+                    rtbDisplay.SelectionStart = rtbDisplay.Text.Length;
+                    rtbDisplay.ScrollToCaret();
+                    Log("update_item", query);
                 }
             }
         }
@@ -301,16 +293,15 @@ namespace Smile___Sunshine_Toy_System.Controller
             rtbDisplay.AppendText($" [ERROR] ");
             rtbDisplay.SelectionColor = Color.Purple;
             rtbDisplay.AppendText($"{ex.Message}{Environment.NewLine}");
-            rtbDisplay.SelectionStart = rtbDisplay.Text.Length; // Move the caret to the end
-            rtbDisplay.ScrollToCaret(); // Scroll to the caret position
+            rtbDisplay.SelectionStart = rtbDisplay.Text.Length;
+            rtbDisplay.ScrollToCaret();
         }
 
         public List<string> GetFilteredRecord(string tableName, string columns)
         {
             List<string> results = new List<string>();
-            string query = $"SELECT {columns} FROM `{tableName}`"; // Use backticks for table names
+            string query = $"SELECT {columns} FROM `{tableName}`";
 
-            // Reset selection color to default
             rtbDisplay.SelectionColor = rtbDisplay.ForeColor;
             using (var connection = Database.Instance.Connection)
             {
