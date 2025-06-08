@@ -297,10 +297,10 @@ namespace Smile___Sunshine_Toy_System.Controller
             rtbDisplay.ScrollToCaret();
         }
 
-        public List<string> GetFilteredRecord(string tableName, string columns)
+        public List<string> GetFilteredRecord(string tableName, string columns, string orderBy = "")
         {
             List<string> results = new List<string>();
-            string query = $"SELECT {columns} FROM `{tableName}`";
+            string query = $"SELECT {columns} FROM `{tableName}` {orderBy}";
 
             rtbDisplay.SelectionColor = rtbDisplay.ForeColor;
             using (var connection = Database.Instance.Connection)

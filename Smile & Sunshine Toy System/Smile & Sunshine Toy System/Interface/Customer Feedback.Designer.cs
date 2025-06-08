@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Customer_Feedback));
             this.ResetButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.FBCType = new System.Windows.Forms.ComboBox();
@@ -58,7 +59,7 @@
             this.ExitButton = new System.Windows.Forms.Button();
             this.StaffText = new System.Windows.Forms.Label();
             this.FBTSConnectBT = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSend = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ViewFBData)).BeginInit();
             this.SuspendLayout();
@@ -104,7 +105,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(329, 639);
+            this.groupBox1.Size = new System.Drawing.Size(329, 704);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             // 
@@ -252,7 +253,7 @@
             this.FBDetail.Margin = new System.Windows.Forms.Padding(2);
             this.FBDetail.Multiline = true;
             this.FBDetail.Name = "FBDetail";
-            this.FBDetail.Size = new System.Drawing.Size(285, 164);
+            this.FBDetail.Size = new System.Drawing.Size(285, 229);
             this.FBDetail.TabIndex = 10;
             this.FBDetail.WordWrap = false;
             // 
@@ -402,23 +403,25 @@
             this.FBTSConnectBT.UseVisualStyleBackColor = false;
             this.FBTSConnectBT.Click += new System.EventHandler(this.FBTSConnectBT_Click);
             // 
-            // button1
+            // btnSend
             // 
-            this.button1.Location = new System.Drawing.Point(510, 17);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(167, 45);
-            this.button1.TabIndex = 31;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnSend.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnSend.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold);
+            this.btnSend.Location = new System.Drawing.Point(10, 688);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(868, 61);
+            this.btnSend.TabIndex = 31;
+            this.btnSend.Text = "Send";
+            this.btnSend.UseVisualStyleBackColor = false;
+            this.btnSend.Click += new System.EventHandler(this.button1_Click);
             // 
             // Customer_Feedback
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
-            this.ClientSize = new System.Drawing.Size(1234, 695);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(1234, 764);
+            this.Controls.Add(this.btnSend);
             this.Controls.Add(this.FBTSConnectBT);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.DeleteButton);
@@ -430,6 +433,7 @@
             this.Controls.Add(this.CreateButton);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.FBSID);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Customer_Feedback";
             this.Text = "Customer Feedback";
             this.Load += new System.EventHandler(this.Customer_Feedback_Load);
@@ -473,6 +477,6 @@
         private System.Windows.Forms.Label StaffText;
         private System.Windows.Forms.ComboBox FBCType;
         private System.Windows.Forms.Button FBTSConnectBT;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSend;
     }
 }

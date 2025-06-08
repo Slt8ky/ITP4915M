@@ -32,6 +32,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbTable = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnReload = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtValue = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,13 +44,12 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.gbColumnPanel = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.btnInsert = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.gbColumnPanel = new System.Windows.Forms.GroupBox();
             this.tc1 = new System.Windows.Forms.TabControl();
-            this.btnReload = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbColumn.SuspendLayout();
@@ -92,6 +92,17 @@
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Find";
+            // 
+            // btnReload
+            // 
+            this.btnReload.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReload.BackgroundImage")));
+            this.btnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReload.Location = new System.Drawing.Point(209, 101);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(31, 31);
+            this.btnReload.TabIndex = 8;
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // btnSearch
             // 
@@ -142,7 +153,7 @@
             this.lvTable.HideSelection = false;
             this.lvTable.Location = new System.Drawing.Point(10, 21);
             this.lvTable.Name = "lvTable";
-            this.lvTable.Size = new System.Drawing.Size(1140, 701);
+            this.lvTable.Size = new System.Drawing.Size(1337, 709);
             this.lvTable.TabIndex = 7;
             this.lvTable.UseCompatibleStateImageBehavior = false;
             this.lvTable.SelectedIndexChanged += new System.EventHandler(this.lvTable_SelectedIndexChanged);
@@ -154,7 +165,7 @@
             this.rtbDisplay.Name = "rtbDisplay";
             this.rtbDisplay.ReadOnly = true;
             this.rtbDisplay.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rtbDisplay.Size = new System.Drawing.Size(1234, 168);
+            this.rtbDisplay.Size = new System.Drawing.Size(1473, 168);
             this.rtbDisplay.TabIndex = 8;
             this.rtbDisplay.Text = "";
             // 
@@ -163,7 +174,7 @@
             this.gbColumn.Controls.Add(this.lvTable);
             this.gbColumn.Location = new System.Drawing.Point(12, 12);
             this.gbColumn.Name = "gbColumn";
-            this.gbColumn.Size = new System.Drawing.Size(1156, 739);
+            this.gbColumn.Size = new System.Drawing.Size(1353, 740);
             this.gbColumn.TabIndex = 11;
             this.gbColumn.TabStop = false;
             // 
@@ -172,7 +183,7 @@
             this.groupBox5.Controls.Add(this.rtbDisplay);
             this.groupBox5.Location = new System.Drawing.Point(271, 758);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(1247, 201);
+            this.groupBox5.Size = new System.Drawing.Size(1485, 201);
             this.groupBox5.TabIndex = 12;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Log";
@@ -182,7 +193,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(336, 714);
+            this.tabPage2.Size = new System.Drawing.Size(380, 714);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Export to PDF";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -194,20 +205,10 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(336, 714);
+            this.tabPage1.Size = new System.Drawing.Size(377, 714);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Record Manage";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // gbColumnPanel
-            // 
-            this.gbColumnPanel.BackColor = System.Drawing.Color.Transparent;
-            this.gbColumnPanel.Location = new System.Drawing.Point(6, 6);
-            this.gbColumnPanel.Name = "gbColumnPanel";
-            this.gbColumnPanel.Size = new System.Drawing.Size(324, 593);
-            this.gbColumnPanel.TabIndex = 10;
-            this.gbColumnPanel.TabStop = false;
-            this.gbColumnPanel.Text = "Column";
             // 
             // groupBox3
             // 
@@ -216,76 +217,78 @@
             this.groupBox3.Controls.Add(this.btnDelete);
             this.groupBox3.Location = new System.Drawing.Point(6, 605);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(324, 103);
+            this.groupBox3.Size = new System.Drawing.Size(365, 103);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Control Panel";
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnDelete.Location = new System.Drawing.Point(175, 21);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(142, 32);
-            this.btnDelete.TabIndex = 6;
-            this.btnDelete.Text = "Delete Record";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnUpdate.Location = new System.Drawing.Point(7, 21);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(162, 32);
-            this.btnUpdate.TabIndex = 5;
-            this.btnUpdate.Text = "Update Record";
-            this.btnUpdate.UseVisualStyleBackColor = false;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnInsert
             // 
             this.btnInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnInsert.Location = new System.Drawing.Point(6, 62);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(311, 32);
+            this.btnInsert.Size = new System.Drawing.Size(353, 32);
             this.btnInsert.TabIndex = 2;
             this.btnInsert.Text = "Insert Record";
             this.btnInsert.UseVisualStyleBackColor = false;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnUpdate.Location = new System.Drawing.Point(7, 21);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(177, 32);
+            this.btnUpdate.TabIndex = 5;
+            this.btnUpdate.Text = "Update Record";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnDelete.Location = new System.Drawing.Point(202, 21);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(157, 32);
+            this.btnDelete.TabIndex = 6;
+            this.btnDelete.Text = "Delete Record";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // gbColumnPanel
+            // 
+            this.gbColumnPanel.BackColor = System.Drawing.Color.Transparent;
+            this.gbColumnPanel.Location = new System.Drawing.Point(6, 6);
+            this.gbColumnPanel.Name = "gbColumnPanel";
+            this.gbColumnPanel.Size = new System.Drawing.Size(365, 593);
+            this.gbColumnPanel.TabIndex = 10;
+            this.gbColumnPanel.TabStop = false;
+            this.gbColumnPanel.Text = "Column";
+            // 
             // tc1
             // 
             this.tc1.Controls.Add(this.tabPage1);
             this.tc1.Controls.Add(this.tabPage2);
-            this.tc1.Location = new System.Drawing.Point(1174, 12);
+            this.tc1.Location = new System.Drawing.Point(1371, 12);
             this.tc1.Name = "tc1";
             this.tc1.SelectedIndex = 0;
-            this.tc1.Size = new System.Drawing.Size(344, 740);
+            this.tc1.Size = new System.Drawing.Size(385, 740);
             this.tc1.TabIndex = 8;
-            // 
-            // btnReload
-            // 
-            this.btnReload.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReload.BackgroundImage")));
-            this.btnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnReload.Location = new System.Drawing.Point(209, 101);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(31, 31);
-            this.btnReload.TabIndex = 8;
-            this.btnReload.UseVisualStyleBackColor = true;
-            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1530, 972);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1768, 972);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.tc1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbColumn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

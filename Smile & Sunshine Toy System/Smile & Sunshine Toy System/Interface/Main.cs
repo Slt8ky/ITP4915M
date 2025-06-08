@@ -38,7 +38,7 @@ namespace Smile___Sunshine_Toy_System.Interface
         {
             mainController = new MainController(rtbDisplay, username);
             user = mainController.GetUser(username);
-            this.Text = $"Smile & Sunshine Toy System - [Staff ID: {user[0]}] [User: {user[1]}]";
+            this.Text = $"Smile & Sunshine Toy System - Staff ID: {user[0]} User: {user[1]}";
             table = mainController.GetTable();
             loadTableAndColumn();
             Int32.TryParse(user[user.Count - 1], out dept_id);
@@ -296,7 +296,7 @@ namespace Smile___Sunshine_Toy_System.Interface
             int startY = 15;
             int gap = 20;
             tabPage2.Controls.Clear();
-            gbPDF_Column = new GroupBox
+            GroupBox gbPDF_Column = new GroupBox
             {
                 Text = "PDF Columns",
                 Location = new Point(10, 10),
@@ -322,6 +322,37 @@ namespace Smile___Sunshine_Toy_System.Interface
                 startY += gap;
             }
             tabPage2.Controls.Add(gbPDF_Column);
+
+            Label lbOrderBy = new Label
+            {
+                Text = "Order By:",
+                Location = new Point(10, 20),
+                AutoSize = true
+            };
+            ComboBox cbOrderBy = new ComboBox
+            {
+                Location = new Point(80, 15),
+                Width = 200
+            };
+            cbOrderBy.Items.AddRange(column.ToArray());
+            cbOrderBy.SelectedIndex = 0;
+            ComboBox cbAsc = new ComboBox
+            {
+                Location = new Point(80, 40),
+                Width = 100
+            };
+            cbAsc.Items.Add("Ascending");
+            cbAsc.Items.Add("Descending");
+            cbAsc.SelectedIndex = 0;
+            GroupBox gbPDF_OrderBy = new GroupBox
+            {
+                Text = "Order By",
+                Location = new Point(10, gbPDF_Column.Size.Height + 10),
+                Size = new Size(300, 50)
+            };
+            gbPDF_OrderBy.Controls.Add(lbOrderBy);
+            gbPDF_OrderBy.Controls.Add(cbOrderBy);
+            tabPage2.Controls.Add(gbPDF_OrderBy);
             Button btnExportPDF = new Button
             {
                 Text = "Export",
@@ -337,6 +368,7 @@ namespace Smile___Sunshine_Toy_System.Interface
                 Size = new Size(300, btnExportPDF.Size.Height + 30)
             };
             gbPDF_Export.Controls.Add(btnExportPDF);
+            gbPDF_Export.Controls.Add(gbPDF_OrderBy);
             tabPage2.Controls.Add(gbPDF_Export);
         }
 
