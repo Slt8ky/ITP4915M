@@ -9,7 +9,7 @@ namespace Smile___Sunshine_Toy_System.Interface
 {
     public partial class Customer_Feedback : Form
     {
-        private string connectionString = "server=125.59.53.16;uid=root;database=default;pwd=Vx|T77(6\"&bM;Convert Zero Datetime=true;";
+        private string connectionString = "server=172.26.45.216;uid=root;database=default;pwd=Vx|T77(6\"&bM;Convert Zero Datetime=true;";
 
         public Customer_Feedback()
         {
@@ -27,10 +27,11 @@ namespace Smile___Sunshine_Toy_System.Interface
         private void UpLoadData()
         {
 
-            MySqlConnection con = new MySqlConnection(connectionString);
-            con.Open();
+            var connection = Database.Instance.Connection;
+            if (connection.State != System.Data.ConnectionState.Open)
+                connection.Open();
             MySqlCommand cmd;
-            cmd = con.CreateCommand();
+            cmd = connection.CreateCommand();
             cmd.CommandText = "Select * From afterServiceFeedback";
 
             MySqlDataReader sdr = cmd.ExecuteReader();
