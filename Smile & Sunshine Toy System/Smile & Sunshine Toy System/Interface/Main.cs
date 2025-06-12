@@ -1,6 +1,7 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Smile___Sunshine_Toy_System.Controller;
+using Smile___Sunshine_Toy_System.Properties;
 using System;
 using System.Collections.Generic;
 using System.Data;

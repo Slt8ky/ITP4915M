@@ -117,312 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1768, 972</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="btnInsert.Text" xml:space="preserve">
-    <value>Insert Record</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnReload.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 31</value>
-  </data>
-  <data name="gbColumnPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>365, 593</value>
-  </data>
-  <data name="&gt;&gt;btnSearch.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 605</value>
-  </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>Export to PDF</value>
-  </data>
-  <data name="&gt;&gt;tc1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnDelete.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lvTable.Name" xml:space="preserve">
-    <value>lvTable</value>
-  </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tc1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>385, 740</value>
-  </data>
-  <data name="&gt;&gt;tabPage1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbColumnPanel.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="btnInsert.Size" type="System.Drawing.Size, System.Drawing">
-    <value>353, 32</value>
-  </data>
-  <data name="&gt;&gt;tc1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="btnDelete.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 32</value>
-  </data>
-  <data name="&gt;&gt;txtValue.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnUpdate.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;tc1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lvTable.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="btnSearch.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;gbColumnPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnSearch.Name" xml:space="preserve">
-    <value>btnSearch</value>
-  </data>
-  <data name="&gt;&gt;lvTable.Parent" xml:space="preserve">
-    <value>gbColumn</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="btnDelete.Location" type="System.Drawing.Point, System.Drawing">
-    <value>202, 21</value>
-  </data>
-  <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;cbColumn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="gbColumn.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;btnInsert.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tabPage1.Text" xml:space="preserve">
-    <value>Record Manage</value>
-  </data>
-  <data name="&gt;&gt;cbTable.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Column:</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Main</value>
-  </data>
-  <data name="&gt;&gt;tabPage2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnDelete.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="btnSearch.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 101</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;tabPage1.Parent" xml:space="preserve">
-    <value>tc1</value>
-  </data>
-  <data name="&gt;&gt;gbColumnPanel.Name" xml:space="preserve">
-    <value>gbColumnPanel</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
-  </data>
-  <data name="&gt;&gt;gbColumnPanel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="rtbDisplay.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1473, 168</value>
-  </data>
-  <data name="gbColumn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1353, 740</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 32</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 12</value>
-  </data>
-  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 815</value>
-  </data>
-  <data name="&gt;&gt;tc1.Name" xml:space="preserve">
-    <value>tc1</value>
-  </data>
-  <data name="lvTable.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1337, 709</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;btnSearch.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Table</value>
+    <value>表格</value>
   </data>
-  <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="gbColumnPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 6</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="gbColumn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="&gt;&gt;txtValue.Name" xml:space="preserve">
-    <value>txtValue</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Main</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Name" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="txtValue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
-  </data>
-  <data name="btnInsert.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Find</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
-  </data>
-  <data name="&gt;&gt;tabPage2.Parent" xml:space="preserve">
-    <value>tc1</value>
-  </data>
-  <data name="&gt;&gt;btnUpdate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="cbTable.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 20</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1485, 201</value>
-  </data>
-  <data name="&gt;&gt;btnUpdate.Name" xml:space="preserve">
-    <value>btnUpdate</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="btnUpdate.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="gbColumnPanel.Text" xml:space="preserve">
-    <value>Column</value>
-  </data>
-  <data name="&gt;&gt;btnInsert.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="rtbDisplay.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="rtbDisplay.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 758</value>
-  </data>
-  <data name="&gt;&gt;gbColumn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnReload.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnUpdate.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;cbColumn.Name" xml:space="preserve">
-    <value>cbColumn</value>
-  </data>
-  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>365, 103</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>377, 714</value>
-  </data>
-  <data name="btnSearch.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 31</value>
-  </data>
-  <data name="&gt;&gt;tabPage2.Name" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnReload.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
@@ -610,204 +308,44 @@
         AAAAAAAAAAAAAAAAqNL/B4so/nbnpGovAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAAMIOAADCDgAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAFQo4QBUKuEARRnvDEYZ7QVFGe8AAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAALLRRACq3XgAZvHkKHLhsAwD/lgC4gRsCAAD/AFMs9xZJJvqyRiH4cWIgzwFOJOwAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAN0MAADtG/IAjS17QOysBV86EAS+yjA6jpoQN/omlxIk8v+7ZJKPvoSCD2N0Yg
-        +QB3VcQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJZa
-        0QBYAP0AbwXpBXYB5QQvAP8A1xXMAAfX3wAK1tdLAdv4+kHGqpr1pwDZ8bIi//CtFP7nnwJzRyT8fkgq
-        /P9HI/qmTR7pB04i7gDyKtEAdwHoBXYF6ARqAO8A8MGZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        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
-        Af//gBH//8AT///4H////x////////////8=
-</value>
+  <data name="btnSearch.Text" xml:space="preserve">
+    <value>搜尋</value>
   </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 51</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 12</value>
   </data>
-  <data name="&gt;&gt;btnDelete.Name" xml:space="preserve">
-    <value>btnDelete</value>
-  </data>
-  <data name="&gt;&gt;rtbDisplay.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 12</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Control Panel</value>
-  </data>
-  <data name="&gt;&gt;btnInsert.Name" xml:space="preserve">
-    <value>btnInsert</value>
-  </data>
-  <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="&gt;&gt;cbTable.Name" xml:space="preserve">
-    <value>cbTable</value>
-  </data>
-  <data name="cbColumn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 20</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>377, 714</value>
-  </data>
-  <data name="&gt;&gt;txtValue.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="btnUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 32</value>
-  </data>
-  <data name="&gt;&gt;cbColumn.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;lvTable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnUpdate.Text" xml:space="preserve">
-    <value>Update Record</value>
-  </data>
-  <data name="btnReload.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 101</value>
-  </data>
-  <data name="btnDelete.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="cbTable.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 21</value>
-  </data>
-  <data name="btnReload.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;btnInsert.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbColumn.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>271, 758</value>
-  </data>
-  <data name="txtValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>58, 57</value>
-  </data>
-  <data name="&gt;&gt;txtValue.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDelete.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnReload.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="&gt;&gt;cbTable.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>列: </value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Value:</value>
+    <value>數值: </value>
   </data>
-  <data name="&gt;&gt;btnSearch.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>尋找</value>
   </data>
-  <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>記錄</value>
   </data>
-  <data name="rtbDisplay.ScrollBars" type="System.Windows.Forms.RichTextBoxScrollBars, System.Windows.Forms">
-    <value>Vertical</value>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>匯出為 PDF</value>
   </data>
-  <data name="tabPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+  <data name="btnInsert.Text" xml:space="preserve">
+    <value>插入記錄</value>
   </data>
-  <data name="tc1.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+  <data name="btnUpdate.Text" xml:space="preserve">
+    <value>更新記錄</value>
   </data>
-  <data name="cbColumn.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>刪除記錄</value>
   </data>
-  <data name="&gt;&gt;groupBox5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>控制面板</value>
   </data>
-  <data name="&gt;&gt;rtbDisplay.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gbColumnPanel.Text" xml:space="preserve">
+    <value>列</value>
   </data>
-  <data name="&gt;&gt;btnReload.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>記錄管理</value>
   </data>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2253,106 +1791,80 @@
         DqwGA3R/nnO/PP0LjZfZmHf/ong2+HQk2GH4/wUjSwHGI8yisQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="txtValue.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAAMIOAADCDgAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAFQo4QBUKuEARRnvDEYZ7QVFGe8AAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAALLRRACq3XgAZvHkKHLhsAwD/lgC4gRsCAAD/AFMs9xZJJvqyRiH4cWIgzwFOJOwAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAN0MAADtG/IAjS17QOysBV86EAS+yjA6jpoQN/omlxIk8v+7ZJKPvoSCD2N0Yg
+        +QB3VcQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJZa
+        0QBYAP0AbwXpBXYB5QQvAP8A1xXMAAfX3wAK1tdLAdv4+kHGqpr1pwDZ8bIi//CtFP7nnwJzRyT8fkgq
+        /P9HI/qmTR7pB04i7gDyKtEAdwHoBXYF6ARqAO8A8MGZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        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
+        Af//gBH//8AT///4H////x////////////8=
+</value>
   </data>
-  <data name="&gt;&gt;rtbDisplay.Name" xml:space="preserve">
-    <value>rtbDisplay</value>
-  </data>
-  <data name="rtbDisplay.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 21</value>
-  </data>
-  <data name="cbColumn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>58, 29</value>
-  </data>
-  <data name="lvTable.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 21</value>
-  </data>
-  <data name="&gt;&gt;rtbDisplay.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;gbColumn.Name" xml:space="preserve">
-    <value>gbColumn</value>
-  </data>
-  <data name="tabPage2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="btnSearch.Text" xml:space="preserve">
-    <value>Search</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Log</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="tc1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1371, 12</value>
-  </data>
-  <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="gbColumnPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 145</value>
-  </data>
-  <data name="btnDelete.Text" xml:space="preserve">
-    <value>Delete Record</value>
-  </data>
-  <data name="&gt;&gt;btnReload.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnReload.Name" xml:space="preserve">
-    <value>btnReload</value>
-  </data>
-  <data name="&gt;&gt;gbColumn.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnUpdate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 21</value>
-  </data>
-  <data name="cbTable.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;cbColumn.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;cbTable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Stretch</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 68</value>
-  </data>
-  <data name="tabPage2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lvTable.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnInsert.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 62</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>zh-HK</value>
-  </metadata>
 </root>
