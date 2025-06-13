@@ -139,6 +139,9 @@
   <data name="gbColumnPanel.Text" xml:space="preserve">
     <value>列</value>
   </data>
+  <data name="gpDeliveryNote.Text" xml:space="preserve">
+    <value>送貨單</value>
+  </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>表格</value>
   </data>
@@ -147,9 +150,6 @@
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>控制面板</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>偏好設定</value>
   </data>
   <data name="groupBox5.Location" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

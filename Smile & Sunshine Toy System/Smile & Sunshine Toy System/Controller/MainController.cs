@@ -1,9 +1,11 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Smile___Sunshine_Toy_System.Controller
@@ -52,7 +54,6 @@ namespace Smile___Sunshine_Toy_System.Controller
                 }
             }
             user = results;
-            Console.WriteLine(String.Join(", ", results.Select(t => t)));
             return results;
         }
 
@@ -108,6 +109,70 @@ namespace Smile___Sunshine_Toy_System.Controller
                     }
                     catch (MySqlException ex)
                     {
+                        throw new Exception($"Error executing query: {ex.Message}");
+                    }
+                }
+            }
+            return results;
+        }
+
+        public List<string> GetSelectedItem(string tableName, string[] key = null, string column = "*", string criteria = null)
+        {
+            var queryBuilder = new StringBuilder($"SELECT {column} FROM `{tableName}`");
+
+            if (key != null)
+            {
+                foreach (var k in key)
+                {
+                    string innerTable = null;
+
+                    if (k == "ClientID")
+                    {
+                        innerTable = "clientinformation";
+                    }
+                    else if (k == "ProductID")
+                    {
+                        innerTable = "product";
+                    }
+                    if (innerTable != null)
+                    {
+                        queryBuilder.Append($" INNER JOIN `{innerTable}` ON `{tableName}`.`{k}` = `{innerTable}`.`{k}`");
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(criteria))
+                {
+                    queryBuilder.Append(criteria);
+                }
+            }
+
+            string query = queryBuilder.ToString();
+            Console.WriteLine(query);
+            var results = new List<string>();
+
+            using (var connection = Database.Instance.Connection)
+            {
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    try
+                    {
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    results.Add(reader[i]?.ToString() ?? string.Empty);
+                                }
+                            }
+                        }
+                    }
+                    catch (MySqlException ex)
+                    {
+                        // Log the exception
                         throw new Exception($"Error executing query: {ex.Message}");
                     }
                 }
@@ -198,7 +263,7 @@ namespace Smile___Sunshine_Toy_System.Controller
             }
         }
 
-        public void InsertRecord(string tableName, String values)
+        public void InsertRecord(string tableName, string values)
         {
             string query = $"INSERT INTO `{tableName}` VALUES ({values})";
             using (var connection = Database.Instance.Connection)

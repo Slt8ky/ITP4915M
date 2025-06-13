@@ -162,7 +162,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="btnReload.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -355,6 +355,9 @@
   <data name="btnReload.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
   </data>
+  <data name="btnReload.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnReload.Location" type="System.Drawing.Point, System.Drawing">
     <value>209, 101</value>
   </data>
@@ -500,7 +503,7 @@
     <value>12, 815</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 145</value>
+    <value>252, 144</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -518,7 +521,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="lvTable.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 21</value>
@@ -587,13 +590,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;gbColumn.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
     <value>481, 759</value>
   </data>
   <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1271, 201</value>
+    <value>1271, 200</value>
   </data>
   <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -611,7 +614,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -787,54 +790,6 @@
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="btnExportToDeliveryNote.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 653</value>
-  </data>
-  <data name="btnExportToDeliveryNote.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 54</value>
-  </data>
-  <data name="btnExportToDeliveryNote.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="btnExportToDeliveryNote.Text" xml:space="preserve">
-    <value>Export</value>
-  </data>
-  <data name="&gt;&gt;btnExportToDeliveryNote.Name" xml:space="preserve">
-    <value>btnExportToDeliveryNote</value>
-  </data>
-  <data name="&gt;&gt;btnExportToDeliveryNote.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnExportToDeliveryNote.Parent" xml:space="preserve">
-    <value>tabPage3</value>
-  </data>
-  <data name="&gt;&gt;btnExportToDeliveryNote.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tabPage3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tabPage3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>377, 714</value>
-  </data>
-  <data name="tabPage3.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>Export to Delivery Note</value>
-  </data>
-  <data name="&gt;&gt;tabPage3.Name" xml:space="preserve">
-    <value>tabPage3</value>
-  </data>
-  <data name="&gt;&gt;tabPage3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage3.Parent" xml:space="preserve">
-    <value>tc1</value>
-  </data>
-  <data name="&gt;&gt;tabPage3.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="tc1.Location" type="System.Drawing.Point, System.Drawing">
     <value>1371, 12</value>
   </data>
@@ -854,7 +809,34 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tc1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
+  </data>
+  <data name="btnExportToDeliveryNote.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnExportToDeliveryNote.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 21</value>
+  </data>
+  <data name="btnExportToDeliveryNote.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 35</value>
+  </data>
+  <data name="btnExportToDeliveryNote.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="btnExportToDeliveryNote.Text" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="&gt;&gt;btnExportToDeliveryNote.Name" xml:space="preserve">
+    <value>btnExportToDeliveryNote</value>
+  </data>
+  <data name="&gt;&gt;btnExportToDeliveryNote.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnExportToDeliveryNote.Parent" xml:space="preserve">
+    <value>gpDeliveryNote</value>
+  </data>
+  <data name="&gt;&gt;btnExportToDeliveryNote.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="cbLocalization.Items" xml:space="preserve">
     <value>en-US (default)</value>
@@ -878,7 +860,7 @@
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cbLocalization.Parent" xml:space="preserve">
-    <value>groupBox4</value>
+    <value>gbPreference</value>
   </data>
   <data name="&gt;&gt;cbLocalization.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -905,33 +887,57 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>groupBox4</value>
+    <value>gbPreference</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="gbPreference.Location" type="System.Drawing.Point, System.Drawing">
     <value>271, 759</value>
   </data>
-  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 201</value>
+  <data name="gbPreference.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 130</value>
   </data>
-  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
+  <data name="gbPreference.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
+  <data name="gbPreference.Text" xml:space="preserve">
     <value>Preferences</value>
   </data>
-  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
-    <value>groupBox4</value>
+  <data name="&gt;&gt;gbPreference.Name" xml:space="preserve">
+    <value>gbPreference</value>
   </data>
-  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
+  <data name="&gt;&gt;gbPreference.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
+  <data name="&gt;&gt;gbPreference.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;gbPreference.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="gpDeliveryNote.Location" type="System.Drawing.Point, System.Drawing">
+    <value>271, 895</value>
+  </data>
+  <data name="gpDeliveryNote.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 64</value>
+  </data>
+  <data name="gpDeliveryNote.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="gpDeliveryNote.Text" xml:space="preserve">
+    <value>Delivery Note</value>
+  </data>
+  <data name="&gt;&gt;gpDeliveryNote.Name" xml:space="preserve">
+    <value>gpDeliveryNote</value>
+  </data>
+  <data name="&gt;&gt;gpDeliveryNote.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gpDeliveryNote.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gpDeliveryNote.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

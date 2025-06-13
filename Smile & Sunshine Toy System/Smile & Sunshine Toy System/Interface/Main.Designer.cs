@@ -50,11 +50,11 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.gbColumnPanel = new System.Windows.Forms.GroupBox();
             this.tc1 = new System.Windows.Forms.TabControl();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnExportToDeliveryNote = new System.Windows.Forms.Button();
+            this.gbPreference = new System.Windows.Forms.GroupBox();
             this.cbLocalization = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnExportToDeliveryNote = new System.Windows.Forms.Button();
+            this.gpDeliveryNote = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbColumn.SuspendLayout();
@@ -62,8 +62,8 @@
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tc1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.gbPreference.SuspendLayout();
+            this.gpDeliveryNote.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -164,9 +164,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.White;
             resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage1
             // 
@@ -220,25 +220,24 @@
             // 
             this.tc1.Controls.Add(this.tabPage1);
             this.tc1.Controls.Add(this.tabPage2);
-            this.tc1.Controls.Add(this.tabPage3);
             resources.ApplyResources(this.tc1, "tc1");
             this.tc1.Name = "tc1";
             this.tc1.SelectedIndex = 0;
             // 
-            // tabPage3
+            // btnExportToDeliveryNote
             // 
-            this.tabPage3.Controls.Add(this.btnExportToDeliveryNote);
-            resources.ApplyResources(this.tabPage3, "tabPage3");
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnExportToDeliveryNote, "btnExportToDeliveryNote");
+            this.btnExportToDeliveryNote.Name = "btnExportToDeliveryNote";
+            this.btnExportToDeliveryNote.UseVisualStyleBackColor = true;
+            this.btnExportToDeliveryNote.Click += new System.EventHandler(this.btnExportToDeliveryNote_Click);
             // 
-            // groupBox4
+            // gbPreference
             // 
-            this.groupBox4.Controls.Add(this.cbLocalization);
-            this.groupBox4.Controls.Add(this.label3);
-            resources.ApplyResources(this.groupBox4, "groupBox4");
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.TabStop = false;
+            this.gbPreference.Controls.Add(this.cbLocalization);
+            this.gbPreference.Controls.Add(this.label3);
+            resources.ApplyResources(this.gbPreference, "gbPreference");
+            this.gbPreference.Name = "gbPreference";
+            this.gbPreference.TabStop = false;
             // 
             // cbLocalization
             // 
@@ -255,18 +254,20 @@
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
             // 
-            // btnExportToDeliveryNote
+            // gpDeliveryNote
             // 
-            resources.ApplyResources(this.btnExportToDeliveryNote, "btnExportToDeliveryNote");
-            this.btnExportToDeliveryNote.Name = "btnExportToDeliveryNote";
-            this.btnExportToDeliveryNote.UseVisualStyleBackColor = true;
-            this.btnExportToDeliveryNote.Click += new System.EventHandler(this.btnExportToDeliveryNote_Click);
+            this.gpDeliveryNote.Controls.Add(this.btnExportToDeliveryNote);
+            resources.ApplyResources(this.gpDeliveryNote, "gpDeliveryNote");
+            this.gpDeliveryNote.Name = "gpDeliveryNote";
+            this.gpDeliveryNote.TabStop = false;
             // 
             // Main
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox4);
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.gpDeliveryNote);
+            this.Controls.Add(this.gbPreference);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.tc1);
@@ -284,9 +285,9 @@
             this.tabPage1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.tc1.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.gbPreference.ResumeLayout(false);
+            this.gbPreference.PerformLayout();
+            this.gpDeliveryNote.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -313,10 +314,10 @@
         private System.Windows.Forms.GroupBox gbColumnPanel;
         private System.Windows.Forms.TabControl tc1;
         private System.Windows.Forms.Button btnReload;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox gbPreference;
         private System.Windows.Forms.ComboBox cbLocalization;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button btnExportToDeliveryNote;
+        private System.Windows.Forms.GroupBox gpDeliveryNote;
+        public System.Windows.Forms.Button btnExportToDeliveryNote;
     }
 }

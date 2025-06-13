@@ -1,5 +1,6 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Mysqlx.Crud;
 using MySqlX.XDevAPI.Relational;
 using Smile___Sunshine_Toy_System.Controller;
 using Smile___Sunshine_Toy_System.Properties;
@@ -18,6 +19,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using Button = System.Windows.Forms.Button;
 using CheckBox = System.Windows.Forms.CheckBox;
 using ComboBox = System.Windows.Forms.ComboBox;
+using Font = iTextSharp.text.Font;
 using GroupBox = System.Windows.Forms.GroupBox;
 using PdfWriter = iTextSharp.text.pdf.PdfWriter;
 using Rectangle = iTextSharp.text.Rectangle;
@@ -74,7 +76,6 @@ namespace Smile___Sunshine_Toy_System.Interface
                 case 7: //Logistics Coordinator 
                     break;
             }
-            Console.WriteLine(dept_id);
             cbLocalization.SelectedIndex = 0;
         }
 
@@ -159,6 +160,7 @@ namespace Smile___Sunshine_Toy_System.Interface
                     return;
                 case 7: //Logistics Coordinator 
                     whiteList = new List<String> {
+                        "productorder"
                     };
                     return;
             }
@@ -195,7 +197,6 @@ namespace Smile___Sunshine_Toy_System.Interface
             // Reset sort state when table changes
             currentSortColumn = -1;
             currentSortOrder = SortOrder.None;
-
             SetupListView();
 
             foreach (String c in column)
@@ -204,6 +205,16 @@ namespace Smile___Sunshine_Toy_System.Interface
             }
             if (cbColumn.Items.Count > 0)
                 cbColumn.SelectedIndex = 0;
+            if (cbTable.SelectedItem.ToString() == "customerorder")
+            {
+                gpDeliveryNote.Visible = true;
+                gbPreference.Size = new Size(gbPreference.Size.Width, 130);
+            }
+            else
+            {
+                gpDeliveryNote.Visible = false;
+                gbPreference.Size = new Size(gbPreference.Size.Width, 200);
+            }
         }
 
         private void SetupListView(String criteria = null)
@@ -253,14 +264,12 @@ namespace Smile___Sunshine_Toy_System.Interface
                                      : Color.Red;
                         listViewItem.BackColor = color;
                     }
-                    Console.Write($"{row[i].Length.ToString()} ({columnNames[i].Length}) | ");
                     int width = row[i].Length * 10 > columnNames[i].Length * 10 ? row[i].Length * 10 : columnNames[i].Length * 15;
                     lvTable.Columns[0].Width = columnNames[i].Length * 10;
                     lvTable.Columns[i].Width = width;
                     listViewItem.SubItems.Add(row[i]);
                 }
                 lvTable.Items.Add(listViewItem);
-                Console.WriteLine();
             }
             lvTable.Show();
         }
@@ -405,7 +414,6 @@ namespace Smile___Sunshine_Toy_System.Interface
             string values = string.Join(", ",
                 gbColumnPanel.Controls.OfType<TextBox>()
                 .Select(tb => string.IsNullOrWhiteSpace(tb.Text) ? "NULL" : $"\"{tb.Text}\""));
-            Console.WriteLine(values);
             mainController.InsertRecord(cbTable.SelectedItem.ToString(), values);
             SetupListView();
         }
@@ -414,7 +422,6 @@ namespace Smile___Sunshine_Toy_System.Interface
         {
             foreach (ListViewItem item in lvTable.SelectedItems)
             {
-                Console.WriteLine(item.Text);
                 mainController.DeleteRecord(cbTable.SelectedItem.ToString(), $"`{gbColumnPanel.Controls[0].Text}` = {item.Text}");
             }
             SetupListView();
@@ -579,140 +586,189 @@ namespace Smile___Sunshine_Toy_System.Interface
             btnDelete.Text = Resource.btnDelete_Text;
             label1.Text = Resource.label1_Text;
             gbColumnPanel.Text = Resource.gbColumnPanel_Text;
-            groupBox4.Text = Resource.groupBox4_Text;
+            gbPreference.Text = Resource.gbPreference_Text;
+            gpDeliveryNote.Text = Resource.gpDeliveryNote_Text;
         }
 
         private void btnExportToDeliveryNote_Click(object sender, EventArgs e)
         {
-            List<string> selectedData = new List<string>();
-            if (lvTable.SelectedItems.Count==1)
+            if (lvTable.SelectedItems.Count == 1)
             {
+                List<string> selectedData = new List<string>();
                 foreach (ListViewSubItem item in lvTable.SelectedItems[0].SubItems)
                 {
-                    selectedData.Add(item.Text.ToString());
+                    selectedData.Add(item.Text);
+                }
+
+                var items = new Dictionary<string, string>
+                {
+                    {"OrderID", null},
+                    {"OrderDate", null},
+                    {"ClientID", null},
+                    {"ClientName", null},
+                    {"ClientPhoneNum", null},
+                    {"ClientEmail", null},
+                    {"ClientAddress", null},
+                    {"Requirement", null},
+                    {"Quantity", null},
+                    {"ProductID", null},
+                    {"ProductName", null},
+                    {"ProductPrice", null},
+                    {"Descriptions", null},
+                    {"TotalPrice", null},
+                    {"Payment", null},
+                    {"Delivertype", null}
+                };
+
+                string[] keys = { "ClientID", "ProductID" };
+                var results = mainController.GetSelectedItem(
+                    cbTable.SelectedItem.ToString(),
+                    keys,
+                    "`customerorder`.`OrderID`, " +
+                    "`customerorder`.`OrderDate`, " +
+                    "`customerorder`.`ClientID`, " +
+                    "`clientinformation`.`ClientName`, " +
+                    "`clientinformation`.`ClientPhoneNum`, " +
+                    "`clientinformation`.`ClientEmail`, " +
+                    "`clientinformation`.`ClientAddress`, " +
+                    "`customerorder`.`Requirement`, " +
+                    "`customerorder`.`Quantity`, " +
+                    "`product`.`ProductID`, " +
+                    "`product`.`ProductName`, " +
+                    "`product`.`ProductPrice`, " +
+                    "`product`.`Descriptions`, " +
+                    "`customerorder`.`TotalPrice`, " +
+                    "`customerorder`.`Payment`, " +
+                    "`customerorder`.`Delivertype`",
+                    $"WHERE `OrderID` = {selectedData[0]}"
+                );
+
+                // Assuming the results are in the same order as the dictionary keys
+                int index = 0;
+                foreach (var key in items.Keys.ToList())
+                {
+                    if (index < results.Count)
+                    {
+                        items[key] = results[index++];
+                    }
+                }
+
+                string defaultFileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}_CILENTID-{items["OrderID"]}_deliverynote.pdf";
+
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    FileName = defaultFileName,
+                    Filter = "PDF Files (*.pdf)|*.pdf",
+                    Title = "Save a PDF File"
+                })
+                {
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        GeneratePdf(items, saveFileDialog.FileName);
+                        MessageBox.Show("PDF generated successfully.");
+                    }
                 }
             }
-            string defaultFileName = $"{selectedData[0]}_deliverynote.pdf";
+        }
 
-            SaveFileDialog saveFileDialog = new SaveFileDialog
+        private void GeneratePdf(Dictionary<string, string> items, string filePath)
+        {
+            PdfPTable table = new PdfPTable(3);
+            Font font = FontFactory.GetFont("Arial", 28);
+            PdfPCell cell = new PdfPCell(new Phrase("Smile & Sunshine", font))
             {
-                FileName = defaultFileName,
-                Filter = "PDF Files (*.pdf)|*.pdf",
-                Title = "Save a PDF File"
+                PaddingTop = 40,
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_CENTER,
+                Colspan = 3
+            };
+            table.AddCell(cell);
+
+            cell = new PdfPCell(new Phrase("Delivery Note"))
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_CENTER,
+                Colspan = 3
+            };
+            table.AddCell(cell);
+
+            var orderInfo = new Dictionary<string, string>
+            {
+                {"Order Date", items["OrderDate"]},
+                {"Order #", items["OrderID"]},
+                {"Customer ID", items["ClientID"]},
+                {"Dispatch Date", DateTime.Now.ToString("F")},
+                {"Delivery Method", items["Delivertype"]}
             };
 
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {//0
-                PdfPTable table = new PdfPTable(3);
-                PdfPCell cell = new PdfPCell(new Phrase("Smile & SunShine"));
-                cell.Border = Rectangle.NO_BORDER;
-                table.AddCell(cell);
-                cell = new PdfPCell(new Phrase(" "));
-                cell.Border = Rectangle.NO_BORDER;
-                table.AddCell(cell);
-                cell = new PdfPCell(new Phrase("Delivery Note"));
-                cell.Border = Rectangle.NO_BORDER;
-                table.AddCell(cell);
-                cell = new PdfPCell(new Phrase($"OrderDate {selectedData[1]}"));
-                cell.Colspan = 2;
-                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
-                table.AddCell(cell);
-                //cell = new PdfPCell(new Phrase($"Order # {selectedData[0]}"));
-                //cell.Colspan = 2;
-                //cell.HorizontalAlignment = Element.ALIGN_RIGHT;
-                //table.AddCell(cell);
-
-
-                cell = new PdfPCell(new Phrase(" \n "));
-                cell.Colspan = 2;
-                cell.Border = Rectangle.NO_BORDER;
-                table.AddCell(cell);
-
-                //1
-
-
-                cell = new PdfPCell(new Phrase("Shipping Address"));
-                table.AddCell(cell);
-                cell = new PdfPCell(new Phrase(" "));
-                cell.Rowspan = 6;
-                cell.Border = Rectangle.NO_BORDER;
-                table.AddCell(cell);
-                cell = new PdfPCell(new Phrase("Invoice Address"));
-                table.AddCell(cell);
-
-                cell = new PdfPCell(new Phrase(" "));
-                table.AddCell(cell);
-                cell = new PdfPCell(new Phrase(" "));
-                table.AddCell(cell);
-
-                cell = new PdfPCell(new Phrase(" "));
-                table.AddCell(cell);
-                cell = new PdfPCell(new Phrase(" "));
-                table.AddCell(cell);
-
-                cell = new PdfPCell(new Phrase(" "));
-                table.AddCell(cell);
-                cell = new PdfPCell(new Phrase(" "));
-                table.AddCell(cell);
-
-                cell = new PdfPCell(new Phrase(" "));
-                table.AddCell(cell);
-                cell = new PdfPCell(new Phrase(" "));
-                table.AddCell(cell);
-
-                cell = new PdfPCell(new Phrase(" "));
-                table.AddCell(cell);
-                cell = new PdfPCell(new Phrase(" "));
-                table.AddCell(cell);
-
-
-
-                cell = new PdfPCell(new Phrase(" \n "));
-                cell.Colspan = 3;
-                cell.Rowspan = 2;
-                cell.Border = Rectangle.NO_BORDER;
-                table.AddCell(cell);
-                //2
-                PdfPTable table2 = new PdfPTable(5);
-
-                cell = new PdfPCell(new Phrase("Name"));
-                table2.AddCell(cell);
-                cell = new PdfPCell(new Phrase("Dec"));
-                table2.AddCell(cell);
-                cell = new PdfPCell(new Phrase("Order"));
-                table2.AddCell(cell);
-                cell = new PdfPCell(new Phrase("Delivered "));
-                table2.AddCell(cell);
-                cell = new PdfPCell(new Phrase("Outstanding"));
-                table2.AddCell(cell);
-
-
-                cell = new PdfPCell(new Phrase(" "));
-                table2.AddCell(cell);
-                cell = new PdfPCell(new Phrase(" "));
-                table2.AddCell(cell);
-                cell = new PdfPCell(new Phrase(" "));
-                table2.AddCell(cell);
-                cell = new PdfPCell(new Phrase(" "));
-                table2.AddCell(cell);
-                cell = new PdfPCell(new Phrase(" "));
-                table2.AddCell(cell);
-
-                using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create, FileAccess.Write, FileShare.None))
-                using (Document document = new Document(PageSize.A4.Rotate()))
-                using (PdfWriter writer = PdfWriter.GetInstance(document, fs))
+            foreach (var item in orderInfo)
+            {
+                cell = new PdfPCell(new Phrase($"{item.Key}: {item.Value}"))
                 {
-                    document.Open();
-                    document.SetMargins(0, 0, 0, 0);
+                    Border = Rectangle.NO_BORDER,
+                    Colspan = 3,
+                    HorizontalAlignment = Element.ALIGN_RIGHT
+                };
+                table.AddCell(cell);
+            }
 
-                    document.Add(table);
-                    document.Add(table2);
+            table.AddCell(new PdfPCell(new Phrase(" ")) { Border = Rectangle.NO_BORDER, Colspan = 3, PaddingBottom = 4 });
 
-                    // Close the document
-                    document.Close();
-                }
+            string[] clientInfo =
+            {
+                "Shipping Address",
+                items["ClientName"],
+                items["ClientPhoneNum"],
+                items["ClientEmail"],
+                items["ClientAddress"]
+            };
 
-                MessageBox.Show("PDF generated successfully.");
+            foreach (var info in clientInfo)
+            {
+                cell = new PdfPCell(new Phrase(info))
+                {
+                    Border = Rectangle.NO_BORDER,
+                    Colspan = 3,
+                    HorizontalAlignment = Element.ALIGN_RIGHT
+                };
+                table.AddCell(cell);
+            }
+
+            table.AddCell(new PdfPCell(new Phrase(" ")) { Border = Rectangle.NO_BORDER, Colspan = 3, PaddingBottom = 4 });
+
+            PdfPTable table2 = new PdfPTable(5);
+            string[] content = { "Item #", "Product Name", "Description", "Ordered", "Price" };
+            foreach (var header in content)
+            {
+                table2.AddCell(new PdfPCell(new Phrase(header)));
+            }
+
+            string[] product = {
+                items["ProductID"],
+                items["ProductName"],
+                items["Descriptions"],
+                items["Quantity"],
+                items["ProductPrice"],
+            };
+
+            foreach (var item in product)
+            {
+                cell = new PdfPCell(new Phrase(item))
+                {
+                    HorizontalAlignment = item == "ProductPrice" ? Element.ALIGN_RIGHT : Element.ALIGN_LEFT
+                };
+                table2.AddCell(cell);
+            }
+
+            using (FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+            using (Document document = new Document(PageSize.A4.Rotate()))
+            using (PdfWriter writer = PdfWriter.GetInstance(document, fs))
+            {
+                document.Open();
+                document.SetMargins(0, 0, 0, 0);
+                document.Add(table);
+                document.Add(table2);
+                document.Close();
             }
         }
     }

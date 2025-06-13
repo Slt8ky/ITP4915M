@@ -130,9 +130,6 @@
   <data name="$this.Icon" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="$this.Language" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="$this.Localizable" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -159,6 +156,18 @@
   </data>
   <data name="&gt;&gt;btnDelete.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnExportToDeliveryNote.Name" xml:space="preserve">
+    <value>btnExportToDeliveryNote</value>
+  </data>
+  <data name="&gt;&gt;btnExportToDeliveryNote.Parent" xml:space="preserve">
+    <value>gpDeliveryNote</value>
+  </data>
+  <data name="&gt;&gt;btnExportToDeliveryNote.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnExportToDeliveryNote.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;btnInsert.Name" xml:space="preserve">
     <value>btnInsert</value>
@@ -224,7 +233,7 @@
     <value>cbLocalization</value>
   </data>
   <data name="&gt;&gt;cbLocalization.Parent" xml:space="preserve">
-    <value>groupBox4</value>
+    <value>gbPreference</value>
   </data>
   <data name="&gt;&gt;cbLocalization.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -254,7 +263,7 @@
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;gbColumn.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;gbColumnPanel.Name" xml:space="preserve">
     <value>gbColumnPanel</value>
@@ -268,6 +277,30 @@
   <data name="&gt;&gt;gbColumnPanel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="&gt;&gt;gbPreference.Name" xml:space="preserve">
+    <value>gbPreference</value>
+  </data>
+  <data name="&gt;&gt;gbPreference.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gbPreference.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbPreference.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;gpDeliveryNote.Name" xml:space="preserve">
+    <value>gpDeliveryNote</value>
+  </data>
+  <data name="&gt;&gt;gpDeliveryNote.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gpDeliveryNote.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gpDeliveryNote.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
   </data>
@@ -278,7 +311,7 @@
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
     <value>groupBox2</value>
@@ -290,7 +323,7 @@
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
     <value>groupBox3</value>
@@ -304,18 +337,6 @@
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="&gt;&gt;groupBox5.Name" xml:space="preserve">
     <value>groupBox5</value>
   </data>
@@ -326,7 +347,7 @@
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -356,7 +377,7 @@
     <value>label3</value>
   </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>groupBox4</value>
+    <value>gbPreference</value>
   </data>
   <data name="&gt;&gt;label3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -422,7 +443,7 @@
     <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tc1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;txtValue.Name" xml:space="preserve">
     <value>txtValue</value>
@@ -448,6 +469,21 @@
   <data name="btnDelete.Text" xml:space="preserve">
     <value>Delete Record</value>
   </data>
+  <data name="btnExportToDeliveryNote.ImeMode" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="btnExportToDeliveryNote.Location" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="btnExportToDeliveryNote.Size" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="btnExportToDeliveryNote.TabIndex" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="btnExportToDeliveryNote.Text" xml:space="preserve">
+    <value>Export</value>
+  </data>
   <data name="btnInsert.Location" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -464,6 +500,9 @@
     <value />
   </data>
   <data name="btnReload.BackgroundImageLayout" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="btnReload.ImeMode" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
   <data name="btnReload.Location" type="System.Resources.ResXNullRef, System.Windows.Forms">
@@ -553,6 +592,30 @@
   <data name="gbColumnPanel.Text" xml:space="preserve">
     <value>Column</value>
   </data>
+  <data name="gbPreference.Location" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="gbPreference.Size" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="gbPreference.TabIndex" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="gbPreference.Text" xml:space="preserve">
+    <value>Preferences</value>
+  </data>
+  <data name="gpDeliveryNote.Location" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="gpDeliveryNote.Size" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="gpDeliveryNote.TabIndex" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="gpDeliveryNote.Text" xml:space="preserve">
+    <value>Delivery Note</value>
+  </data>
   <data name="groupBox1.Location" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -588,18 +651,6 @@
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Control Panel</value>
-  </data>
-  <data name="groupBox4.Location" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="groupBox4.Size" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="groupBox4.TabIndex" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Preferences</value>
   </data>
   <data name="groupBox5.Location" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
