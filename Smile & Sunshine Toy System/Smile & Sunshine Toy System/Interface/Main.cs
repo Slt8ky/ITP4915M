@@ -1,16 +1,23 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
+using MySqlX.XDevAPI.Relational;
 using Smile___Sunshine_Toy_System.Controller;
 using Smile___Sunshine_Toy_System.Properties;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Windows.Forms;
+using static System.Windows.Forms.ListViewItem;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using Button = System.Windows.Forms.Button;
 using CheckBox = System.Windows.Forms.CheckBox;
+using ComboBox = System.Windows.Forms.ComboBox;
 using GroupBox = System.Windows.Forms.GroupBox;
 using PdfWriter = iTextSharp.text.pdf.PdfWriter;
 using Rectangle = iTextSharp.text.Rectangle;
@@ -28,6 +35,8 @@ namespace Smile___Sunshine_Toy_System.Interface
         private GroupBox gbPDF_Column;
         private int dept_id;
         List<String> whiteList;
+        private int currentSortColumn = -1;
+        private SortOrder currentSortOrder = SortOrder.None;
 
         public Main(string username)
         {
@@ -42,43 +51,37 @@ namespace Smile___Sunshine_Toy_System.Interface
             this.Text = $"Smile & Sunshine Toy System - Staff ID: {user[0]} User: {user[1]}";
             table = mainController.GetTable();
             loadTableAndColumn();
-            Int32.TryParse(user[user.Count - 1], out dept_id);
+            Int32.TryParse(user[4], out dept_id);
             switch (dept_id)
             {
-                case 1:
+                case 1: //Administrator 
                     break;
-                case 2:
+                case 2: //R&D Team Member 
+                    break;
+                case 3: //Sales Representative 
+                    break;
+                case 4: //Production Manager 
                     tc1.TabPages.RemoveAt(0);
                     tc1.SelectedIndex = 0;
                     break;
-                case 3:
-                    btnDelete.Visible = false;
-                    btnInsert.Visible = false;
-                    btnUpdate.Size = new Size(btnInsert.Size.Width, btnInsert.Size.Height);
-                    groupBox3.Location = new Point(groupBox3.Location.X, 640);
-                    groupBox3.Size = new Size(groupBox3.Size.Width, 60);
-                    gbColumnPanel.Size = new Size(gbColumnPanel.Size.Width, tc1.Size.Height - groupBox3.Size.Height);
+                case 5: //Inventory Manager 
                     break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                case 6:
+                case 6: //Customer Service Representative 
                     Customer_Feedback customer_Feedback = new Customer_Feedback();
                     customer_Feedback.Show();
-                    this.Close();
+                    this.Close(); 
                     break;
-                default:
-                    MessageBox.Show("Invalid department ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                case 7: //Logistics Coordinator 
                     break;
             }
             Console.WriteLine(dept_id);
+            cbLocalization.SelectedIndex = 0;
         }
 
         private void loadTableAndColumn()
         {
             Boolean isWhiteList = false;
-            Int32.TryParse(user[user.Count - 1], out dept_id);
+            Int32.TryParse(user[4], out dept_id);
 
             if (dept_id != 1)
             {
@@ -87,27 +90,77 @@ namespace Smile___Sunshine_Toy_System.Interface
 
             switch (dept_id)
             {
-                case 1:
-                    whiteList = new List<String> { "afterservicefeedback", "department", "event", "item", "product", "report", "staff", "warehouse" };
+                case 1: //Administrator 
+                    whiteList = new List<String> {
+                        "afterservicefeedback",
+                        "clientinformation",
+                        "customerorder",
+                        "damagematerial",
+                        "department",
+                        "event",
+                        "facilities",
+                        "finishedcomponent",
+                        "internaltransferform",
+                        "material",
+                        "materialrequirementform",
+                        "product",
+                        "productorder",
+                        "quotation",
+                        "staff",
+                        "transportation",
+                        "warehouse"
+                    };
                     break;
-                case 2:
-                    whiteList = new List<String> { "item", "product" };
+                case 2: //R&D Team Member 
+                    whiteList = new List<String> {
+                        "facilities",
+                        "finishedcomponent",
+                        "product",
+                        "warehouse"
+                    };
                     break;
-                case 3:
-                    whiteList = new List<String> { "product", "warehouse" };
+                case 3: //Sales Representative 
+                    whiteList = new List<String> {
+                        "clientinformation",
+                        "customerorder",
+                        "facilities",
+                        "product",
+                        "quotation",
+                    };
                     break;
-                case 4:
-                    whiteList = new List<String> { "item", "product", "warehouse" };
+                case 4: //Production Manager 
+                    whiteList = new List<String> {
+                        "damagematerial",
+                        "facilities",
+                        "finishedcomponent",
+                        "material",
+                        "product",
+                        "warehouse"
+                    };
+                    tc1.TabPages.RemoveAt(0);
+                    tc1.SelectedIndex = 0;
                     break;
-                case 5:
-                    whiteList = new List<String> { "item", "product", "warehouse" };
+                case 5: //Inventory Manager 
+                    whiteList = new List<String> {
+                        "damagematerial",
+                        "facilities",
+                        "finishedcomponent",
+                        "material",
+                        "materialrequirementform",
+                        "product",
+                        "transportation",
+                        "warehouse"
+                    };
                     break;
-                case 6:
-                    whiteList = new List<String> { };
-                    break;
-                default:
-                    MessageBox.Show("Invalid department ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
+                case 6: //Customer Service Representative 
+                    whiteList = new List<String>
+                    {
+                    };
+                    return;
+                case 7: //Logistics Coordinator 
+                    whiteList = new List<String> {
+                    };
+                    return;
             }
 
             foreach (String t in table)
@@ -138,7 +191,13 @@ namespace Smile___Sunshine_Toy_System.Interface
         {
             cbColumn.Items.Clear();
             column = mainController.GetTableStructure(cbTable.SelectedItem.ToString());
+
+            // Reset sort state when table changes
+            currentSortColumn = -1;
+            currentSortOrder = SortOrder.None;
+
             SetupListView();
+
             foreach (String c in column)
             {
                 cbColumn.Items.Add(c);
@@ -149,8 +208,12 @@ namespace Smile___Sunshine_Toy_System.Interface
 
         private void SetupListView(String criteria = null)
         {
+            // Remove previous event handler to avoid duplicates
+            lvTable.ColumnClick -= lvTable_ColumnClick;
+
             LoadPanel();
             LoadPDFView();
+            LoadDisplaySetting();
             gbColumn.Text = $"Table: {cbTable.SelectedItem.ToString()}";
             lvTable.Items.Clear();
             lvTable.Columns.Clear();
@@ -158,24 +221,107 @@ namespace Smile___Sunshine_Toy_System.Interface
             lvTable.MultiSelect = true;
             lvTable.FullRowSelect = true;
             lvTable.GridLines = true;
+
             string selectedTable = cbTable.SelectedItem.ToString();
             List<string> columnNames = column;
+            lvTable.Hide();
 
+            // Add columns without sort indicators
             foreach (string col in columnNames)
             {
-                lvTable.Columns.Add(col, col.Length * 10);
+                lvTable.Columns.Add(col);
             }
+
+            // Add the column click event handler
+            lvTable.ColumnClick += lvTable_ColumnClick;
 
             List<List<string>> items = mainController.GetRecord(selectedTable, criteria);
 
-            foreach (var row in items)
+            foreach (List<string> row in items)
             {
                 ListViewItem listViewItem = new ListViewItem(row[0]);
                 for (int i = 1; i < row.Count; i++)
                 {
+                    Int32.TryParse(row[i], out int result);
+                    Boolean hasAmount = columnNames[i] == "TotalAmount" ? true
+                                        : columnNames[i] == "MaterialAmount" ? true
+                                        : false;
+                    if (hasAmount)
+                    {
+                        Color color = result > 1000 ? Color.Green
+                                     : result > 500 ? Color.OrangeRed
+                                     : Color.Red;
+                        listViewItem.BackColor = color;
+                    }
+                    Console.Write($"{row[i].Length.ToString()} ({columnNames[i].Length}) | ");
+                    int width = row[i].Length * 10 > columnNames[i].Length * 10 ? row[i].Length * 10 : columnNames[i].Length * 15;
+                    lvTable.Columns[0].Width = columnNames[i].Length * 10;
+                    lvTable.Columns[i].Width = width;
                     listViewItem.SubItems.Add(row[i]);
                 }
                 lvTable.Items.Add(listViewItem);
+                Console.WriteLine();
+            }
+            lvTable.Show();
+        }
+
+        private void lvTable_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            // Determine the new sort order
+            SortOrder newSortOrder;
+            if (e.Column == currentSortColumn)
+            {
+                // Toggle between ascending and descending
+                newSortOrder = currentSortOrder == SortOrder.Ascending ?
+                    SortOrder.Descending : SortOrder.Ascending;
+            }
+            else
+            {
+                // New column, default to ascending
+                newSortOrder = SortOrder.Ascending;
+            }
+
+            // Update the sort indicators
+            currentSortColumn = e.Column;
+            currentSortOrder = newSortOrder;
+
+            // Clear any existing sort indicators
+            foreach (ColumnHeader column in lvTable.Columns)
+            {
+                column.Text = column.Text.Replace(" ↑", "").Replace(" ↓", "");
+            }
+
+            // Add the new sort indicator
+            string sortIndicator = newSortOrder == SortOrder.Ascending ? " ↑" : " ↓";
+            lvTable.Columns[e.Column].Text += sortIndicator;
+
+            // Get the column name for SQL ORDER BY
+            string columnName = column[e.Column];
+
+            // Build the ORDER BY clause
+            string orderBy = $"ORDER BY `{columnName}` {(newSortOrder == SortOrder.Ascending ? "ASC" : "DESC")}";
+
+            // Requery the data with sorting
+            if (!string.IsNullOrWhiteSpace(txtValue.Text))
+            {
+                SetupListView($"`{cbColumn.SelectedItem.ToString()}` = \"{txtValue.Text}\" {orderBy}");
+            }
+            else
+            {
+                SetupListView(orderBy);
+            }
+        }
+
+        private void LoadDisplaySetting()
+        {
+            foreach (string item in column)
+            {
+                Label label = new Label
+                {
+                    Text = item,
+                    AutoSize = true,
+                    Location = new Point(10, 20 + (gbColumnPanel.Controls.Count / 2) * 30)
+                };
             }
         }
 
@@ -297,7 +443,7 @@ namespace Smile___Sunshine_Toy_System.Interface
             int startY = 15;
             int gap = 20;
             tabPage2.Controls.Clear();
-            GroupBox gbPDF_Column = new GroupBox
+            gbPDF_Column = new GroupBox // Assign to the class-level field
             {
                 Text = "PDF Columns",
                 Location = new Point(10, 10),
@@ -314,62 +460,30 @@ namespace Smile___Sunshine_Toy_System.Interface
                 {
                     Name = column,
                     Checked = true,
-                    Location = new Point(300 - 30, startY),
+                    Location = new Point(tc1.Width - 40, startY),
                     AutoSize = true
                 };
                 gbPDF_Column.Controls.Add(label);
                 gbPDF_Column.Controls.Add(checkBox);
-                gbPDF_Column.Size = new Size(300, startY + 20);
+                gbPDF_Column.Size = new Size(tc1.Width - 20, startY + 20);
                 startY += gap;
             }
             tabPage2.Controls.Add(gbPDF_Column);
-
-            Label lbOrderBy = new Label
-            {
-                Text = "Order By:",
-                Location = new Point(10, 20),
-                AutoSize = true
-            };
-            ComboBox cbOrderBy = new ComboBox
-            {
-                Location = new Point(80, 15),
-                Width = 200
-            };
-            cbOrderBy.Items.AddRange(column.ToArray());
-            cbOrderBy.SelectedIndex = 0;
-            ComboBox cbAsc = new ComboBox
-            {
-                Location = new Point(80, 40),
-                Width = 100
-            };
-            cbAsc.Items.Add("Ascending");
-            cbAsc.Items.Add("Descending");
-            cbAsc.SelectedIndex = 0;
-            GroupBox gbPDF_OrderBy = new GroupBox
-            {
-                Text = "Order By",
-                Location = new Point(10, gbPDF_Column.Size.Height + 10),
-                Size = new Size(300, 50)
-            };
-            gbPDF_OrderBy.Controls.Add(lbOrderBy);
-            gbPDF_OrderBy.Controls.Add(cbOrderBy);
-            tabPage2.Controls.Add(gbPDF_OrderBy);
             Button btnExportPDF = new Button
             {
                 Text = "Export",
                 BackColor = Color.LightBlue,
                 Location = new Point(10, 15),
-                Size = new Size(300 - 20, 50)
+                Size = new Size(tc1.Width - 40, 50)
             };
             btnExportPDF.Click += new EventHandler(btnExportPDF_Click);
             GroupBox gbPDF_Export = new GroupBox
             {
                 Text = "Export",
                 Location = new Point(10, tabPage2.Size.Height - 80),
-                Size = new Size(300, btnExportPDF.Size.Height + 30)
+                Size = new Size(tc1.Width - 20, btnExportPDF.Size.Height + 30)
             };
             gbPDF_Export.Controls.Add(btnExportPDF);
-            gbPDF_Export.Controls.Add(gbPDF_OrderBy);
             tabPage2.Controls.Add(gbPDF_Export);
         }
 
@@ -433,6 +547,173 @@ namespace Smile___Sunshine_Toy_System.Interface
         private void btnReload_Click(object sender, EventArgs e)
         {
             SetupListView();
+        }
+
+        private void cbLocalization_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Change the current culture based on selection
+            switch (cbLocalization.SelectedIndex)
+            {
+                case 0: // English
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                    break;
+                case 1: // Chinese (Hong Kong)
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-HK");
+                    break;
+            }
+
+            // Force reload of resources
+            Resource.Culture = System.Threading.Thread.CurrentThread.CurrentUICulture;
+
+            // Update UI elements
+            tabPage1.Text = Resource.tabPage1_Text;
+            groupBox5.Text = Resource.groupBox5_Text;
+            groupBox1.Text = Resource.groupBox1_Text;
+            btnUpdate.Text = Resource.btnUpdate_Text;
+            label2.Text = Resource.label2_Text;
+            btnSearch.Text = Resource.btnSearch_Text;
+            btnInsert.Text = Resource.btnInsert_Text;
+            groupBox3.Text = Resource.groupBox3_Text;
+            groupBox2.Text = Resource.groupBox2_Text;
+            tabPage2.Text = Resource.tabPage2_Text;
+            btnDelete.Text = Resource.btnDelete_Text;
+            label1.Text = Resource.label1_Text;
+            gbColumnPanel.Text = Resource.gbColumnPanel_Text;
+            groupBox4.Text = Resource.groupBox4_Text;
+        }
+
+        private void btnExportToDeliveryNote_Click(object sender, EventArgs e)
+        {
+            List<string> selectedData = new List<string>();
+            if (lvTable.SelectedItems.Count==1)
+            {
+                foreach (ListViewSubItem item in lvTable.SelectedItems[0].SubItems)
+                {
+                    selectedData.Add(item.Text.ToString());
+                }
+            }
+            string defaultFileName = $"{selectedData[0]}_deliverynote.pdf";
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                FileName = defaultFileName,
+                Filter = "PDF Files (*.pdf)|*.pdf",
+                Title = "Save a PDF File"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {//0
+                PdfPTable table = new PdfPTable(3);
+                PdfPCell cell = new PdfPCell(new Phrase("Smile & SunShine"));
+                cell.Border = Rectangle.NO_BORDER;
+                table.AddCell(cell);
+                cell = new PdfPCell(new Phrase(" "));
+                cell.Border = Rectangle.NO_BORDER;
+                table.AddCell(cell);
+                cell = new PdfPCell(new Phrase("Delivery Note"));
+                cell.Border = Rectangle.NO_BORDER;
+                table.AddCell(cell);
+                cell = new PdfPCell(new Phrase($"OrderDate {selectedData[1]}"));
+                cell.Colspan = 2;
+                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                table.AddCell(cell);
+                //cell = new PdfPCell(new Phrase($"Order # {selectedData[0]}"));
+                //cell.Colspan = 2;
+                //cell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                //table.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase(" \n "));
+                cell.Colspan = 2;
+                cell.Border = Rectangle.NO_BORDER;
+                table.AddCell(cell);
+
+                //1
+
+
+                cell = new PdfPCell(new Phrase("Shipping Address"));
+                table.AddCell(cell);
+                cell = new PdfPCell(new Phrase(" "));
+                cell.Rowspan = 6;
+                cell.Border = Rectangle.NO_BORDER;
+                table.AddCell(cell);
+                cell = new PdfPCell(new Phrase("Invoice Address"));
+                table.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(" "));
+                table.AddCell(cell);
+                cell = new PdfPCell(new Phrase(" "));
+                table.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(" "));
+                table.AddCell(cell);
+                cell = new PdfPCell(new Phrase(" "));
+                table.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(" "));
+                table.AddCell(cell);
+                cell = new PdfPCell(new Phrase(" "));
+                table.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(" "));
+                table.AddCell(cell);
+                cell = new PdfPCell(new Phrase(" "));
+                table.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(" "));
+                table.AddCell(cell);
+                cell = new PdfPCell(new Phrase(" "));
+                table.AddCell(cell);
+
+
+
+                cell = new PdfPCell(new Phrase(" \n "));
+                cell.Colspan = 3;
+                cell.Rowspan = 2;
+                cell.Border = Rectangle.NO_BORDER;
+                table.AddCell(cell);
+                //2
+                PdfPTable table2 = new PdfPTable(5);
+
+                cell = new PdfPCell(new Phrase("Name"));
+                table2.AddCell(cell);
+                cell = new PdfPCell(new Phrase("Dec"));
+                table2.AddCell(cell);
+                cell = new PdfPCell(new Phrase("Order"));
+                table2.AddCell(cell);
+                cell = new PdfPCell(new Phrase("Delivered "));
+                table2.AddCell(cell);
+                cell = new PdfPCell(new Phrase("Outstanding"));
+                table2.AddCell(cell);
+
+
+                cell = new PdfPCell(new Phrase(" "));
+                table2.AddCell(cell);
+                cell = new PdfPCell(new Phrase(" "));
+                table2.AddCell(cell);
+                cell = new PdfPCell(new Phrase(" "));
+                table2.AddCell(cell);
+                cell = new PdfPCell(new Phrase(" "));
+                table2.AddCell(cell);
+                cell = new PdfPCell(new Phrase(" "));
+                table2.AddCell(cell);
+
+                using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create, FileAccess.Write, FileShare.None))
+                using (Document document = new Document(PageSize.A4.Rotate()))
+                using (PdfWriter writer = PdfWriter.GetInstance(document, fs))
+                {
+                    document.Open();
+                    document.SetMargins(0, 0, 0, 0);
+
+                    document.Add(table);
+                    document.Add(table2);
+
+                    // Close the document
+                    document.Close();
+                }
+
+                MessageBox.Show("PDF generated successfully.");
+            }
         }
     }
 }

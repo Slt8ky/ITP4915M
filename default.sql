@@ -1,307 +1,420 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- 主機： 127.0.0.1
--- 產生時間： 2025-06-09 00:09:58
--- 伺服器版本： 10.4.32-MariaDB
--- PHP 版本： 8.2.12
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- 資料庫： `default`
---
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `afterservicefeedback`
---
 
 CREATE TABLE `afterservicefeedback` (
-  `clientID` int(4) NOT NULL,
-  `orderID` int(4) NOT NULL,
-  `DataOfFeedback` varchar(20) NOT NULL,
-  `feedbackType` varchar(50) NOT NULL,
-  `feedbackDetail` text NOT NULL,
-  `contactType` varchar(50) NOT NULL,
-  `contactInfo` varchar(100) NOT NULL,
-  `Interaction` text NOT NULL,
-  `productID` int(4) NOT NULL,
-  `staffID` int(4) NOT NULL
+  `feedbackID` int(8) NOT NULL,
+  `clientID` int(8) NOT NULL,
+  `orderID` int(8) NOT NULL,
+  `feedBackType` enum('Quality','Design','Instructions','Packaging','Features') NOT NULL,
+  `feedbackDate` date NOT NULL DEFAULT current_timestamp(),
+  `feedbackDetail` varchar(1000) NOT NULL,
+  `contactType` enum('Email','Phone','Letter','Message') NOT NULL,
+  `contactInfo` varchar(11) NOT NULL,
+  `ProductID` int(8) NOT NULL,
+  `StaffID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
+INSERT INTO `afterservicefeedback` (`feedbackID`, `clientID`, `orderID`, `feedBackType`, `feedbackDate`, `feedbackDetail`, `contactType`, `contactInfo`, `ProductID`, `StaffID`) VALUES
+(1, 1, 1, 'Design', '0001-01-01', 'rhrhreh', 'Email', 'fhjhhhhhhhh', 1, 1),
+(2, 1, 1, 'Design', '0001-01-01', 'Email', 'Phone', '1', 1, 1),
+(3, 1, 1, 'Quality', '0001-01-01', 'fgagggh', 'Letter', 'egisgbsi', 1, 1);
 
---
--- 資料表結構 `department`
---
+CREATE TABLE `clientinformation` (
+  `ClientID` int(11) NOT NULL,
+  `ClientName` varchar(20) NOT NULL,
+  `ClientPhoneNum` varchar(12) NOT NULL,
+  `ClientEmail` varchar(20) NOT NULL,
+  `ClientAddress` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `clientinformation` (`ClientID`, `ClientName`, `ClientPhoneNum`, `ClientEmail`, `ClientAddress`) VALUES
+(1, 'peter', '', '', '');
+
+CREATE TABLE `customerorder` (
+  `OrderID` int(8) NOT NULL,
+  `OrderDate` date NOT NULL DEFAULT current_timestamp(),
+  `ClientID` int(8) NOT NULL,
+  `ClientName` varchar(20) NOT NULL,
+  `Requitement` varchar(100) NOT NULL,
+  `ProductID` int(8) NOT NULL,
+  `TotalPrice` int(11) NOT NULL,
+  `Payment` enum('Credit card','Alipay','Wechat Pay','Bank Transfer','Cheque','Cash') NOT NULL,
+  `Delivertype` enum('Land Transportation','Air Way','Marine Transport','') NOT NULL,
+  `StaffID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `damagematerial` (
+  `DamMatID` int(8) NOT NULL,
+  `DamMatName` varchar(20) NOT NULL,
+  `DamMatAmount` text NOT NULL,
+  `StaffID` int(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `department` (
-  `dept_id` int(2) NOT NULL,
-  `dept_name` varchar(100) NOT NULL
+  `DeptID` int(2) NOT NULL,
+  `DeptName` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- 傾印資料表的資料 `department`
---
-
-INSERT INTO `department` (`dept_id`, `dept_name`) VALUES
+INSERT INTO `department` (`DeptID`, `DeptName`) VALUES
 (1, 'Administrator'),
-(2, 'Quality Controller'),
-(3, 'Accounting Departmen'),
-(4, 'Material Procurement and Management'),
-(5, 'Production department'),
-(6, 'Service Department');
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `event`
---
+(2, 'R&D Team Member'),
+(3, 'Sales Representative'),
+(4, 'Production Manager'),
+(5, 'Inventory Manager'),
+(6, 'Customer Service Representative'),
+(7, 'Logistics Coordinator');
 
 CREATE TABLE `event` (
   `event_id` int(255) NOT NULL,
-  `event_type` enum('login','insert_item','update_item','delete_item','generate_report') NOT NULL,
+  `event_type` enum('item_insert','item_update','item_delete','staff_login') NOT NULL,
   `event_date` datetime NOT NULL DEFAULT current_timestamp(),
-  `event_content` varchar(255) NOT NULL,
-  `staff_id` int(2) NOT NULL
+  `event_content` varchar(100) NOT NULL,
+  `StaffID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
+INSERT INTO `event` (`event_id`, `event_type`, `event_date`, `event_content`, `StaffID`) VALUES
+(1, 'staff_login', '2025-06-12 23:12:05', '', 1),
+(2, 'staff_login', '2025-06-12 23:12:42', '', 1),
+(3, 'staff_login', '2025-06-12 23:17:34', '', 1),
+(4, 'staff_login', '2025-06-12 23:22:57', '', 1),
+(5, 'staff_login', '2025-06-12 23:23:17', '', 1),
+(6, 'staff_login', '2025-06-13 00:17:53', '', 1),
+(7, 'staff_login', '2025-06-13 00:33:03', '', 1),
+(8, 'staff_login', '2025-06-13 01:23:10', '', 6),
+(9, 'staff_login', '2025-06-13 01:23:42', '', 6),
+(10, 'staff_login', '2025-06-13 01:26:47', '', 6),
+(11, 'staff_login', '2025-06-13 01:40:00', '', 1),
+(12, 'staff_login', '2025-06-13 01:49:47', '', 1),
+(13, 'staff_login', '2025-06-13 01:50:16', '', 1),
+(14, 'staff_login', '2025-06-13 01:52:33', '', 1),
+(15, 'staff_login', '2025-06-13 01:55:27', '', 1),
+(16, 'staff_login', '2025-06-13 01:57:45', '', 1),
+(17, 'staff_login', '2025-06-13 02:00:50', '', 1),
+(18, 'staff_login', '2025-06-13 02:02:13', '', 1),
+(19, 'staff_login', '2025-06-13 02:05:42', '', 1),
+(20, 'staff_login', '2025-06-13 02:07:18', '', 1),
+(21, 'staff_login', '2025-06-13 02:15:22', '', 1),
+(22, 'staff_login', '2025-06-13 02:15:43', '', 1),
+(23, 'staff_login', '2025-06-13 02:16:36', '', 1);
 
---
--- 資料表結構 `item`
---
-
-CREATE TABLE `item` (
-  `item_id` int(3) NOT NULL,
-  `item_description` varchar(30) NOT NULL,
-  `item_quantity` int(10) NOT NULL,
-  `item_weight` varchar(10) NOT NULL DEFAULT '0kg',
-  `item_size` varchar(10) NOT NULL DEFAULT '0cm x 0cm',
-  `warehouse_id` int(2) NOT NULL,
-  `created_at` date NOT NULL DEFAULT current_timestamp()
+CREATE TABLE `facilities` (
+  `FacilitiesID` int(8) NOT NULL,
+  `Location` varchar(20) NOT NULL,
+  `StaffID` int(8) NOT NULL,
+  `FacilitiesContactNum` varchar(12) NOT NULL,
+  `FacilitiesEmail` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
+CREATE TABLE `finishedcomponent` (
+  `FCID` int(8) NOT NULL,
+  `TotalAmount` int(11) NOT NULL,
+  `FCName` int(11) NOT NULL,
+  `ProductID` int(11) NOT NULL,
+  `ProductType` enum('car','Animals','Construction toys','Dolls','Food-related toys') NOT NULL,
+  `WHID` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- 資料表結構 `product`
---
+CREATE TABLE `internaltransferform` (
+  `TransferFormNumber` int(8) NOT NULL,
+  `DateOfInitiation` date NOT NULL DEFAULT current_timestamp(),
+  `DestinationDepartment` varchar(20) NOT NULL,
+  `TransferSource` varchar(20) NOT NULL,
+  `TransferItemType` enum('Product','Material','Component','') NOT NULL,
+  `TransferItemName` varchar(30) NOT NULL,
+  `TransferAmount` int(4) NOT NULL,
+  `OrderID` int(8) NOT NULL,
+  `Descriptions` varchar(1000) NOT NULL,
+  `Specifications` varchar(1000) NOT NULL,
+  `TransferReason` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `material` (
+  `MaterialID` int(8) NOT NULL,
+  `MWID` varchar(10000) NOT NULL,
+  `TotalAmount` int(8) NOT NULL,
+  `ProductID` int(8) NOT NULL,
+  `Price` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `materialrequirementform` (
+  `MaterialFormID` int(8) NOT NULL,
+  `IssuanceDate` date NOT NULL,
+  `ProductID` int(8) NOT NULL,
+  `Descriptions` varchar(1000) NOT NULL,
+  `Specification` varchar(1000) NOT NULL,
+  `MaterialID` int(8) NOT NULL,
+  `MaterialAmount` int(4) NOT NULL,
+  `PriorityLevel` enum('normal','emergency','','') NOT NULL,
+  `DeliveryDate` date NOT NULL DEFAULT current_timestamp(),
+  `Remarks` varchar(1000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `product` (
-  `product_id` int(3) NOT NULL,
-  `product_name` varchar(20) NOT NULL,
-  `product_description` varchar(30) NOT NULL,
-  `product_price` decimal(4,0) NOT NULL,
-  `product_quantity` int(10) NOT NULL,
-  `product_weight` varchar(10) NOT NULL DEFAULT '0kg',
-  `product_size` varchar(10) NOT NULL DEFAULT '0cm x 0cm',
-  `product_isFragile` tinyint(1) NOT NULL,
-  `warehouse_id` int(2) NOT NULL,
-  `item_id` int(3) NOT NULL,
-  `created_at` date NOT NULL DEFAULT current_timestamp()
+  `ProductID` int(8) NOT NULL,
+  `ProductName` varchar(20) NOT NULL,
+  `ProductPrice` int(4) NOT NULL,
+  `ProductType` enum('car','Animals','Construction toys','Dolls','Food-related toys') NOT NULL,
+  `ProductAmount` int(4) NOT NULL,
+  `ProductionType` enum('designed by the company','requested by customers','','') NOT NULL,
+  `Descriptions` int(11) NOT NULL,
+  `ProductStatus` varchar(1000) NOT NULL,
+  `FCID` int(8) NOT NULL,
+  `Specification` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- 資料表結構 `report`
---
-
-CREATE TABLE `report` (
-  `report_id` int(3) NOT NULL,
-  `report_name` varchar(20) NOT NULL,
-  `report_file` longblob NOT NULL,
-  `created_at` datetime NOT NULL
+CREATE TABLE `productorder` (
+  `ProductionOrderID` int(8) NOT NULL,
+  `IssueDate` date NOT NULL,
+  `StaffID` int(8) NOT NULL,
+  `FacilitiesID` int(8) NOT NULL,
+  `ProductID` int(8) NOT NULL,
+  `ProductName` varchar(20) NOT NULL,
+  `Descriptions` varchar(1000) NOT NULL,
+  `ProductSpecifications` varchar(1000) NOT NULL,
+  `StartDate` date NOT NULL DEFAULT current_timestamp(),
+  `EndDate` date NOT NULL DEFAULT current_timestamp(),
+  `WorkInstructions` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- 資料表結構 `staff`
---
+CREATE TABLE `quotation` (
+  `QuotationID` int(8) NOT NULL,
+  `DateOfIssuance` date NOT NULL,
+  `ClientID` int(9) NOT NULL,
+  `ClientName` varchar(20) NOT NULL,
+  `ClientAddress` varchar(30) NOT NULL,
+  `ProductID` int(8) NOT NULL,
+  `ProductName` varchar(20) NOT NULL,
+  `QuotationPrice` int(8) NOT NULL,
+  `DeliveryTimeframes` date NOT NULL DEFAULT current_timestamp(),
+  `ShippingOptions` enum('Land Transportation','Air Way','Marine Transport','') NOT NULL,
+  `StaffID` int(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `staff` (
-  `staff_id` int(2) NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `phone_number` int(8) NOT NULL,
-  `dept_id` int(2) NOT NULL
+  `StaffID` int(11) NOT NULL,
+  `StaffName` varchar(40) NOT NULL,
+  `Password` varchar(100) NOT NULL,
+  `PhoneNum` varchar(12) NOT NULL,
+  `DeptID` int(2) NOT NULL,
+  `JobTitle` varchar(50) NOT NULL,
+  `Salary` int(8) NOT NULL,
+  `Gender` enum('Male','Female','','') NOT NULL,
+  `Address` varchar(30) NOT NULL,
+  `Email` varchar(40) NOT NULL,
+  `JoinDate` date NOT NULL,
+  `DateOfBirth` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- 傾印資料表的資料 `staff`
---
+INSERT INTO `staff` (`StaffID`, `StaffName`, `Password`, `PhoneNum`, `DeptID`, `JobTitle`, `Salary`, `Gender`, `Address`, `Email`, `JoinDate`, `DateOfBirth`) VALUES
+(1, 'root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', '', 1, '', 0, '', '', '', '0000-00-00', '0000-00-00'),
+(2, 'peter', '026ad9b14a7453b7488daa0c6acbc258b1506f52c441c7c465474c1a564394ff', '', 2, '', 0, '', '', '', '0000-00-00', '0000-00-00'),
+(3, 'alex', '4135aa9dc1b842a653dea846903ddb95bfb8c5a10c504a7fa16e10bc31d1fdf0', '', 3, '', 0, '', '', '', '0000-00-00', '0000-00-00'),
+(4, 'merry', 'fc261a5e3e3c85a419825aad1ced0df53b9a3fa69bd439d1610eb99f8de6bcd6', '', 4, '', 0, '', '', '', '0000-00-00', '0000-00-00'),
+(5, 'sam', 'e96e02d8e47f2a7c03be5117b3ed175c52aa30fb22028cf9c96f261563577605', '', 5, '', 0, '', '', '', '0000-00-00', '0000-00-00'),
+(6, 'jason', '06b9a6eacd7a77b9361123fd19776455eb16b9c83426a1abbf514a414792b73f', '', 6, '', 0, '', '', '', '0000-00-00', '0000-00-00'),
+(7, 'tom', 'e1608f75c5d7813f3d4031cb30bfb786507d98137538ff8e128a6ff74e84e643', '', 7, '', 0, '', '', '', '0000-00-00', '0000-00-00');
 
-INSERT INTO `staff` (`staff_id`, `username`, `password`, `email`, `phone_number`, `dept_id`) VALUES
-(3, 'root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', '', 0, 1),
-(6, 'peter', '026ad9b14a7453b7488daa0c6acbc258b1506f52c441c7c465474c1a564394ff', 'peter@gmail.com', 27436357, 2),
-(7, 'cindy', '002340b41aee7da76f4201bf18776291a812f796e20678c563b77b5b6c47c8a1', 'cindy@gmail.com', 26484753, 3),
-(8, 'alex', '4135aa9dc1b842a653dea846903ddb95bfb8c5a10c504a7fa16e10bc31d1fdf0', 'alex@gmail.com', 24679385, 4),
-(9, 'leo', '8535e86c8118bbbb0a18ac72d15d3a2b37b18d1bce1611fc60165f322cf57386', 'leo@gmail.com', 28596385, 5),
-(10, 'ivy', '254ac4523be56a1a724c4cd50437cfe343f0b4403d1c5a4def8ee8ce3259b9ad', 'ivy@gmail.com', 26479966, 6);
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `warehouse`
---
+CREATE TABLE `transportation` (
+  `TransportationID` int(8) NOT NULL,
+  `CarriersName` varchar(50) NOT NULL,
+  `CarriersContactNum` varchar(12) NOT NULL,
+  `CarriersEmail` varchar(30) NOT NULL,
+  `CargoStatus` varchar(50) NOT NULL,
+  `DeliveryTimes` date NOT NULL DEFAULT current_timestamp(),
+  `OrderID` int(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `warehouse` (
-  `warehouse_id` int(2) NOT NULL,
-  `warehouse_name` varchar(20) NOT NULL,
-  `warehouse_location` varchar(20) NOT NULL
+  `WHID` int(8) NOT NULL,
+  `WHLocation` int(20) NOT NULL,
+  `StaffID` int(8) NOT NULL,
+  `WHContactNum` varchar(12) NOT NULL,
+  `WHEmail` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- 已傾印資料表的索引
---
 
---
--- 資料表索引 `afterservicefeedback`
---
 ALTER TABLE `afterservicefeedback`
-  ADD PRIMARY KEY (`clientID`);
+  ADD PRIMARY KEY (`feedbackID`),
+  ADD KEY `fk_afterservicefeedback_StaffID` (`StaffID`);
 
---
--- 資料表索引 `department`
---
+ALTER TABLE `clientinformation`
+  ADD PRIMARY KEY (`ClientID`);
+
+ALTER TABLE `customerorder`
+  ADD PRIMARY KEY (`OrderID`),
+  ADD KEY `fk_customerorder_StaffID` (`StaffID`),
+  ADD KEY `fk_customerorder_ClientID` (`ClientID`),
+  ADD KEY `fk_customerorder_ProductID` (`ProductID`);
+
+ALTER TABLE `damagematerial`
+  ADD PRIMARY KEY (`DamMatID`),
+  ADD KEY `fk_damagematerial_StaffID` (`StaffID`);
+
 ALTER TABLE `department`
-  ADD PRIMARY KEY (`dept_id`);
+  ADD PRIMARY KEY (`DeptID`);
 
---
--- 資料表索引 `event`
---
 ALTER TABLE `event`
-  ADD PRIMARY KEY (`event_id`),
-  ADD KEY `fk_staff_id` (`staff_id`);
+  ADD PRIMARY KEY (`event_id`);
 
---
--- 資料表索引 `item`
---
-ALTER TABLE `item`
-  ADD PRIMARY KEY (`item_id`),
-  ADD KEY `fk_item_warehouse_id` (`warehouse_id`);
+ALTER TABLE `facilities`
+  ADD PRIMARY KEY (`FacilitiesID`),
+  ADD KEY `fk_facilities_StaffID` (`StaffID`);
 
---
--- 資料表索引 `product`
---
+ALTER TABLE `finishedcomponent`
+  ADD PRIMARY KEY (`FCID`),
+  ADD KEY `fk_finishedcomponent_ProductID` (`ProductID`),
+  ADD KEY `fk_finishedcomponent_WHID` (`WHID`);
+
+ALTER TABLE `internaltransferform`
+  ADD PRIMARY KEY (`TransferFormNumber`),
+  ADD KEY `fk-internaltransferform_OrderID` (`OrderID`);
+
+ALTER TABLE `material`
+  ADD PRIMARY KEY (`MaterialID`),
+  ADD KEY `fk_material_ProductID` (`ProductID`);
+
+ALTER TABLE `materialrequirementform`
+  ADD PRIMARY KEY (`MaterialFormID`),
+  ADD KEY `fk_materialrequirementform_MaterialID` (`MaterialID`),
+  ADD KEY `fk_materialrequirementform_ProductID` (`ProductID`);
+
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`product_id`),
-  ADD KEY `fk_item_id` (`item_id`),
-  ADD KEY `fk_product_warehouse_id` (`warehouse_id`);
+  ADD PRIMARY KEY (`ProductID`),
+  ADD KEY `fk_product_FCID` (`FCID`);
 
---
--- 資料表索引 `report`
---
-ALTER TABLE `report`
-  ADD PRIMARY KEY (`report_id`);
+ALTER TABLE `productorder`
+  ADD PRIMARY KEY (`ProductionOrderID`),
+  ADD KEY `fk_productorder_StaffID` (`StaffID`),
+  ADD KEY `fk_productorder_FacilitiesID` (`FacilitiesID`),
+  ADD KEY `fk_fk_productorder_FacilitiesID_ProductID` (`ProductID`);
 
---
--- 資料表索引 `staff`
---
+ALTER TABLE `quotation`
+  ADD PRIMARY KEY (`QuotationID`),
+  ADD KEY `fk_quotation_ClientID` (`ClientID`),
+  ADD KEY `fk_quotation_ProductID` (`ProductID`),
+  ADD KEY `fk_quotation_StaffID` (`StaffID`);
+
 ALTER TABLE `staff`
-  ADD PRIMARY KEY (`staff_id`),
-  ADD KEY `fk_dept_id` (`dept_id`);
+  ADD PRIMARY KEY (`StaffID`),
+  ADD KEY `fk_staff_DeptID` (`DeptID`);
 
---
--- 資料表索引 `warehouse`
---
+ALTER TABLE `transportation`
+  ADD PRIMARY KEY (`TransportationID`),
+  ADD KEY `fk_transportation_OrderID` (`OrderID`);
+
 ALTER TABLE `warehouse`
-  ADD PRIMARY KEY (`warehouse_id`);
+  ADD PRIMARY KEY (`WHID`),
+  ADD KEY `fk_warehouse_StaffID` (`StaffID`);
 
---
--- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
---
 
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `afterservicefeedback`
---
 ALTER TABLE `afterservicefeedback`
-  MODIFY `clientID` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `feedbackID` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `department`
---
+ALTER TABLE `clientinformation`
+  MODIFY `ClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+ALTER TABLE `customerorder`
+  MODIFY `OrderID` int(8) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `damagematerial`
+  MODIFY `DamMatID` int(8) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE `department`
-  MODIFY `dept_id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `DeptID` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `event`
---
 ALTER TABLE `event`
-  MODIFY `event_id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `event_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `item`
---
-ALTER TABLE `item`
-  MODIFY `item_id` int(3) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `facilities`
+  MODIFY `FacilitiesID` int(8) NOT NULL AUTO_INCREMENT;
 
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `product`
---
+ALTER TABLE `finishedcomponent`
+  MODIFY `FCID` int(8) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `internaltransferform`
+  MODIFY `TransferFormNumber` int(8) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `material`
+  MODIFY `MaterialID` int(8) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `materialrequirementform`
+  MODIFY `MaterialFormID` int(8) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE `product`
-  MODIFY `product_id` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `ProductID` int(8) NOT NULL AUTO_INCREMENT;
 
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `report`
---
-ALTER TABLE `report`
-  MODIFY `report_id` int(3) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `productorder`
+  MODIFY `ProductionOrderID` int(8) NOT NULL AUTO_INCREMENT;
 
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `staff`
---
+ALTER TABLE `quotation`
+  MODIFY `QuotationID` int(8) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE `staff`
-  MODIFY `staff_id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `StaffID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `warehouse`
---
+ALTER TABLE `transportation`
+  MODIFY `TransportationID` int(8) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE `warehouse`
-  MODIFY `warehouse_id` int(2) NOT NULL AUTO_INCREMENT;
+  MODIFY `WHID` int(8) NOT NULL AUTO_INCREMENT;
 
---
--- 已傾印資料表的限制式
---
 
---
--- 資料表的限制式 `event`
---
-ALTER TABLE `event`
-  ADD CONSTRAINT `fk_staff_id` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`staff_id`);
+ALTER TABLE `afterservicefeedback`
+  ADD CONSTRAINT `fk_afterservicefeedback_StaffID` FOREIGN KEY (`StaffID`) REFERENCES `staff` (`StaffID`);
 
---
--- 資料表的限制式 `item`
---
-ALTER TABLE `item`
-  ADD CONSTRAINT `fk_item_warehouse_id` FOREIGN KEY (`warehouse_id`) REFERENCES `warehouse` (`warehouse_id`);
+ALTER TABLE `customerorder`
+  ADD CONSTRAINT `fk_customerorder_ClientID` FOREIGN KEY (`ClientID`) REFERENCES `clientinformation` (`ClientID`),
+  ADD CONSTRAINT `fk_customerorder_ProductID` FOREIGN KEY (`ProductID`) REFERENCES `product` (`ProductID`),
+  ADD CONSTRAINT `fk_customerorder_StaffID` FOREIGN KEY (`StaffID`) REFERENCES `staff` (`StaffID`);
 
---
--- 資料表的限制式 `product`
---
+ALTER TABLE `damagematerial`
+  ADD CONSTRAINT `fk_damagematerial_StaffID` FOREIGN KEY (`StaffID`) REFERENCES `staff` (`StaffID`);
+
+ALTER TABLE `facilities`
+  ADD CONSTRAINT `fk_facilities_StaffID` FOREIGN KEY (`StaffID`) REFERENCES `staff` (`StaffID`);
+
+ALTER TABLE `finishedcomponent`
+  ADD CONSTRAINT `fk_finishedcomponent_ProductID` FOREIGN KEY (`ProductID`) REFERENCES `product` (`ProductID`),
+  ADD CONSTRAINT `fk_finishedcomponent_WHID` FOREIGN KEY (`WHID`) REFERENCES `warehouse` (`WHID`);
+
+ALTER TABLE `internaltransferform`
+  ADD CONSTRAINT `fk-internaltransferform_OrderID` FOREIGN KEY (`OrderID`) REFERENCES `customerorder` (`OrderID`);
+
+ALTER TABLE `material`
+  ADD CONSTRAINT `fk_material_ProductID` FOREIGN KEY (`ProductID`) REFERENCES `product` (`ProductID`);
+
+ALTER TABLE `materialrequirementform`
+  ADD CONSTRAINT `fk_materialrequirementform_MaterialID` FOREIGN KEY (`MaterialID`) REFERENCES `material` (`MaterialID`),
+  ADD CONSTRAINT `fk_materialrequirementform_ProductID` FOREIGN KEY (`ProductID`) REFERENCES `product` (`ProductID`);
+
 ALTER TABLE `product`
-  ADD CONSTRAINT `fk_product_warehouse_id` FOREIGN KEY (`warehouse_id`) REFERENCES `warehouse` (`warehouse_id`),
-  ADD CONSTRAINT `fk_warehouse_id` FOREIGN KEY (`warehouse_id`) REFERENCES `warehouse` (`warehouse_id`);
+  ADD CONSTRAINT `fk_product_FCID` FOREIGN KEY (`FCID`) REFERENCES `finishedcomponent` (`FCID`);
 
---
--- 資料表的限制式 `staff`
---
+ALTER TABLE `productorder`
+  ADD CONSTRAINT `fk_fk_productorder_FacilitiesID_ProductID` FOREIGN KEY (`ProductID`) REFERENCES `product` (`ProductID`),
+  ADD CONSTRAINT `fk_productorder_FacilitiesID` FOREIGN KEY (`FacilitiesID`) REFERENCES `facilities` (`FacilitiesID`),
+  ADD CONSTRAINT `fk_productorder_StaffID` FOREIGN KEY (`StaffID`) REFERENCES `staff` (`StaffID`);
+
+ALTER TABLE `quotation`
+  ADD CONSTRAINT `fk_quotation_ClientID` FOREIGN KEY (`ClientID`) REFERENCES `clientinformation` (`ClientID`),
+  ADD CONSTRAINT `fk_quotation_ProductID` FOREIGN KEY (`ProductID`) REFERENCES `product` (`ProductID`),
+  ADD CONSTRAINT `fk_quotation_StaffID` FOREIGN KEY (`StaffID`) REFERENCES `staff` (`StaffID`);
+
 ALTER TABLE `staff`
-  ADD CONSTRAINT `fk_dept_id` FOREIGN KEY (`dept_id`) REFERENCES `department` (`dept_id`);
+  ADD CONSTRAINT `fk_staff_DeptID` FOREIGN KEY (`DeptID`) REFERENCES `department` (`DeptID`);
+
+ALTER TABLE `transportation`
+  ADD CONSTRAINT `fk_transportation_OrderID` FOREIGN KEY (`OrderID`) REFERENCES `customerorder` (`OrderID`);
+
+ALTER TABLE `warehouse`
+  ADD CONSTRAINT `fk_warehouse_StaffID` FOREIGN KEY (`StaffID`) REFERENCES `staff` (`StaffID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

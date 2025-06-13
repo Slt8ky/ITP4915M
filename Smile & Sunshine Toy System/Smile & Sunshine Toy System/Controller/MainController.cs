@@ -11,19 +11,17 @@ namespace Smile___Sunshine_Toy_System.Controller
     internal class MainController
     {
         private RichTextBox rtbDisplay;
-        private String username;
         private List<String> user;
 
-        public MainController(RichTextBox rtbDisplay, String username)
+        public MainController(RichTextBox rtbDisplay, String StaffName)
         {
             this.rtbDisplay = rtbDisplay;
-            this.username = username;
         }
 
-        public List<string> GetUser(string username)
+        public List<string> GetUser(string StaffName)
         {
             List<string> results = new List<string>();
-            string query = $"SELECT * FROM STAFF WHERE `username` = @username";
+            string query = $"SELECT * FROM Staff WHERE `StaffName` = @StaffName";
 
             using (var connection = Database.Instance.Connection)
             {
@@ -32,7 +30,7 @@ namespace Smile___Sunshine_Toy_System.Controller
 
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@StaffName", StaffName);
 
                     try
                     {
@@ -54,6 +52,7 @@ namespace Smile___Sunshine_Toy_System.Controller
                 }
             }
             user = results;
+            Console.WriteLine(String.Join(", ", results.Select(t => t)));
             return results;
         }
 
@@ -120,11 +119,18 @@ namespace Smile___Sunshine_Toy_System.Controller
         {
             List<List<string>> results = new List<List<string>>();
             string query = $"SELECT * FROM `{tableName}`";
-            if (!String.IsNullOrEmpty(criteria))
+
+            // Check if criteria contains ORDER BY (passed from the sorting)
+            if (!String.IsNullOrEmpty(criteria) && !criteria.StartsWith("ORDER BY"))
             {
                 query += $" WHERE {criteria}";
                 Log("lookup_item", query);
             }
+            else if (!String.IsNullOrEmpty(criteria)) // This is an ORDER BY clause
+    {
+                query += $" {criteria}";
+            }
+
             rtbDisplay.SelectionColor = Color.Black;
             rtbDisplay.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} - ");
             rtbDisplay.SelectionColor = Color.Orange;
@@ -167,7 +173,7 @@ namespace Smile___Sunshine_Toy_System.Controller
 
         public void Log(string event_type, string event_content = "")
         {
-            string query = "INSERT INTO `event` (`event_type`, `event_content`, `staff_id`) VALUES (@eventType, @eventContent, @staffId);";
+            string query = "INSERT INTO `event` (`event_type`, `event_content`, `StaffID`) VALUES (@eventType, @eventContent, @StaffID);";
 
             using (var connection = Database.Instance.Connection)
             {
@@ -178,7 +184,7 @@ namespace Smile___Sunshine_Toy_System.Controller
                 {
                     command.Parameters.AddWithValue("@eventType", event_type);
                     command.Parameters.AddWithValue("@eventContent", event_content);
-                    command.Parameters.AddWithValue("@staffId", user[0]);
+                    command.Parameters.AddWithValue("@StaffID", user[0]);
 
                     try
                     {

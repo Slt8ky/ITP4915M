@@ -11,16 +11,16 @@ namespace Smile___Sunshine_Toy_System.Controller
     {
         List<String> user;
 
-        public bool ValidateCredentials(string username, string password)
+        public bool ValidateCredentials(string StaffName, string Password)
         {
-            var hashedPassword = HashPassword(password);
+            var hashedPassword = HashPassword(Password);
             var connection = Database.Instance.Connection;
-            string query = "SELECT COUNT(*) FROM staff WHERE username = @username AND password = @password";
+            string query = "SELECT COUNT(*) FROM staff WHERE StaffName = @StaffName AND Password = @Password";
 
             using (var command = new MySqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@username", username);
-                command.Parameters.AddWithValue("@password", hashedPassword);
+                command.Parameters.AddWithValue("@StaffName", StaffName);
+                command.Parameters.AddWithValue("@Password", hashedPassword);
 
                 int result = Convert.ToInt32(command.ExecuteScalar());
                 return result > 0; // Return true if login is successful
@@ -36,10 +36,10 @@ namespace Smile___Sunshine_Toy_System.Controller
             }
         }
 
-        public List<string> GetUser(string username)
+        public List<string> GetUser(string StaffName)
         {
             List<string> results = new List<string>();
-            string query = $"SELECT * FROM STAFF WHERE `username` = @username"; // Use parameterized query to prevent SQL injection
+            string query = $"SELECT * FROM staff WHERE `StaffName` = @StaffName"; // Use parameterized query to prevent SQL injection
 
             using (var connection = Database.Instance.Connection)
             {
@@ -49,7 +49,7 @@ namespace Smile___Sunshine_Toy_System.Controller
                 using (var command = new MySqlCommand(query, connection))
                 {
                     // Use parameterized query
-                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@StaffName", StaffName);
 
                     try
                     {
@@ -77,7 +77,7 @@ namespace Smile___Sunshine_Toy_System.Controller
 
         public void Log()
         {
-            string query = "INSERT INTO `event` (`event_type`, `staff_id`) VALUES (@eventType, @staffId);";
+            string query = "INSERT INTO `event` (`event_type`, `StaffID`) VALUES (@event_type, @StaffID);";
 
             using (var connection = Database.Instance.Connection)
             {
@@ -87,8 +87,8 @@ namespace Smile___Sunshine_Toy_System.Controller
                 using (var command = new MySqlCommand(query, connection))
                 {
                     // Using parameters to prevent SQL injection
-                    command.Parameters.AddWithValue("@eventType", "login");
-                    command.Parameters.AddWithValue("@staffId", user[0]); // Ensure this is an integer if staff_id is an integer in the database
+                    command.Parameters.AddWithValue("@event_type", "staff_login");
+                    command.Parameters.AddWithValue("@StaffID", user[0]); // Ensure this is an integer if staff_id is an integer in the database
 
                     try
                     {
@@ -96,7 +96,7 @@ namespace Smile___Sunshine_Toy_System.Controller
                     }
                     catch (MySqlException ex)
                     {
-                        throw new Exception($"Error executing log query: {ex.Message}");
+                        throw new Exception($"Error executing log query: {ex.StackTrace}");
                     }
                 }
             }

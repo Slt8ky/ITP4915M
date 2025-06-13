@@ -1,4 +1,4 @@
-﻿namespace Smile___Sunshine_Toy_System.Interface
+﻿namespace Smile___Sunshine_Toy_System
 {
     partial class Customer_Feedback
     {
@@ -28,86 +28,103 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Customer_Feedback));
-            this.ResetButton = new System.Windows.Forms.Button();
+            this.ViewFBData = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.FBDate = new System.Windows.Forms.TextBox();
             this.FBCType = new System.Windows.Forms.ComboBox();
             this.FBPID = new System.Windows.Forms.TextBox();
             this.FBPIDText = new System.Windows.Forms.Label();
             this.FBOID = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.FBInteraction = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.FBCInfo = new System.Windows.Forms.TextBox();
+            this.ResetFB = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.FBDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.FBType = new System.Windows.Forms.ComboBox();
-            this.FBDetail = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.FBCID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.FBSID = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.CreateButton = new System.Windows.Forms.Button();
-            this.ViewFBData = new System.Windows.Forms.DataGridView();
-            this.UpdateButton = new System.Windows.Forms.Button();
-            this.DeleteButton = new System.Windows.Forms.Button();
+            this.DeleteFB = new System.Windows.Forms.Button();
+            this.UpdateFB = new System.Windows.Forms.Button();
+            this.CreateFB = new System.Windows.Forms.Button();
+            this.FBDetail = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.FBTSConnect = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
-            this.StaffText = new System.Windows.Forms.Label();
-            this.FBTSConnectBT = new System.Windows.Forms.Button();
-            this.btnSend = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.label9 = new System.Windows.Forms.Label();
+            this.FBSID = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.FBSearch = new System.Windows.Forms.Button();
+            this.FBSearchText = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.FBID = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.ReloadFBView = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ViewFBData)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // ResetButton
+            // ViewFBData
             // 
-            this.ResetButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ResetButton.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ResetButton.Location = new System.Drawing.Point(11, 622);
-            this.ResetButton.Margin = new System.Windows.Forms.Padding(2);
-            this.ResetButton.Name = "ResetButton";
-            this.ResetButton.Size = new System.Drawing.Size(423, 61);
-            this.ResetButton.TabIndex = 15;
-            this.ResetButton.Text = "Reset Feedback";
-            this.ResetButton.UseVisualStyleBackColor = false;
-            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
+            this.ViewFBData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ViewFBData.Location = new System.Drawing.Point(31, 72);
+            this.ViewFBData.Name = "ViewFBData";
+            this.ViewFBData.RowTemplate.Height = 24;
+            this.ViewFBData.Size = new System.Drawing.Size(854, 411);
+            this.ViewFBData.TabIndex = 17;
+            this.ViewFBData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ViewFBData_CellClick);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label7.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(31, 13);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(359, 34);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Customer Feedback Page";
             // 
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
-            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.FBDate);
             this.groupBox1.Controls.Add(this.FBCType);
             this.groupBox1.Controls.Add(this.FBPID);
             this.groupBox1.Controls.Add(this.FBPIDText);
             this.groupBox1.Controls.Add(this.FBOID);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.FBInteraction);
-            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.FBCInfo);
+            this.groupBox1.Controls.Add(this.ResetFB);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.FBDate);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.FBType);
-            this.groupBox1.Controls.Add(this.FBDetail);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.FBCID);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(894, 45);
+            this.groupBox1.Location = new System.Drawing.Point(894, 134);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(329, 704);
-            this.groupBox1.TabIndex = 13;
+            this.groupBox1.Size = new System.Drawing.Size(335, 417);
+            this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
+            // 
+            // FBDate
+            // 
+            this.FBDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FBDate.Location = new System.Drawing.Point(36, 87);
+            this.FBDate.Name = "FBDate";
+            this.FBDate.Size = new System.Drawing.Size(120, 22);
+            this.FBDate.TabIndex = 37;
             // 
             // FBCType
             // 
@@ -116,16 +133,16 @@
             "Email",
             "Phone",
             "Letter",
-            "Other"});
-            this.FBCType.Location = new System.Drawing.Point(196, 164);
+            "Message"});
+            this.FBCType.Location = new System.Drawing.Point(36, 158);
             this.FBCType.Name = "FBCType";
-            this.FBCType.Size = new System.Drawing.Size(113, 24);
+            this.FBCType.Size = new System.Drawing.Size(120, 24);
             this.FBCType.TabIndex = 33;
             // 
             // FBPID
             // 
             this.FBPID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FBPID.Location = new System.Drawing.Point(25, 101);
+            this.FBPID.Location = new System.Drawing.Point(199, 100);
             this.FBPID.Margin = new System.Windows.Forms.Padding(2);
             this.FBPID.Name = "FBPID";
             this.FBPID.Size = new System.Drawing.Size(121, 22);
@@ -135,7 +152,7 @@
             // 
             this.FBPIDText.AutoSize = true;
             this.FBPIDText.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FBPIDText.Location = new System.Drawing.Point(21, 83);
+            this.FBPIDText.Location = new System.Drawing.Point(195, 82);
             this.FBPIDText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.FBPIDText.Name = "FBPIDText";
             this.FBPIDText.Size = new System.Drawing.Size(72, 16);
@@ -145,7 +162,7 @@
             // FBOID
             // 
             this.FBOID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FBOID.Location = new System.Drawing.Point(25, 44);
+            this.FBOID.Location = new System.Drawing.Point(199, 39);
             this.FBOID.Margin = new System.Windows.Forms.Padding(2);
             this.FBOID.Name = "FBOID";
             this.FBOID.Size = new System.Drawing.Size(121, 22);
@@ -154,57 +171,46 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(191, 141);
+            this.label10.Location = new System.Drawing.Point(31, 135);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(85, 16);
             this.label10.TabIndex = 26;
             this.label10.Text = "Contact Type";
             // 
-            // FBInteraction
-            // 
-            this.FBInteraction.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FBInteraction.Location = new System.Drawing.Point(25, 300);
-            this.FBInteraction.Multiline = true;
-            this.FBInteraction.Name = "FBInteraction";
-            this.FBInteraction.Size = new System.Drawing.Size(285, 123);
-            this.FBInteraction.TabIndex = 23;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(22, 281);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(74, 16);
-            this.label9.TabIndex = 22;
-            this.label9.Text = "Interaction";
-            // 
             // FBCInfo
             // 
-            this.FBCInfo.Location = new System.Drawing.Point(25, 231);
+            this.FBCInfo.Location = new System.Drawing.Point(34, 236);
+            this.FBCInfo.Multiline = true;
             this.FBCInfo.Name = "FBCInfo";
-            this.FBCInfo.Size = new System.Drawing.Size(285, 22);
+            this.FBCInfo.Size = new System.Drawing.Size(285, 62);
             this.FBCInfo.TabIndex = 21;
+            // 
+            // ResetFB
+            // 
+            this.ResetFB.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ResetFB.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResetFB.Location = new System.Drawing.Point(89, 328);
+            this.ResetFB.Margin = new System.Windows.Forms.Padding(2);
+            this.ResetFB.Name = "ResetFB";
+            this.ResetFB.Size = new System.Drawing.Size(167, 61);
+            this.ResetFB.TabIndex = 25;
+            this.ResetFB.Text = "Reset Feedback";
+            this.ResetFB.UseVisualStyleBackColor = false;
+            this.ResetFB.Click += new System.EventHandler(this.ResetFB_Click);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(22, 212);
+            this.label8.Location = new System.Drawing.Point(31, 206);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(133, 16);
             this.label8.TabIndex = 20;
             this.label8.Text = "Contact  Information";
             // 
-            // FBDate
-            // 
-            this.FBDate.Location = new System.Drawing.Point(196, 102);
-            this.FBDate.Name = "FBDate";
-            this.FBDate.Size = new System.Drawing.Size(113, 22);
-            this.FBDate.TabIndex = 18;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(191, 83);
+            this.label6.Location = new System.Drawing.Point(30, 68);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(107, 16);
             this.label6.TabIndex = 17;
@@ -214,7 +220,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(194, 26);
+            this.label5.Location = new System.Drawing.Point(33, 11);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 16);
@@ -225,7 +231,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(21, 141);
+            this.label4.Location = new System.Drawing.Point(196, 135);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(93, 16);
             this.label4.TabIndex = 14;
@@ -240,46 +246,24 @@
             "Instructions ",
             "Packaging",
             "Features"});
-            this.FBType.Location = new System.Drawing.Point(24, 164);
+            this.FBType.Location = new System.Drawing.Point(199, 158);
             this.FBType.Name = "FBType";
             this.FBType.Size = new System.Drawing.Size(121, 24);
             this.FBType.TabIndex = 13;
             // 
-            // FBDetail
-            // 
-            this.FBDetail.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.FBDetail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FBDetail.Location = new System.Drawing.Point(25, 456);
-            this.FBDetail.Margin = new System.Windows.Forms.Padding(2);
-            this.FBDetail.Multiline = true;
-            this.FBDetail.Name = "FBDetail";
-            this.FBDetail.Size = new System.Drawing.Size(285, 229);
-            this.FBDetail.TabIndex = 10;
-            this.FBDetail.WordWrap = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 438);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 16);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Feedback Detail";
-            // 
             // FBCID
             // 
             this.FBCID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FBCID.Location = new System.Drawing.Point(197, 44);
+            this.FBCID.Location = new System.Drawing.Point(36, 29);
             this.FBCID.Margin = new System.Windows.Forms.Padding(2);
             this.FBCID.Name = "FBCID";
-            this.FBCID.Size = new System.Drawing.Size(113, 22);
+            this.FBCID.Size = new System.Drawing.Size(120, 22);
             this.FBCID.TabIndex = 8;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(228, 26);
+            this.label2.Location = new System.Drawing.Point(67, 11);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 16);
@@ -289,157 +273,226 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(22, 22);
+            this.label1.Location = new System.Drawing.Point(196, 17);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 16);
             this.label1.TabIndex = 5;
             this.label1.Text = "Order ID";
             // 
-            // FBSID
+            // DeleteFB
             // 
-            this.FBSID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FBSID.Location = new System.Drawing.Point(757, 61);
-            this.FBSID.Margin = new System.Windows.Forms.Padding(2);
-            this.FBSID.Name = "FBSID";
-            this.FBSID.Size = new System.Drawing.Size(121, 22);
-            this.FBSID.TabIndex = 15;
+            this.DeleteFB.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.DeleteFB.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteFB.Location = new System.Drawing.Point(1062, 632);
+            this.DeleteFB.Margin = new System.Windows.Forms.Padding(2);
+            this.DeleteFB.Name = "DeleteFB";
+            this.DeleteFB.Size = new System.Drawing.Size(167, 61);
+            this.DeleteFB.TabIndex = 27;
+            this.DeleteFB.Text = "Delete Feedback";
+            this.DeleteFB.UseVisualStyleBackColor = false;
+            this.DeleteFB.Click += new System.EventHandler(this.DeleteFB_Click);
             // 
-            // label7
+            // UpdateFB
             // 
-            this.label7.AutoSize = true;
-            this.label7.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 25.25F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(11, 17);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(449, 40);
-            this.label7.TabIndex = 19;
-            this.label7.Text = "Customer Feedback Page";
+            this.UpdateFB.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.UpdateFB.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UpdateFB.Location = new System.Drawing.Point(1062, 558);
+            this.UpdateFB.Margin = new System.Windows.Forms.Padding(2);
+            this.UpdateFB.Name = "UpdateFB";
+            this.UpdateFB.Size = new System.Drawing.Size(167, 61);
+            this.UpdateFB.TabIndex = 26;
+            this.UpdateFB.Text = "Update Feedback";
+            this.UpdateFB.UseVisualStyleBackColor = false;
+            this.UpdateFB.Click += new System.EventHandler(this.UpdateFB_Click);
             // 
-            // CreateButton
+            // CreateFB
             // 
-            this.CreateButton.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.CreateButton.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateButton.Location = new System.Drawing.Point(11, 557);
-            this.CreateButton.Margin = new System.Windows.Forms.Padding(2);
-            this.CreateButton.Name = "CreateButton";
-            this.CreateButton.Size = new System.Drawing.Size(423, 61);
-            this.CreateButton.TabIndex = 14;
-            this.CreateButton.Text = "Create Feedback";
-            this.CreateButton.UseVisualStyleBackColor = false;
-            this.CreateButton.Click += new System.EventHandler(this.CreateButton_Click);
+            this.CreateFB.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.CreateFB.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreateFB.Location = new System.Drawing.Point(894, 632);
+            this.CreateFB.Margin = new System.Windows.Forms.Padding(2);
+            this.CreateFB.Name = "CreateFB";
+            this.CreateFB.Size = new System.Drawing.Size(167, 61);
+            this.CreateFB.TabIndex = 24;
+            this.CreateFB.Text = "Create Feedback";
+            this.CreateFB.UseVisualStyleBackColor = false;
+            this.CreateFB.Click += new System.EventHandler(this.CreateFB_Click);
             // 
-            // ViewFBData
+            // FBDetail
             // 
-            this.ViewFBData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ViewFBData.Location = new System.Drawing.Point(12, 89);
-            this.ViewFBData.Name = "ViewFBData";
-            this.ViewFBData.RowTemplate.Height = 24;
-            this.ViewFBData.Size = new System.Drawing.Size(866, 463);
-            this.ViewFBData.TabIndex = 16;
-            this.ViewFBData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ViewFBData_CellClick);
+            this.FBDetail.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.FBDetail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FBDetail.Location = new System.Drawing.Point(32, 508);
+            this.FBDetail.Margin = new System.Windows.Forms.Padding(2);
+            this.FBDetail.Multiline = true;
+            this.FBDetail.Name = "FBDetail";
+            this.FBDetail.Size = new System.Drawing.Size(853, 192);
+            this.FBDetail.TabIndex = 23;
+            this.FBDetail.WordWrap = false;
             // 
-            // UpdateButton
+            // label3
             // 
-            this.UpdateButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.UpdateButton.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateButton.Location = new System.Drawing.Point(451, 557);
-            this.UpdateButton.Margin = new System.Windows.Forms.Padding(2);
-            this.UpdateButton.Name = "UpdateButton";
-            this.UpdateButton.Size = new System.Drawing.Size(428, 61);
-            this.UpdateButton.TabIndex = 17;
-            this.UpdateButton.Text = "Update Feedback";
-            this.UpdateButton.UseVisualStyleBackColor = false;
-            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Book Antiqua", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(28, 486);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(124, 20);
+            this.label3.TabIndex = 22;
+            this.label3.Text = "Feedback Detail";
             // 
-            // DeleteButton
+            // FBTSConnect
             // 
-            this.DeleteButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.DeleteButton.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteButton.Location = new System.Drawing.Point(451, 622);
-            this.DeleteButton.Margin = new System.Windows.Forms.Padding(2);
-            this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(428, 61);
-            this.DeleteButton.TabIndex = 18;
-            this.DeleteButton.Text = "Delete Feedback";
-            this.DeleteButton.UseVisualStyleBackColor = false;
-            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            this.FBTSConnect.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.FBTSConnect.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FBTSConnect.Location = new System.Drawing.Point(894, 43);
+            this.FBTSConnect.Margin = new System.Windows.Forms.Padding(2);
+            this.FBTSConnect.Name = "FBTSConnect";
+            this.FBTSConnect.Size = new System.Drawing.Size(335, 29);
+            this.FBTSConnect.TabIndex = 32;
+            this.FBTSConnect.Text = "Test Connect";
+            this.FBTSConnect.UseVisualStyleBackColor = false;
+            this.FBTSConnect.Click += new System.EventHandler(this.FBTSConnect_Click);
             // 
             // ExitButton
             // 
             this.ExitButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ExitButton.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExitButton.Location = new System.Drawing.Point(1069, 9);
+            this.ExitButton.Location = new System.Drawing.Point(894, 9);
             this.ExitButton.Margin = new System.Windows.Forms.Padding(2);
             this.ExitButton.Name = "ExitButton";
-            this.ExitButton.Size = new System.Drawing.Size(154, 32);
-            this.ExitButton.TabIndex = 20;
+            this.ExitButton.Size = new System.Drawing.Size(335, 30);
+            this.ExitButton.TabIndex = 31;
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = false;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
-            // StaffText
+            // label9
             // 
-            this.StaffText.AutoSize = true;
-            this.StaffText.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StaffText.Location = new System.Drawing.Point(682, 63);
-            this.StaffText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.StaffText.Name = "StaffText";
-            this.StaffText.Size = new System.Drawing.Size(54, 16);
-            this.StaffText.TabIndex = 29;
-            this.StaffText.Text = "Staff ID";
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(1089, 90);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(54, 16);
+            this.label9.TabIndex = 41;
+            this.label9.Text = "Staff ID";
             // 
-            // FBTSConnectBT
+            // FBSID
             // 
-            this.FBTSConnectBT.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.FBTSConnectBT.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FBTSConnectBT.Location = new System.Drawing.Point(911, 9);
-            this.FBTSConnectBT.Margin = new System.Windows.Forms.Padding(2);
-            this.FBTSConnectBT.Name = "FBTSConnectBT";
-            this.FBTSConnectBT.Size = new System.Drawing.Size(154, 32);
-            this.FBTSConnectBT.TabIndex = 30;
-            this.FBTSConnectBT.Text = "Test Connect";
-            this.FBTSConnectBT.UseVisualStyleBackColor = false;
-            this.FBTSConnectBT.Click += new System.EventHandler(this.FBTSConnectBT_Click);
+            this.FBSID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FBSID.Location = new System.Drawing.Point(1092, 108);
+            this.FBSID.Margin = new System.Windows.Forms.Padding(2);
+            this.FBSID.Name = "FBSID";
+            this.FBSID.Size = new System.Drawing.Size(122, 22);
+            this.FBSID.TabIndex = 40;
             // 
-            // btnSend
+            // label11
             // 
-            this.btnSend.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnSend.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold);
-            this.btnSend.Location = new System.Drawing.Point(10, 688);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(868, 61);
-            this.btnSend.TabIndex = 31;
-            this.btnSend.Text = "Send";
-            this.btnSend.UseVisualStyleBackColor = false;
-            this.btnSend.Click += new System.EventHandler(this.button1_Click);
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(1074, 108);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(0, 12);
+            this.label11.TabIndex = 39;
+            // 
+            // FBSearch
+            // 
+            this.FBSearch.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.FBSearch.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold);
+            this.FBSearch.Location = new System.Drawing.Point(806, 9);
+            this.FBSearch.Name = "FBSearch";
+            this.FBSearch.Size = new System.Drawing.Size(79, 57);
+            this.FBSearch.TabIndex = 42;
+            this.FBSearch.Text = "Search";
+            this.FBSearch.UseVisualStyleBackColor = false;
+            this.FBSearch.Click += new System.EventHandler(this.FBSearch_Click);
+            // 
+            // FBSearchText
+            // 
+            this.FBSearchText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FBSearchText.Location = new System.Drawing.Point(518, 9);
+            this.FBSearchText.Margin = new System.Windows.Forms.Padding(2);
+            this.FBSearchText.Multiline = true;
+            this.FBSearchText.Name = "FBSearchText";
+            this.FBSearchText.Size = new System.Drawing.Size(283, 58);
+            this.FBSearchText.TabIndex = 38;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(927, 90);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(81, 16);
+            this.label12.TabIndex = 40;
+            this.label12.Text = "Feedback ID";
+            // 
+            // FBID
+            // 
+            this.FBID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FBID.Location = new System.Drawing.Point(930, 108);
+            this.FBID.Margin = new System.Windows.Forms.Padding(2);
+            this.FBID.Name = "FBID";
+            this.FBID.ReadOnly = true;
+            this.FBID.Size = new System.Drawing.Size(120, 22);
+            this.FBID.TabIndex = 39;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(961, 90);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(0, 12);
+            this.label13.TabIndex = 38;
+            // 
+            // ReloadFBView
+            // 
+            this.ReloadFBView.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ReloadFBView.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReloadFBView.Location = new System.Drawing.Point(894, 558);
+            this.ReloadFBView.Margin = new System.Windows.Forms.Padding(2);
+            this.ReloadFBView.Name = "ReloadFBView";
+            this.ReloadFBView.Size = new System.Drawing.Size(167, 61);
+            this.ReloadFBView.TabIndex = 44;
+            this.ReloadFBView.Text = "Reload Database";
+            this.ReloadFBView.UseVisualStyleBackColor = false;
+            this.ReloadFBView.Click += new System.EventHandler(this.ReloadFBView_Click);
             // 
             // Customer_Feedback
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
-            this.ClientSize = new System.Drawing.Size(1234, 764);
-            this.Controls.Add(this.btnSend);
-            this.Controls.Add(this.FBTSConnectBT);
+            this.ClientSize = new System.Drawing.Size(1234, 711);
+            this.Controls.Add(this.ReloadFBView);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.FBID);
+            this.Controls.Add(this.FBSearchText);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.FBSearch);
+            this.Controls.Add(this.FBTSConnect);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.ExitButton);
-            this.Controls.Add(this.DeleteButton);
-            this.Controls.Add(this.UpdateButton);
-            this.Controls.Add(this.StaffText);
-            this.Controls.Add(this.ResetButton);
-            this.Controls.Add(this.ViewFBData);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.CreateButton);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.FBSID);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.DeleteFB);
+            this.Controls.Add(this.UpdateFB);
+            this.Controls.Add(this.CreateFB);
+            this.Controls.Add(this.FBDetail);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.ViewFBData);
             this.Name = "Customer_Feedback";
-            this.Text = "Customer Feedback";
+            this.Text = "After Service Management Page";
             this.Load += new System.EventHandler(this.Customer_Feedback_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ViewFBData)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ViewFBData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -447,36 +500,41 @@
 
         #endregion
 
-        private System.Windows.Forms.Button ResetButton;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker FBDate;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox FBSID;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox FBType;
-        private System.Windows.Forms.TextBox FBDetail;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox FBCID;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button CreateButton;
         private System.Windows.Forms.DataGridView ViewFBData;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button UpdateButton;
-        private System.Windows.Forms.Button DeleteButton;
-        private System.Windows.Forms.TextBox FBCInfo;
-        private System.Windows.Forms.TextBox FBInteraction;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox FBDate;
+        private System.Windows.Forms.ComboBox FBCType;
         private System.Windows.Forms.TextBox FBPID;
         private System.Windows.Forms.Label FBPIDText;
         private System.Windows.Forms.TextBox FBOID;
-        private System.Windows.Forms.Label StaffText;
-        private System.Windows.Forms.ComboBox FBCType;
-        private System.Windows.Forms.Button FBTSConnectBT;
-        private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox FBCInfo;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox FBType;
+        private System.Windows.Forms.TextBox FBCID;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button DeleteFB;
+        private System.Windows.Forms.Button UpdateFB;
+        private System.Windows.Forms.Button ResetFB;
+        private System.Windows.Forms.Button CreateFB;
+        private System.Windows.Forms.TextBox FBDetail;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button FBTSConnect;
+        private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox FBSID;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button FBSearch;
+        private System.Windows.Forms.TextBox FBSearchText;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox FBID;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button ReloadFBView;
     }
 }
+

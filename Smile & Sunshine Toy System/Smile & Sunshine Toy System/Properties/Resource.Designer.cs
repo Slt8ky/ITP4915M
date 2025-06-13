@@ -22,14 +22,14 @@ namespace Smile___Sunshine_Toy_System.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resource1 {
+    internal class Resource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resource1() {
+        internal Resource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Smile___Sunshine_Toy_System.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Smile___Sunshine_Toy_System.Properties.Resource1", typeof(Resource1).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Smile___Sunshine_Toy_System.Properties.Resource", typeof(Resource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -297,6 +297,54 @@ namespace Smile___Sunshine_Toy_System.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 en-US (default) 的當地語系化字串。
+        /// </summary>
+        internal static string cbLocalization_Items {
+            get {
+                return ResourceManager.GetString("cbLocalization.Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 zh-HK 的當地語系化字串。
+        /// </summary>
+        internal static string cbLocalization_Items1 {
+            get {
+                return ResourceManager.GetString("cbLocalization.Items1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Object 的當地語系化資源。
+        /// </summary>
+        internal static object cbLocalization_Location {
+            get {
+                object obj = ResourceManager.GetObject("cbLocalization.Location", resourceCulture);
+                return ((object)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Object 的當地語系化資源。
+        /// </summary>
+        internal static object cbLocalization_Size {
+            get {
+                object obj = ResourceManager.GetObject("cbLocalization.Size", resourceCulture);
+                return ((object)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Object 的當地語系化資源。
+        /// </summary>
+        internal static object cbLocalization_TabIndex {
+            get {
+                object obj = ResourceManager.GetObject("cbLocalization.TabIndex", resourceCulture);
+                return ((object)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查詢類型 System.Object 的當地語系化資源。
         /// </summary>
         internal static object cbTable_Location {
@@ -515,6 +563,45 @@ namespace Smile___Sunshine_Toy_System.Properties {
         /// <summary>
         ///   查詢類型 System.Object 的當地語系化資源。
         /// </summary>
+        internal static object groupBox4_Location {
+            get {
+                object obj = ResourceManager.GetObject("groupBox4.Location", resourceCulture);
+                return ((object)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Object 的當地語系化資源。
+        /// </summary>
+        internal static object groupBox4_Size {
+            get {
+                object obj = ResourceManager.GetObject("groupBox4.Size", resourceCulture);
+                return ((object)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Object 的當地語系化資源。
+        /// </summary>
+        internal static object groupBox4_TabIndex {
+            get {
+                object obj = ResourceManager.GetObject("groupBox4.TabIndex", resourceCulture);
+                return ((object)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Preferences 的當地語系化字串。
+        /// </summary>
+        internal static string groupBox4_Text {
+            get {
+                return ResourceManager.GetString("groupBox4.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Object 的當地語系化資源。
+        /// </summary>
         internal static object groupBox5_Location {
             get {
                 object obj = ResourceManager.GetObject("groupBox5.Location", resourceCulture);
@@ -646,6 +733,55 @@ namespace Smile___Sunshine_Toy_System.Properties {
         internal static string label2_Text {
             get {
                 return ResourceManager.GetString("label2.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Object 的當地語系化資源。
+        /// </summary>
+        internal static object label3_AutoSize {
+            get {
+                object obj = ResourceManager.GetObject("label3.AutoSize", resourceCulture);
+                return ((object)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Object 的當地語系化資源。
+        /// </summary>
+        internal static object label3_Location {
+            get {
+                object obj = ResourceManager.GetObject("label3.Location", resourceCulture);
+                return ((object)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Object 的當地語系化資源。
+        /// </summary>
+        internal static object label3_Size {
+            get {
+                object obj = ResourceManager.GetObject("label3.Size", resourceCulture);
+                return ((object)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Object 的當地語系化資源。
+        /// </summary>
+        internal static object label3_TabIndex {
+            get {
+                object obj = ResourceManager.GetObject("label3.TabIndex", resourceCulture);
+                return ((object)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Language:  的當地語系化字串。
+        /// </summary>
+        internal static string label3_Text {
+            get {
+                return ResourceManager.GetString("label3.Text", resourceCulture);
             }
         }
         
