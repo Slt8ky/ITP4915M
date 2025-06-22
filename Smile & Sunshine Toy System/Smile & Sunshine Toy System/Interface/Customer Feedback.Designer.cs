@@ -52,17 +52,16 @@
             this.CreateFB = new System.Windows.Forms.Button();
             this.FBDetail = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.FBTSConnect = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.FBSID = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.FBSearch = new System.Windows.Forms.Button();
             this.FBSearchText = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.FBID = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.ReloadFBView = new System.Windows.Forms.Button();
+            this.FBTSConnect = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ViewFBData)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -80,13 +79,12 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(31, 13);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(359, 34);
+            this.label7.Size = new System.Drawing.Size(357, 32);
             this.label7.TabIndex = 20;
             this.label7.Text = "Customer Feedback Page";
             // 
@@ -94,14 +92,18 @@
             // 
             this.groupBox1.AutoSize = true;
             this.groupBox1.Controls.Add(this.FBDate);
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.FBCType);
+            this.groupBox1.Controls.Add(this.FBID);
             this.groupBox1.Controls.Add(this.FBPID);
             this.groupBox1.Controls.Add(this.FBPIDText);
             this.groupBox1.Controls.Add(this.FBOID);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.FBCInfo);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.ResetFB);
             this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.FBSID);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
@@ -110,18 +112,18 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(894, 134);
+            this.groupBox1.Location = new System.Drawing.Point(894, 76);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(335, 417);
+            this.groupBox1.Size = new System.Drawing.Size(335, 479);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             // 
             // FBDate
             // 
             this.FBDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FBDate.Location = new System.Drawing.Point(36, 87);
+            this.FBDate.Location = new System.Drawing.Point(28, 149);
             this.FBDate.Name = "FBDate";
             this.FBDate.Size = new System.Drawing.Size(120, 22);
             this.FBDate.TabIndex = 37;
@@ -134,7 +136,7 @@
             "Phone",
             "Letter",
             "Message"});
-            this.FBCType.Location = new System.Drawing.Point(36, 158);
+            this.FBCType.Location = new System.Drawing.Point(28, 220);
             this.FBCType.Name = "FBCType";
             this.FBCType.Size = new System.Drawing.Size(120, 24);
             this.FBCType.TabIndex = 33;
@@ -142,7 +144,7 @@
             // FBPID
             // 
             this.FBPID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FBPID.Location = new System.Drawing.Point(199, 100);
+            this.FBPID.Location = new System.Drawing.Point(191, 162);
             this.FBPID.Margin = new System.Windows.Forms.Padding(2);
             this.FBPID.Name = "FBPID";
             this.FBPID.Size = new System.Drawing.Size(121, 22);
@@ -152,7 +154,7 @@
             // 
             this.FBPIDText.AutoSize = true;
             this.FBPIDText.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FBPIDText.Location = new System.Drawing.Point(195, 82);
+            this.FBPIDText.Location = new System.Drawing.Point(187, 144);
             this.FBPIDText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.FBPIDText.Name = "FBPIDText";
             this.FBPIDText.Size = new System.Drawing.Size(72, 16);
@@ -162,7 +164,7 @@
             // FBOID
             // 
             this.FBOID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FBOID.Location = new System.Drawing.Point(199, 39);
+            this.FBOID.Location = new System.Drawing.Point(191, 101);
             this.FBOID.Margin = new System.Windows.Forms.Padding(2);
             this.FBOID.Name = "FBOID";
             this.FBOID.Size = new System.Drawing.Size(121, 22);
@@ -171,7 +173,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(31, 135);
+            this.label10.Location = new System.Drawing.Point(23, 197);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(85, 16);
             this.label10.TabIndex = 26;
@@ -179,7 +181,7 @@
             // 
             // FBCInfo
             // 
-            this.FBCInfo.Location = new System.Drawing.Point(34, 236);
+            this.FBCInfo.Location = new System.Drawing.Point(26, 298);
             this.FBCInfo.Multiline = true;
             this.FBCInfo.Name = "FBCInfo";
             this.FBCInfo.Size = new System.Drawing.Size(285, 62);
@@ -189,10 +191,10 @@
             // 
             this.ResetFB.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ResetFB.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ResetFB.Location = new System.Drawing.Point(89, 328);
+            this.ResetFB.Location = new System.Drawing.Point(28, 390);
             this.ResetFB.Margin = new System.Windows.Forms.Padding(2);
             this.ResetFB.Name = "ResetFB";
-            this.ResetFB.Size = new System.Drawing.Size(167, 61);
+            this.ResetFB.Size = new System.Drawing.Size(284, 61);
             this.ResetFB.TabIndex = 25;
             this.ResetFB.Text = "Reset Feedback";
             this.ResetFB.UseVisualStyleBackColor = false;
@@ -201,7 +203,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(31, 206);
+            this.label8.Location = new System.Drawing.Point(23, 268);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(133, 16);
             this.label8.TabIndex = 20;
@@ -210,7 +212,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(30, 68);
+            this.label6.Location = new System.Drawing.Point(22, 130);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(107, 16);
             this.label6.TabIndex = 17;
@@ -220,7 +222,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(33, 11);
+            this.label5.Location = new System.Drawing.Point(25, 73);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 16);
@@ -231,7 +233,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(196, 135);
+            this.label4.Location = new System.Drawing.Point(188, 197);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(93, 16);
             this.label4.TabIndex = 14;
@@ -246,7 +248,7 @@
             "Instructions ",
             "Packaging",
             "Features"});
-            this.FBType.Location = new System.Drawing.Point(199, 158);
+            this.FBType.Location = new System.Drawing.Point(191, 220);
             this.FBType.Name = "FBType";
             this.FBType.Size = new System.Drawing.Size(121, 24);
             this.FBType.TabIndex = 13;
@@ -254,7 +256,7 @@
             // FBCID
             // 
             this.FBCID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FBCID.Location = new System.Drawing.Point(36, 29);
+            this.FBCID.Location = new System.Drawing.Point(28, 91);
             this.FBCID.Margin = new System.Windows.Forms.Padding(2);
             this.FBCID.Name = "FBCID";
             this.FBCID.Size = new System.Drawing.Size(120, 22);
@@ -263,7 +265,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(67, 11);
+            this.label2.Location = new System.Drawing.Point(59, 73);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 16);
@@ -273,7 +275,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(196, 17);
+            this.label1.Location = new System.Drawing.Point(188, 79);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 16);
@@ -342,19 +344,6 @@
             this.label3.TabIndex = 22;
             this.label3.Text = "Feedback Detail";
             // 
-            // FBTSConnect
-            // 
-            this.FBTSConnect.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.FBTSConnect.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FBTSConnect.Location = new System.Drawing.Point(894, 43);
-            this.FBTSConnect.Margin = new System.Windows.Forms.Padding(2);
-            this.FBTSConnect.Name = "FBTSConnect";
-            this.FBTSConnect.Size = new System.Drawing.Size(335, 29);
-            this.FBTSConnect.TabIndex = 32;
-            this.FBTSConnect.Text = "Test Connect";
-            this.FBTSConnect.UseVisualStyleBackColor = false;
-            this.FBTSConnect.Click += new System.EventHandler(this.FBTSConnect_Click);
-            // 
             // ExitButton
             // 
             this.ExitButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -372,7 +361,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(1089, 90);
+            this.label9.Location = new System.Drawing.Point(186, 22);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(54, 16);
@@ -382,20 +371,11 @@
             // FBSID
             // 
             this.FBSID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FBSID.Location = new System.Drawing.Point(1092, 108);
+            this.FBSID.Location = new System.Drawing.Point(189, 40);
             this.FBSID.Margin = new System.Windows.Forms.Padding(2);
             this.FBSID.Name = "FBSID";
             this.FBSID.Size = new System.Drawing.Size(122, 22);
             this.FBSID.TabIndex = 40;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(1074, 108);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(0, 12);
-            this.label11.TabIndex = 39;
             // 
             // FBSearch
             // 
@@ -423,7 +403,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(927, 90);
+            this.label12.Location = new System.Drawing.Point(24, 22);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(81, 16);
@@ -433,7 +413,7 @@
             // FBID
             // 
             this.FBID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FBID.Location = new System.Drawing.Point(930, 108);
+            this.FBID.Location = new System.Drawing.Point(27, 40);
             this.FBID.Margin = new System.Windows.Forms.Padding(2);
             this.FBID.Name = "FBID";
             this.FBID.ReadOnly = true;
@@ -443,7 +423,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(961, 90);
+            this.label13.Location = new System.Drawing.Point(530, 170);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(0, 12);
@@ -462,6 +442,19 @@
             this.ReloadFBView.UseVisualStyleBackColor = false;
             this.ReloadFBView.Click += new System.EventHandler(this.ReloadFBView_Click);
             // 
+            // FBTSConnect
+            // 
+            this.FBTSConnect.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.FBTSConnect.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FBTSConnect.Location = new System.Drawing.Point(894, 43);
+            this.FBTSConnect.Margin = new System.Windows.Forms.Padding(2);
+            this.FBTSConnect.Name = "FBTSConnect";
+            this.FBTSConnect.Size = new System.Drawing.Size(335, 29);
+            this.FBTSConnect.TabIndex = 32;
+            this.FBTSConnect.Text = "Test Connect";
+            this.FBTSConnect.UseVisualStyleBackColor = false;
+            this.FBTSConnect.Click += new System.EventHandler(this.FBTSConnect_Click);
+            // 
             // Customer_Feedback
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -469,16 +462,11 @@
             this.BackColor = System.Drawing.Color.Khaki;
             this.ClientSize = new System.Drawing.Size(1234, 711);
             this.Controls.Add(this.ReloadFBView);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.FBID);
             this.Controls.Add(this.FBSearchText);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.FBSearch);
             this.Controls.Add(this.FBTSConnect);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.ExitButton);
-            this.Controls.Add(this.FBSID);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.DeleteFB);
             this.Controls.Add(this.UpdateFB);
             this.Controls.Add(this.CreateFB);
@@ -524,17 +512,16 @@
         private System.Windows.Forms.Button CreateFB;
         private System.Windows.Forms.TextBox FBDetail;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button FBTSConnect;
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox FBSID;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button FBSearch;
         private System.Windows.Forms.TextBox FBSearchText;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox FBID;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button ReloadFBView;
+        private System.Windows.Forms.Button FBTSConnect;
     }
 }
 

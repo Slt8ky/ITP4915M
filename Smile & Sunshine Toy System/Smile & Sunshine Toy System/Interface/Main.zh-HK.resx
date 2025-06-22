@@ -356,6 +356,9 @@
   <data name="tabPage1.Text" xml:space="preserve">
     <value>記錄管理</value>
   </data>
+  <data name="btnSwitchUser.Text" xml:space="preserve">
+    <value>切換用戶</value>
+  </data>
   <data name="gpDeliveryNote.Text" xml:space="preserve">
     <value>送貨單</value>
   </data>

@@ -15,7 +15,6 @@ namespace Smile___Sunshine_Toy_System
 {
     public partial class Customer_Feedback : Form
     {
-        private string connectionString = "server=125.59.53.16;uid=root;database=default;pwd=6wS1Ah753ylT;Convert Zero Datetime=true;";
         public Customer_Feedback()
         {
             InitializeComponent();
@@ -29,51 +28,14 @@ namespace Smile___Sunshine_Toy_System
             ResetFB_Click(sender, e);
         }
 
-        public sealed class Database
-        {
-            private static readonly Database instance = new Database();
-            private MySqlConnection connection;
-            private string connectionString = "server=125.59.53.16;uid=root;database=default;pwd=6wS1Ah753ylT;Convert Zero Datetime=true;";
-
-            private Database()
-            {
-                connection = new MySqlConnection(connectionString);
-                try
-                {
-                    connection.Open();
-                }
-                catch (MySqlException ex)
-                {
-                    throw new Exception($"Database connection error: {ex.Message}");
-                }
-            }
-
-            public static Database Instance => instance;
-
-            public MySqlConnection Connection => connection;
-
-            public void CloseConnection()
-            {
-                if (connection != null && connection.State == System.Data.ConnectionState.Open)
-                {
-                    connection.Close();
-                }
-            }
-
-            public MySqlConnection GetConnection()
-            {
-                return new MySqlConnection(connectionString);
-            }
-
-
-        }
         private void UpLoadData()
         {
 
-            using (MySqlConnection con = new MySqlConnection(connectionString))
+            using (var connection = Database.Instance.Connection)
             {
-                con.Open();
-                MySqlCommand cmd = con.CreateCommand();
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+                MySqlCommand cmd = connection.CreateCommand();
                 cmd.CommandText = "SELECT * FROM afterservicefeedback";
 
                 MySqlDataReader sdr = cmd.ExecuteReader();
@@ -90,20 +52,22 @@ namespace Smile___Sunshine_Toy_System
                 int newFeedbackID;
 
                 // Fetch the next available feedbackID
-                using (MySqlConnection con = new MySqlConnection(connectionString))
+                using (var connection = Database.Instance.Connection)
                 {
-                    con.Open();
-                    using (MySqlCommand cmd = con.CreateCommand())
+                    if (connection.State != System.Data.ConnectionState.Open)
+                        connection.Open();
+                    using (MySqlCommand cmd = connection.CreateCommand())
                     {
                         cmd.CommandText = "SELECT COALESCE(MAX(feedbackID), 0) + 1 FROM afterservicefeedback";
                         newFeedbackID = Convert.ToInt32(cmd.ExecuteScalar());
                     }
                 }
 
-                using (MySqlConnection con = new MySqlConnection(connectionString))
-                {
-                    con.Open();
-                    using (MySqlCommand cmd = con.CreateCommand())
+            using (var connection = Database.Instance.Connection)
+            {
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+                    using (MySqlCommand cmd = connection.CreateCommand())
                     {
                         cmd.CommandText = "INSERT INTO afterservicefeedback(feedbackID, clientID, orderID, feedBackType, feedbackDetail, contactType, contactInfo, ProductID, StaffID) " +
                                   "VALUES(@feedbackID, @clientID, @orderID,  @feedbackType, @feedbackDetail, @contactType, @contactInfo, @ProductID, @StaffID)";
@@ -150,10 +114,11 @@ namespace Smile___Sunshine_Toy_System
         {
             try
             {
-                using (MySqlConnection con = new MySqlConnection(connectionString))
-                {
-                    con.Open();
-                    if (con.State == ConnectionState.Open)
+            using (var connection = Database.Instance.Connection)
+            {
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+                    if (connection.State == ConnectionState.Open)
                     {
                         MessageBox.Show("Connected");
                     }
@@ -191,7 +156,7 @@ namespace Smile___Sunshine_Toy_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "afterservicefeedback Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "afterservicefeedback Database", MessageBoxButtons.OK);
             }
         }
 
@@ -199,10 +164,11 @@ namespace Smile___Sunshine_Toy_System
         {
             try
             {
-                using (MySqlConnection con = new MySqlConnection(connectionString))
-                {
-                    con.Open();
-                    using (MySqlCommand cmd = con.CreateCommand())
+            using (var connection = Database.Instance.Connection)
+            {
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+                    using (MySqlCommand cmd = connection.CreateCommand())
                     {
                         cmd.CommandText = "UPDATE afterservicefeedback SET " +
                                           "clientID = @clientID, " +
@@ -229,11 +195,11 @@ namespace Smile___Sunshine_Toy_System
 
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show("Update Successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Update Successful", "Success", MessageBoxButtons.OK);
                         }
                         else
                         {
-                            MessageBox.Show("No record was updated", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("No record was updated", "Warning", MessageBoxButtons.OK);
                         }
                     }
                 }
@@ -252,10 +218,11 @@ namespace Smile___Sunshine_Toy_System
         {
             try
             {
-                using (MySqlConnection con = new MySqlConnection(connectionString))
-                {
-                    con.Open();
-                    MySqlCommand cmd = con.CreateCommand();
+            using (var connection = Database.Instance.Connection)
+            {
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+                    MySqlCommand cmd = connection.CreateCommand();
                     cmd.CommandText = "DELETE FROM afterservicefeedback WHERE feedbackID = @feedbackID";
                     cmd.Parameters.AddWithValue("@feedbackID", FBID.Text);
                     int rowsAffected = cmd.ExecuteNonQuery();
@@ -280,7 +247,7 @@ namespace Smile___Sunshine_Toy_System
         private void ExitButton_Click(object sender, EventArgs e)
         {
             DialogResult FBExit;
-            FBExit = MessageBox.Show("Confirm Exit?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            FBExit = MessageBox.Show("Confirm Exit?", "Exit Confirmation", MessageBoxButtons.YesNo);
             if (FBExit == DialogResult.Yes)
             {
                 Application.Exit();
@@ -293,23 +260,26 @@ namespace Smile___Sunshine_Toy_System
             {
                 if (FBSearchText.Text.Trim() != string.Empty)
                 {
-                    MySqlConnection con = new MySqlConnection(connectionString);
-                    con.Open();
-                    MySqlCommand cmd;
-                    cmd = con.CreateCommand();
-                    cmd.CommandText = "SELECT * FROM afterservicefeedback WHERE feedbackID = @feedbackID OR clientID = @clientID OR orderID = @orderID";
-                    cmd.Parameters.AddWithValue("@feedbackID", FBSearchText.Text.Trim());
-                    cmd.Parameters.AddWithValue("@clientID", FBSearchText.Text.Trim());
-                    cmd.Parameters.AddWithValue("@orderID", FBSearchText.Text.Trim());
-
-                    MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
-                    DataTable dt = new DataTable();
-                    dt.Load(mySqlDataReader);
-                    ViewFBData.DataSource = dt;
-                    con.Close();
-                    if (FBSearchText.Text == "")
+                    using (var connection = Database.Instance.Connection)
                     {
-                        MessageBox.Show("Record Not Found", "afterservicefeedback Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (connection.State != System.Data.ConnectionState.Open)
+                            connection.Open();
+                        MySqlCommand cmd;
+                        cmd = connection.CreateCommand();
+                        cmd.CommandText = "SELECT * FROM afterservicefeedback WHERE feedbackID = @feedbackID OR clientID = @clientID OR orderID = @orderID";
+                        cmd.Parameters.AddWithValue("@feedbackID", FBSearchText.Text.Trim());
+                        cmd.Parameters.AddWithValue("@clientID", FBSearchText.Text.Trim());
+                        cmd.Parameters.AddWithValue("@orderID", FBSearchText.Text.Trim());
+
+                        MySqlDataReader mySqlDataReader = cmd.ExecuteReader();
+                        DataTable dt = new DataTable();
+                        dt.Load(mySqlDataReader);
+                        ViewFBData.DataSource = dt;
+                        connection.Close();
+                        if (FBSearchText.Text == "")
+                        {
+                            MessageBox.Show("Record Not Found", "afterservicefeedback Database", MessageBoxButtons.OK);
+                        }
                     }
                 }
                 FBSearchText.Text = "";
@@ -317,7 +287,7 @@ namespace Smile___Sunshine_Toy_System
 
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "afterservicefeedback Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "afterservicefeedback Database", MessageBoxButtons.OK);
             }
         }
 

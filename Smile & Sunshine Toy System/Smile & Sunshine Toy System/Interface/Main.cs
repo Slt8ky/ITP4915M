@@ -208,12 +208,14 @@ namespace Smile___Sunshine_Toy_System.Interface
             if (cbTable.SelectedItem.ToString() == "customerorder")
             {
                 gpDeliveryNote.Visible = true;
-                gbPreference.Size = new Size(gbPreference.Size.Width, 130);
+                gbProfile.Size = new Size(gbProfile.Size.Width, 130);
+                btnSwitchUser.Location = new Point(btnSwitchUser.Location.X, 88);
             }
             else
             {
                 gpDeliveryNote.Visible = false;
-                gbPreference.Size = new Size(gbPreference.Size.Width, 200);
+                gbProfile.Size = new Size(gbProfile.Size.Width, 200);
+                btnSwitchUser.Location = new Point(btnSwitchUser.Location.X, 158);
             }
         }
 
@@ -488,7 +490,7 @@ namespace Smile___Sunshine_Toy_System.Interface
             {
                 Text = "Export",
                 Location = new Point(10, tabPage2.Size.Height - 80),
-                Size = new Size(tc1.Width - 20, btnExportPDF.Size.Height + 30)
+                Size = new Size(tc1.Width - 20, btnExportPDF.Size.Height + 20)
             };
             gbPDF_Export.Controls.Add(btnExportPDF);
             tabPage2.Controls.Add(gbPDF_Export);
@@ -586,8 +588,9 @@ namespace Smile___Sunshine_Toy_System.Interface
             btnDelete.Text = Resource.btnDelete_Text;
             label1.Text = Resource.label1_Text;
             gbColumnPanel.Text = Resource.gbColumnPanel_Text;
-            gbPreference.Text = Resource.gbPreference_Text;
+            gbProfile.Text = Resource.gbProfile_Text;
             gpDeliveryNote.Text = Resource.gpDeliveryNote_Text;
+            btnSwitchUser.Text = Resource.btnSwitchUser_Text;
         }
 
         private void btnExportToDeliveryNote_Click(object sender, EventArgs e)
@@ -770,6 +773,13 @@ namespace Smile___Sunshine_Toy_System.Interface
                 document.Add(table2);
                 document.Close();
             }
+        }
+
+        private void btnSwitchUser_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Login loginForm = new Login();
+            loginForm.Show();
         }
     }
 }

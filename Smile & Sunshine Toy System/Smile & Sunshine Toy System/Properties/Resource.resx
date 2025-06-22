@@ -205,6 +205,18 @@
   <data name="&gt;&gt;btnSearch.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="&gt;&gt;btnSwitchUser.Name" xml:space="preserve">
+    <value>btnSwitchUser</value>
+  </data>
+  <data name="&gt;&gt;btnSwitchUser.Parent" xml:space="preserve">
+    <value>gbProfile</value>
+  </data>
+  <data name="&gt;&gt;btnSwitchUser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSwitchUser.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;btnUpdate.Name" xml:space="preserve">
     <value>btnUpdate</value>
   </data>
@@ -233,13 +245,13 @@
     <value>cbLocalization</value>
   </data>
   <data name="&gt;&gt;cbLocalization.Parent" xml:space="preserve">
-    <value>gbPreference</value>
+    <value>gbProfile</value>
   </data>
   <data name="&gt;&gt;cbLocalization.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cbLocalization.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;cbTable.Name" xml:space="preserve">
     <value>cbTable</value>
@@ -277,16 +289,16 @@
   <data name="&gt;&gt;gbColumnPanel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;gbPreference.Name" xml:space="preserve">
-    <value>gbPreference</value>
+  <data name="&gt;&gt;gbProfile.Name" xml:space="preserve">
+    <value>gbProfile</value>
   </data>
-  <data name="&gt;&gt;gbPreference.Parent" xml:space="preserve">
+  <data name="&gt;&gt;gbProfile.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;gbPreference.Type" xml:space="preserve">
+  <data name="&gt;&gt;gbProfile.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;gbPreference.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;gbProfile.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="&gt;&gt;gpDeliveryNote.Name" xml:space="preserve">
@@ -377,13 +389,13 @@
     <value>label3</value>
   </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>gbPreference</value>
+    <value>gbProfile</value>
   </data>
   <data name="&gt;&gt;label3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;lvTable.Name" xml:space="preserve">
     <value>lvTable</value>
@@ -526,6 +538,18 @@
   <data name="btnSearch.Text" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="btnSwitchUser.Location" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="btnSwitchUser.Size" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="btnSwitchUser.TabIndex" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="btnSwitchUser.Text" xml:space="preserve">
+    <value>Switch User</value>
+  </data>
   <data name="btnUpdate.Location" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -592,17 +616,17 @@
   <data name="gbColumnPanel.Text" xml:space="preserve">
     <value>Column</value>
   </data>
-  <data name="gbPreference.Location" type="System.Resources.ResXNullRef, System.Windows.Forms">
+  <data name="gbProfile.Location" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="gbPreference.Size" type="System.Resources.ResXNullRef, System.Windows.Forms">
+  <data name="gbProfile.Size" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="gbPreference.TabIndex" type="System.Resources.ResXNullRef, System.Windows.Forms">
+  <data name="gbProfile.TabIndex" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="gbPreference.Text" xml:space="preserve">
-    <value>Preferences</value>
+  <data name="gbProfile.Text" xml:space="preserve">
+    <value>Profile</value>
   </data>
   <data name="gpDeliveryNote.Location" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

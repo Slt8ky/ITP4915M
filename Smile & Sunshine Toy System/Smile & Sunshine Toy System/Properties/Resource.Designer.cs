@@ -289,6 +289,45 @@ namespace Smile___Sunshine_Toy_System.Properties {
         /// <summary>
         ///   查詢類型 System.Object 的當地語系化資源。
         /// </summary>
+        internal static object btnSwitchUser_Location {
+            get {
+                object obj = ResourceManager.GetObject("btnSwitchUser.Location", resourceCulture);
+                return ((object)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Object 的當地語系化資源。
+        /// </summary>
+        internal static object btnSwitchUser_Size {
+            get {
+                object obj = ResourceManager.GetObject("btnSwitchUser.Size", resourceCulture);
+                return ((object)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Object 的當地語系化資源。
+        /// </summary>
+        internal static object btnSwitchUser_TabIndex {
+            get {
+                object obj = ResourceManager.GetObject("btnSwitchUser.TabIndex", resourceCulture);
+                return ((object)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Switch User 的當地語系化字串。
+        /// </summary>
+        internal static string btnSwitchUser_Text {
+            get {
+                return ResourceManager.GetString("btnSwitchUser.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Object 的當地語系化資源。
+        /// </summary>
         internal static object btnUpdate_Location {
             get {
                 object obj = ResourceManager.GetObject("btnUpdate.Location", resourceCulture);
@@ -505,9 +544,9 @@ namespace Smile___Sunshine_Toy_System.Properties {
         /// <summary>
         ///   查詢類型 System.Object 的當地語系化資源。
         /// </summary>
-        internal static object gbPreference_Location {
+        internal static object gbProfile_Location {
             get {
-                object obj = ResourceManager.GetObject("gbPreference.Location", resourceCulture);
+                object obj = ResourceManager.GetObject("gbProfile.Location", resourceCulture);
                 return ((object)(obj));
             }
         }
@@ -515,9 +554,9 @@ namespace Smile___Sunshine_Toy_System.Properties {
         /// <summary>
         ///   查詢類型 System.Object 的當地語系化資源。
         /// </summary>
-        internal static object gbPreference_Size {
+        internal static object gbProfile_Size {
             get {
-                object obj = ResourceManager.GetObject("gbPreference.Size", resourceCulture);
+                object obj = ResourceManager.GetObject("gbProfile.Size", resourceCulture);
                 return ((object)(obj));
             }
         }
@@ -525,19 +564,19 @@ namespace Smile___Sunshine_Toy_System.Properties {
         /// <summary>
         ///   查詢類型 System.Object 的當地語系化資源。
         /// </summary>
-        internal static object gbPreference_TabIndex {
+        internal static object gbProfile_TabIndex {
             get {
-                object obj = ResourceManager.GetObject("gbPreference.TabIndex", resourceCulture);
+                object obj = ResourceManager.GetObject("gbProfile.TabIndex", resourceCulture);
                 return ((object)(obj));
             }
         }
         
         /// <summary>
-        ///   查詢類似 Preferences 的當地語系化字串。
+        ///   查詢類似 Profile 的當地語系化字串。
         /// </summary>
-        internal static string gbPreference_Text {
+        internal static string gbProfile_Text {
             get {
-                return ResourceManager.GetString("gbPreference.Text", resourceCulture);
+                return ResourceManager.GetString("gbProfile.Text", resourceCulture);
             }
         }
         

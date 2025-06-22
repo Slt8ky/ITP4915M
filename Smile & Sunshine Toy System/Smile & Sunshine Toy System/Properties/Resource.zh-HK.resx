@@ -133,6 +133,9 @@
   <data name="btnSearch.Text" xml:space="preserve">
     <value>搜尋</value>
   </data>
+  <data name="btnSwitchUser.Text" xml:space="preserve">
+    <value>切換用戶</value>
+  </data>
   <data name="btnUpdate.Text" xml:space="preserve">
     <value>更新記錄</value>
   </data>
