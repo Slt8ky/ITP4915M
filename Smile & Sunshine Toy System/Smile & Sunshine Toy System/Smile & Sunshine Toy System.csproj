@@ -146,6 +146,12 @@
     <Compile Include="Interface\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interface\Material Requirement Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interface\Material Requirement Form.Designer.cs">
+      <DependentUpon>Material Requirement Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Interface\Customer Feedback.resx">
@@ -159,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Interface\Main.zh-HK.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interface\Material Requirement Form.resx">
+      <DependentUpon>Material Requirement Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,4 +1,5 @@
-﻿using Smile___Sunshine_Toy_System.Interface;
+﻿using Material_Requirement_Form;
+using Smile___Sunshine_Toy_System.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Smile___Sunshine_Toy_System
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Application.Run(new MaterialRequirementForm());
         }
     }
 }

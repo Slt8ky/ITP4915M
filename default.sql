@@ -565,6 +565,7 @@ ALTER TABLE `warehouse`
   ADD CONSTRAINT `fk_warehouse_StaffID` FOREIGN KEY (`StaffID`) REFERENCES `staff` (`StaffID`);
 
 GRANT ALL PRIVILEGES ON `default`.* TO 'user'@'%' IDENTIFIED BY '6wS1Ah753ylT';
+GRANT ALL PRIVILEGES ON `projectdb`.* TO 'user'@'%' IDENTIFIED BY '6wS1Ah753ylT';
 FLUSH PRIVILEGES;
 
 COMMIT;
