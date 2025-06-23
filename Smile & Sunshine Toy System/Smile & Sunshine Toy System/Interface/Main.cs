@@ -1,5 +1,6 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Material_Requirement_Form;
 using Mysqlx.Crud;
 using MySqlX.XDevAPI.Relational;
 using Smile___Sunshine_Toy_System.Controller;
@@ -39,6 +40,7 @@ namespace Smile___Sunshine_Toy_System.Interface
         List<String> whiteList;
         private int currentSortColumn = -1;
         private SortOrder currentSortOrder = SortOrder.None;
+        private bool isOpened = false;
 
         public Main(string username)
         {
@@ -63,7 +65,6 @@ namespace Smile___Sunshine_Toy_System.Interface
                 case 3: //Sales Representative 
                     break;
                 case 4: //Production Manager 
-                    tc1.TabPages.RemoveAt(0);
                     tc1.SelectedIndex = 0;
                     break;
                 case 5: //Inventory Manager 
@@ -131,14 +132,8 @@ namespace Smile___Sunshine_Toy_System.Interface
                     break;
                 case 4: //Production Manager 
                     whiteList = new List<String> {
-                        "damagematerial",
-                        "facilities",
-                        "finishedcomponent",
-                        "material",
-                        "product",
-                        "warehouse"
+                        "productorder"
                     };
-                    tc1.TabPages.RemoveAt(0);
                     tc1.SelectedIndex = 0;
                     break;
                 case 5: //Inventory Manager 
@@ -208,14 +203,12 @@ namespace Smile___Sunshine_Toy_System.Interface
             if (cbTable.SelectedItem.ToString() == "customerorder")
             {
                 gpDeliveryNote.Visible = true;
-                gbProfile.Size = new Size(gbProfile.Size.Width, 130);
-                btnSwitchUser.Location = new Point(btnSwitchUser.Location.X, 88);
+                gpMaterialRequirementForm.Size = new Size(gpMaterialRequirementForm.Size.Width, 59);
             }
             else
             {
                 gpDeliveryNote.Visible = false;
-                gbProfile.Size = new Size(gbProfile.Size.Width, 200);
-                btnSwitchUser.Location = new Point(btnSwitchUser.Location.X, 158);
+                gpMaterialRequirementForm.Size = new Size(gpMaterialRequirementForm.Size.Width, 113);
             }
         }
 
@@ -780,6 +773,12 @@ namespace Smile___Sunshine_Toy_System.Interface
             this.Close();
             Login loginForm = new Login();
             loginForm.Show();
+        }
+
+        private void btnAddRequirementForm_Click(object sender, EventArgs e)
+        {
+            MaterialRequirementForm materialRequirementForm = new MaterialRequirementForm();
+            materialRequirementForm.Show();
         }
     }
 }
