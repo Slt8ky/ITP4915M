@@ -56,6 +56,9 @@
             this.cbLocalization = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.gpDeliveryNote = new System.Windows.Forms.GroupBox();
+            this.gpMaterialRequirementForm = new System.Windows.Forms.GroupBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnAddRequirementForm = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbColumn.SuspendLayout();
@@ -65,26 +68,26 @@
             this.tc1.SuspendLayout();
             this.gbProfile.SuspendLayout();
             this.gpDeliveryNote.SuspendLayout();
+            this.gpMaterialRequirementForm.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.cbTable);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
             // cbTable
             // 
-            resources.ApplyResources(this.cbTable, "cbTable");
             this.cbTable.FormattingEnabled = true;
+            resources.ApplyResources(this.cbTable, "cbTable");
             this.cbTable.Name = "cbTable";
             this.cbTable.SelectedIndexChanged += new System.EventHandler(this.cbTable_SelectedIndexChanged);
             // 
             // groupBox2
             // 
-            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.BackColor = System.Drawing.Color.White;
             this.groupBox2.Controls.Add(this.btnReload);
             this.groupBox2.Controls.Add(this.btnSearch);
@@ -92,6 +95,7 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.cbColumn);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
@@ -126,102 +130,102 @@
             // 
             // cbColumn
             // 
-            resources.ApplyResources(this.cbColumn, "cbColumn");
             this.cbColumn.FormattingEnabled = true;
+            resources.ApplyResources(this.cbColumn, "cbColumn");
             this.cbColumn.Name = "cbColumn";
             // 
             // lvTable
             // 
-            resources.ApplyResources(this.lvTable, "lvTable");
             this.lvTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lvTable.HideSelection = false;
+            resources.ApplyResources(this.lvTable, "lvTable");
             this.lvTable.Name = "lvTable";
             this.lvTable.UseCompatibleStateImageBehavior = false;
             this.lvTable.SelectedIndexChanged += new System.EventHandler(this.lvTable_SelectedIndexChanged);
             // 
             // rtbDisplay
             // 
-            resources.ApplyResources(this.rtbDisplay, "rtbDisplay");
             this.rtbDisplay.BackColor = System.Drawing.Color.White;
             this.rtbDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.rtbDisplay, "rtbDisplay");
             this.rtbDisplay.Name = "rtbDisplay";
             this.rtbDisplay.ReadOnly = true;
             // 
             // gbColumn
             // 
-            resources.ApplyResources(this.gbColumn, "gbColumn");
             this.gbColumn.BackColor = System.Drawing.Color.White;
             this.gbColumn.Controls.Add(this.lvTable);
+            resources.ApplyResources(this.gbColumn, "gbColumn");
             this.gbColumn.Name = "gbColumn";
             this.gbColumn.TabStop = false;
             // 
             // groupBox5
             // 
-            resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.BackColor = System.Drawing.Color.White;
             this.groupBox5.Controls.Add(this.rtbDisplay);
+            resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
             // 
             // tabPage2
             // 
-            resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Name = "tabPage2";
             // 
             // tabPage1
             // 
-            resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.gbColumnPanel);
+            resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
-            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Controls.Add(this.btnInsert);
             this.groupBox3.Controls.Add(this.btnUpdate);
             this.groupBox3.Controls.Add(this.btnDelete);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
             // 
             // btnInsert
             // 
-            resources.ApplyResources(this.btnInsert, "btnInsert");
             this.btnInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            resources.ApplyResources(this.btnInsert, "btnInsert");
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.UseVisualStyleBackColor = false;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnUpdate
             // 
-            resources.ApplyResources(this.btnUpdate, "btnUpdate");
             this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            resources.ApplyResources(this.btnUpdate, "btnUpdate");
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
-            resources.ApplyResources(this.btnDelete, "btnDelete");
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            resources.ApplyResources(this.btnDelete, "btnDelete");
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // gbColumnPanel
             // 
-            resources.ApplyResources(this.gbColumnPanel, "gbColumnPanel");
             this.gbColumnPanel.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.gbColumnPanel, "gbColumnPanel");
             this.gbColumnPanel.Name = "gbColumnPanel";
             this.gbColumnPanel.TabStop = false;
             // 
             // tc1
             // 
-            resources.ApplyResources(this.tc1, "tc1");
             this.tc1.Controls.Add(this.tabPage1);
             this.tc1.Controls.Add(this.tabPage2);
+            resources.ApplyResources(this.tc1, "tc1");
             this.tc1.Name = "tc1";
             this.tc1.SelectedIndex = 0;
             // 
@@ -234,10 +238,10 @@
             // 
             // gbProfile
             // 
-            resources.ApplyResources(this.gbProfile, "gbProfile");
             this.gbProfile.Controls.Add(this.btnSwitchUser);
             this.gbProfile.Controls.Add(this.cbLocalization);
             this.gbProfile.Controls.Add(this.label3);
+            resources.ApplyResources(this.gbProfile, "gbProfile");
             this.gbProfile.Name = "gbProfile";
             this.gbProfile.TabStop = false;
             // 
@@ -250,11 +254,11 @@
             // 
             // cbLocalization
             // 
-            resources.ApplyResources(this.cbLocalization, "cbLocalization");
             this.cbLocalization.FormattingEnabled = true;
             this.cbLocalization.Items.AddRange(new object[] {
             resources.GetString("cbLocalization.Items"),
             resources.GetString("cbLocalization.Items1")});
+            resources.ApplyResources(this.cbLocalization, "cbLocalization");
             this.cbLocalization.Name = "cbLocalization";
             this.cbLocalization.SelectedIndexChanged += new System.EventHandler(this.cbLocalization_SelectedIndexChanged);
             // 
@@ -265,16 +269,31 @@
             // 
             // gpDeliveryNote
             // 
-            resources.ApplyResources(this.gpDeliveryNote, "gpDeliveryNote");
             this.gpDeliveryNote.Controls.Add(this.btnExportToDeliveryNote);
+            resources.ApplyResources(this.gpDeliveryNote, "gpDeliveryNote");
             this.gpDeliveryNote.Name = "gpDeliveryNote";
             this.gpDeliveryNote.TabStop = false;
+            // 
+            // gpMaterialRequirementForm
+            // 
+            this.gpMaterialRequirementForm.Controls.Add(this.btnAddRequirementForm);
+            resources.ApplyResources(this.gpMaterialRequirementForm, "gpMaterialRequirementForm");
+            this.gpMaterialRequirementForm.Name = "gpMaterialRequirementForm";
+            this.gpMaterialRequirementForm.TabStop = false;
+            // 
+            // btnAddRequirementForm
+            // 
+            resources.ApplyResources(this.btnAddRequirementForm, "btnAddRequirementForm");
+            this.btnAddRequirementForm.Name = "btnAddRequirementForm";
+            this.btnAddRequirementForm.UseVisualStyleBackColor = true;
+            this.btnAddRequirementForm.Click += new System.EventHandler(this.btnAddRequirementForm_Click);
             // 
             // Main
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.gpMaterialRequirementForm);
             this.Controls.Add(this.gpDeliveryNote);
             this.Controls.Add(this.gbProfile);
             this.Controls.Add(this.groupBox5);
@@ -297,6 +316,7 @@
             this.gbProfile.ResumeLayout(false);
             this.gbProfile.PerformLayout();
             this.gpDeliveryNote.ResumeLayout(false);
+            this.gpMaterialRequirementForm.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -329,5 +349,8 @@
         private System.Windows.Forms.GroupBox gpDeliveryNote;
         public System.Windows.Forms.Button btnExportToDeliveryNote;
         private System.Windows.Forms.Button btnSwitchUser;
+        private System.Windows.Forms.GroupBox gpMaterialRequirementForm;
+        private System.Windows.Forms.Button btnAddRequirementForm;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

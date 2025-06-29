@@ -15,7 +15,7 @@ namespace Material_Requirement_Form
 {
     public partial class MaterialRequirementForm : Form
     {
-        private string connectionString = "server=125.59.53.16;uid=root;database=default;pwd=Vx|T77(6\"&bM;Convert Zero Datetime=true;";
+        private string connectionString = "server=127.0.0.1;uid=user;database=default;pwd=6wS1Ah753ylT;Convert Zero Datetime=true;";
         public MaterialRequirementForm()
         {
             InitializeComponent();

@@ -18,7 +18,7 @@ namespace Smile___Sunshine_Toy_System
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MaterialRequirementForm());
+            Application.Run(new Login());
         }
     }
 }
