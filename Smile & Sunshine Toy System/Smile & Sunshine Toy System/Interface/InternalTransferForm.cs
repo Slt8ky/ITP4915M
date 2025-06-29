@@ -105,7 +105,7 @@ namespace Smile___Sunshine_Toy_System.Interface
 
                     }
                 }
-                MessageBox.Show("Create Feedback Succesaful");
+                MessageBox.Show("Internal Transfer Form submitted");
                 UpLoadData();
                 ResetMRForm_Click(sender, e);
             }

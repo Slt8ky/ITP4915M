@@ -158,6 +158,18 @@
     <Compile Include="Interface\MaterialRequirementForm.Designer.cs">
       <DependentUpon>MaterialRequirementForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interface\SocketClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interface\SocketClient.Designer.cs">
+      <DependentUpon>SocketClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\SocketService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interface\SocketService.Designer.cs">
+      <DependentUpon>SocketService.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Interface\Customer Feedback.resx">
@@ -177,6 +189,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Interface\MaterialRequirementForm.resx">
       <DependentUpon>MaterialRequirementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interface\SocketClient.resx">
+      <DependentUpon>SocketClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interface\SocketService.resx">
+      <DependentUpon>SocketService.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>

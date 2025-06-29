@@ -20,6 +20,10 @@ namespace Smile___Sunshine_Toy_System.Controller
             this.rtbDisplay = rtbDisplay;
         }
 
+        public MainController()
+        {
+        }
+
         public List<string> GetUser(string StaffName)
         {
             List<string> results = new List<string>();

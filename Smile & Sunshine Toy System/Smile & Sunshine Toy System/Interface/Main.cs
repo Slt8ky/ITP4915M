@@ -1,5 +1,6 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Org.BouncyCastle.Bcpg;
 using Smile___Sunshine_Toy_System.Controller;
 using Smile___Sunshine_Toy_System.Properties;
 using System;
@@ -8,6 +9,10 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using static System.Windows.Forms.ListViewItem;
 using Button = System.Windows.Forms.Button;
@@ -34,7 +39,8 @@ namespace Smile___Sunshine_Toy_System.Interface
         private SortOrder currentSortOrder = SortOrder.None;
         private static InternalTransferForm internalTransferForm = null;
         private static MaterialRequirementForm materialRequirementForm = null;
-
+        private Dictionary<string, System.Net.Sockets.Socket> clientList = new Dictionary<string, System.Net.Sockets.Socket>();
+        private System.Net.Sockets.Socket socket;
 
         public Main(string username)
         {
@@ -50,7 +56,27 @@ namespace Smile___Sunshine_Toy_System.Interface
             table = mainController.GetTable();
             loadTableAndColumn();
             Int32.TryParse(user[4], out dept_id);
-            if (dept_id == 2 || dept_id == 5 || dept_id == 1) 
+
+            if (dept_id!=1)
+            {
+                tc1.TabPages.Remove(tabPage3);
+                socket = new System.Net.Sockets.Socket(
+                    System.Net.Sockets.AddressFamily.InterNetwork,
+                    System.Net.Sockets.SocketType.Stream,
+                    System.Net.Sockets.ProtocolType.IP);
+                System.Net.IPAddress ip = System.Net.IPAddress.Parse("127.0.0.1");
+                System.Net.IPEndPoint point = new System.Net.IPEndPoint(ip, 123);
+                socket.Connect(point);
+
+                System.Threading.Thread thread = new System.Threading.Thread(ReciveMsgClient);
+                thread.IsBackground = true;
+                thread.Start(socket);
+            } else
+            {
+                tc1.TabPages.Remove(tabPage4);
+            }
+
+            if (dept_id == 2 || dept_id == 5 || dept_id == 1)
             {
                 gpMaterialRequirementForm.Visible = true;
                 groupBox5.Location = new Point(gpMaterialRequirementForm.Location.X + gpMaterialRequirementForm.Size.Width + 6, groupBox5.Location.Y);
@@ -810,6 +836,156 @@ namespace Smile___Sunshine_Toy_System.Interface
                 // Bring the existing form to the front
                 internalTransferForm.BringToFront();
                 internalTransferForm.Focus();
+            }
+        }
+
+        private void btnStartChatRoomService_Click(object sender, EventArgs e)
+        {
+            System.Threading.Thread myServer = new System.Threading.Thread(MySocket);
+            myServer.IsBackground = true;
+            myServer.Start();
+        }
+        public void ReciveMsg(object o)
+        {
+            Socket client = o as Socket;
+            while (true)
+            {
+                try
+                {
+                    byte[] arrMsg = new byte[1024];
+                    int length = client.Receive(arrMsg);
+                    if (length > 0)
+                    {
+                        string recMsg = Encoding.UTF8.GetString(arrMsg, 0, length);
+                        IPEndPoint endPoint = client.RemoteEndPoint as IPEndPoint;
+                        txtMsgDisplay.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} : {recMsg} \r\n");
+                        SendMsg($"[{endPoint.Port.ToString()}]{recMsg}");
+                    }
+                }
+                catch (Exception)
+                {
+                    client.Close();
+                    clientList.Remove(client.RemoteEndPoint.ToString());
+                }
+            }
+        }
+
+        public void ReciveMsgClient(object o)
+        {
+            System.Net.Sockets.Socket client = o as System.Net.Sockets.Socket;
+            if (client == null) return;
+
+            try
+            {
+                while (client.Connected)
+                {
+                    try
+                    {
+                        byte[] arrList = new byte[1024];
+                        int length = client.Receive(arrList);
+
+                        // Check if connection was gracefully closed
+                        if (length == 0)
+                        {
+                            UpdateChatDisplay($"{DateTime.Now}: Server closed the connection\r\n");
+                            break;
+                        }
+
+                        string receivedMessage = Encoding.UTF8.GetString(arrList, 0, length);
+                        UpdateChatDisplay($"{DateTime.Now}: {receivedMessage}\r\n");
+                    }
+                    catch (SocketException sex)
+                    {
+                        UpdateChatDisplay($"{DateTime.Now}: Connection error - {sex.Message}\r\n");
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        UpdateChatDisplay($"{DateTime.Now}: Error - {ex.Message}\r\n");
+                        break;
+                    }
+                }
+            }
+            finally
+            {
+                try
+                {
+                    if (client.Connected)
+                    {
+                        client.Shutdown(SocketShutdown.Both);
+                    }
+                    client.Close();
+                    client.Dispose();
+                }
+                catch { }
+
+                UpdateChatDisplay($"{DateTime.Now}: Disconnected from chat server\r\n");
+            }
+        }
+
+        // Helper method for thread-safe UI updates
+        private void UpdateChatDisplay(string message)
+        {
+            if (txtMsgDisplayClient.InvokeRequired)
+            {
+                txtMsgDisplayClient.Invoke(new Action<string>(UpdateChatDisplay), message);
+            }
+            else
+            {
+                txtMsgDisplayClient.AppendText(message);
+                txtMsgDisplayClient.ScrollToCaret();
+            }
+        }
+
+        public void MySocket()
+        {
+            Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
+            IPAddress iP = IPAddress.Parse("127.0.0.1");
+            IPEndPoint endPoint = new IPEndPoint(iP, 123);
+            server.Bind(endPoint);
+            server.Listen(20);
+            txtMsgDisplay.AppendText("The server has been successfully started! \r\n");
+            while (true)
+            {
+                Socket connectClient = server.Accept();
+                if (connectClient != null)
+                {
+                    string infor = connectClient.RemoteEndPoint.ToString();
+                    clientList.Add(infor, connectClient);
+                    txtMsgDisplay.AppendText(infor + " entered the chat room! \r\n");
+                    string msg = $"[{infor}] Successfully entered the chat room!";
+                    SendMsg(msg);
+                    Thread threadClient = new Thread(ReciveMsg);
+                    threadClient.IsBackground = true;
+                    threadClient.Start(connectClient);
+                }
+            }
+        }
+
+        public void SendMsg(string str)
+        {
+            foreach (var item in clientList)
+            {
+                byte[] arrMsg = Encoding.UTF8.GetBytes(str);
+                item.Value.Send(arrMsg);
+            }
+        }
+
+        private void btnSendMsg_Click(object sender, EventArgs e)
+        {
+            if (txtMsg.Text != "")
+            {
+                SendMsg(txtMsg.Text);
+                txtMsgDisplay.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} : {txtMsg.Text} \r\n");
+                txtMsg.Text = "";
+            }
+        }
+
+        private void btnSendMsgClient_Click(object sender, EventArgs e)
+        {
+            if (txtMsgClient.Text != "")
+            {
+                byte[] arrMsg = Encoding.UTF8.GetBytes(txtMsgClient.Text);
             }
         }
     }

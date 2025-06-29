@@ -50,6 +50,18 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.gbColumnPanel = new System.Windows.Forms.GroupBox();
             this.tc1 = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnMsgSend = new System.Windows.Forms.Button();
+            this.txtMsg = new System.Windows.Forms.TextBox();
+            this.txtMsgDisplay = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnStartChatRoomService = new System.Windows.Forms.Button();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.btnSendMsgClient = new System.Windows.Forms.Button();
+            this.txtMsgClient = new System.Windows.Forms.TextBox();
+            this.txtMsgDisplayClient = new System.Windows.Forms.TextBox();
             this.btnExportToDeliveryNote = new System.Windows.Forms.Button();
             this.gbProfile = new System.Windows.Forms.GroupBox();
             this.btnSwitchUser = new System.Windows.Forms.Button();
@@ -67,6 +79,11 @@
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tc1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.gbProfile.SuspendLayout();
             this.gpDeliveryNote.SuspendLayout();
             this.gpMaterialRequirementForm.SuspendLayout();
@@ -226,9 +243,95 @@
             // 
             this.tc1.Controls.Add(this.tabPage1);
             this.tc1.Controls.Add(this.tabPage2);
+            this.tc1.Controls.Add(this.tabPage3);
+            this.tc1.Controls.Add(this.tabPage4);
             resources.ApplyResources(this.tc1, "tc1");
             this.tc1.Name = "tc1";
             this.tc1.SelectedIndex = 0;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.groupBox6);
+            this.tabPage3.Controls.Add(this.groupBox4);
+            resources.ApplyResources(this.tabPage3, "tabPage3");
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.btnMsgSend);
+            this.groupBox6.Controls.Add(this.txtMsg);
+            this.groupBox6.Controls.Add(this.txtMsgDisplay);
+            resources.ApplyResources(this.groupBox6, "groupBox6");
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.TabStop = false;
+            // 
+            // btnMsgSend
+            // 
+            resources.ApplyResources(this.btnMsgSend, "btnMsgSend");
+            this.btnMsgSend.Name = "btnMsgSend";
+            this.btnMsgSend.UseVisualStyleBackColor = true;
+            this.btnMsgSend.Click += new System.EventHandler(this.btnSendMsg_Click);
+            // 
+            // txtMsg
+            // 
+            resources.ApplyResources(this.txtMsg, "txtMsg");
+            this.txtMsg.Name = "txtMsg";
+            // 
+            // txtMsgDisplay
+            // 
+            this.txtMsgDisplay.BackColor = System.Drawing.SystemColors.Control;
+            this.txtMsgDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.txtMsgDisplay, "txtMsgDisplay");
+            this.txtMsgDisplay.Name = "txtMsgDisplay";
+            this.txtMsgDisplay.ReadOnly = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnStartChatRoomService);
+            resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.TabStop = false;
+            // 
+            // btnStartChatRoomService
+            // 
+            resources.ApplyResources(this.btnStartChatRoomService, "btnStartChatRoomService");
+            this.btnStartChatRoomService.Name = "btnStartChatRoomService";
+            this.btnStartChatRoomService.UseVisualStyleBackColor = true;
+            this.btnStartChatRoomService.Click += new System.EventHandler(this.btnStartChatRoomService_Click);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.groupBox7);
+            resources.ApplyResources(this.tabPage4, "tabPage4");
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.btnSendMsgClient);
+            this.groupBox7.Controls.Add(this.txtMsgClient);
+            this.groupBox7.Controls.Add(this.txtMsgDisplayClient);
+            resources.ApplyResources(this.groupBox7, "groupBox7");
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.TabStop = false;
+            // 
+            // btnSendMsgClient
+            // 
+            resources.ApplyResources(this.btnSendMsgClient, "btnSendMsgClient");
+            this.btnSendMsgClient.Name = "btnSendMsgClient";
+            this.btnSendMsgClient.UseVisualStyleBackColor = true;
+            this.btnSendMsgClient.Click += new System.EventHandler(this.btnSendMsgClient_Click);
+            // 
+            // txtMsgClient
+            // 
+            resources.ApplyResources(this.txtMsgClient, "txtMsgClient");
+            this.txtMsgClient.Name = "txtMsgClient";
+            // 
+            // txtMsgDisplayClient
+            // 
+            resources.ApplyResources(this.txtMsgDisplayClient, "txtMsgDisplayClient");
+            this.txtMsgDisplayClient.Name = "txtMsgDisplayClient";
             // 
             // btnExportToDeliveryNote
             // 
@@ -322,6 +425,13 @@
             this.tabPage1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.tc1.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.gbProfile.ResumeLayout(false);
             this.gbProfile.PerformLayout();
             this.gpDeliveryNote.ResumeLayout(false);
@@ -362,5 +472,17 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button btnMaterialRequirementForm;
         private System.Windows.Forms.Button btnInternalTransferForm;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button btnStartChatRoomService;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox txtMsg;
+        private System.Windows.Forms.TextBox txtMsgDisplay;
+        private System.Windows.Forms.Button btnMsgSend;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Button btnSendMsgClient;
+        private System.Windows.Forms.TextBox txtMsgClient;
+        private System.Windows.Forms.TextBox txtMsgDisplayClient;
     }
 }

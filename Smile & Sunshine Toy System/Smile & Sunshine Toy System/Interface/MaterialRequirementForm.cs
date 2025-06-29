@@ -66,7 +66,7 @@ namespace Smile___Sunshine_Toy_System.Interface
             {
                 con.Open();
                 MySqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "SELECT * FROM afterservicefeedback";
+                cmd.CommandText = "SELECT * FROM materialrequirementform";
 
                 MySqlDataReader sdr = cmd.ExecuteReader();
                 DataTable db = new DataTable();
@@ -117,7 +117,7 @@ namespace Smile___Sunshine_Toy_System.Interface
 
                     }
                 }
-                MessageBox.Show("Create Feedback Succesaful");
+                MessageBox.Show("Create Material Requirement Form");
                 UpLoadData();
                 ResetMRForm_Click(sender, e);
             }
