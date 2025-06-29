@@ -564,8 +564,41 @@ ALTER TABLE `transportation`
 ALTER TABLE `warehouse`
   ADD CONSTRAINT `fk_warehouse_StaffID` FOREIGN KEY (`StaffID`) REFERENCES `staff` (`StaffID`);
 
-GRANT ALL PRIVILEGES ON `default`.* TO 'user'@'%' IDENTIFIED BY '6wS1Ah753ylT';
-GRANT ALL PRIVILEGES ON `projectdb`.* TO 'user'@'%' IDENTIFIED BY '6wS1Ah753ylT';
+CREATE TABLE materialrequirementform (
+  MaterialFormID int(8) NOT NULL,
+  IssuanceDate date NOT NULL,
+  Product_ID int(8) NOT NULL,
+  Product_Name int(8) NOT NULL,
+  ProductType enum('car','Animals','Construction toys','Dolls','Food-related toys') NOT NULL,
+  Descriptions varchar(1000) NOT NULL,
+  Specification varchar(1000) NOT NULL,
+  FormDestination varchar(50) NOT NULL,
+  MaterialDestination varchar(50) NOT NULL,
+  MaterialID int(8) NOT NULL,
+  MaterialAmount int(4) NOT NULL,
+  PriorityLevel enum('normal','emergency','','') NOT NULL,
+  DeliveryDate date NOT NULL DEFAULT current_timestamp(),
+  Remarks varchar(1000) DEFAULT NULL,
+  StaffID int(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE internaltransferform (
+  TransferFormNumber int(8) NOT NULL,
+  DateOfInitiation date NOT NULL DEFAULT current_timestamp(),
+  DestinationDepartment varchar(20) NOT NULL,
+  TransferSource varchar(20) NOT NULL,
+  TransferItemType enum('CompletedProduct','Material') NOT NULL,
+  TransferItemName varchar(30) NOT NULL,
+  TransferAmount int(4) NOT NULL,
+  OrderID int(8) NOT NULL,
+  Descriptions varchar(1000) NOT NULL,
+  Specifications varchar(1000) NOT NULL,
+  TransferReason varchar(1000) NOT NULL,
+  StaffID int(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+GRANT ALL PRIVILEGES ON `default`.* TO 'user'@'%' IDENTIFIED BY 'f828Q9£C76$U';
+GRANT ALL PRIVILEGES ON `projectdb`.* TO 'user'@'%' IDENTIFIED BY 'f828Q9£C76$U';
 FLUSH PRIVILEGES;
 
 COMMIT;
