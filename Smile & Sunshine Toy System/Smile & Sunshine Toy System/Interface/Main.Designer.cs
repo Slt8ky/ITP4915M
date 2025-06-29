@@ -57,8 +57,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.gpDeliveryNote = new System.Windows.Forms.GroupBox();
             this.gpMaterialRequirementForm = new System.Windows.Forms.GroupBox();
+            this.btnMaterialRequirementForm = new System.Windows.Forms.Button();
+            this.btnInternalTransferForm = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.btnAddRequirementForm = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbColumn.SuspendLayout();
@@ -276,27 +277,35 @@
             // 
             // gpMaterialRequirementForm
             // 
-            this.gpMaterialRequirementForm.Controls.Add(this.btnAddRequirementForm);
+            this.gpMaterialRequirementForm.Controls.Add(this.btnMaterialRequirementForm);
+            this.gpMaterialRequirementForm.Controls.Add(this.btnInternalTransferForm);
             resources.ApplyResources(this.gpMaterialRequirementForm, "gpMaterialRequirementForm");
             this.gpMaterialRequirementForm.Name = "gpMaterialRequirementForm";
             this.gpMaterialRequirementForm.TabStop = false;
             // 
-            // btnAddRequirementForm
+            // btnMaterialRequirementForm
             // 
-            resources.ApplyResources(this.btnAddRequirementForm, "btnAddRequirementForm");
-            this.btnAddRequirementForm.Name = "btnAddRequirementForm";
-            this.btnAddRequirementForm.UseVisualStyleBackColor = true;
-            this.btnAddRequirementForm.Click += new System.EventHandler(this.btnAddRequirementForm_Click);
+            resources.ApplyResources(this.btnMaterialRequirementForm, "btnMaterialRequirementForm");
+            this.btnMaterialRequirementForm.Name = "btnMaterialRequirementForm";
+            this.btnMaterialRequirementForm.UseVisualStyleBackColor = true;
+            this.btnMaterialRequirementForm.Click += new System.EventHandler(this.btnMaterialRequirementForm_Click);
+            // 
+            // btnInternalTransferForm
+            // 
+            resources.ApplyResources(this.btnInternalTransferForm, "btnInternalTransferForm");
+            this.btnInternalTransferForm.Name = "btnInternalTransferForm";
+            this.btnInternalTransferForm.UseVisualStyleBackColor = true;
+            this.btnInternalTransferForm.Click += new System.EventHandler(this.btnInternalTransferForm_Click);
             // 
             // Main
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.gpMaterialRequirementForm);
             this.Controls.Add(this.gpDeliveryNote);
             this.Controls.Add(this.gbProfile);
-            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.tc1);
             this.Controls.Add(this.groupBox1);
@@ -350,7 +359,8 @@
         public System.Windows.Forms.Button btnExportToDeliveryNote;
         private System.Windows.Forms.Button btnSwitchUser;
         private System.Windows.Forms.GroupBox gpMaterialRequirementForm;
-        private System.Windows.Forms.Button btnAddRequirementForm;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button btnMaterialRequirementForm;
+        private System.Windows.Forms.Button btnInternalTransferForm;
     }
 }

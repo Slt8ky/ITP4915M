@@ -11,11 +11,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Material_Requirement_Form
+namespace Smile___Sunshine_Toy_System.Interface
 {
     public partial class MaterialRequirementForm : Form
     {
-        private string connectionString = "server=127.0.0.1;uid=user;database=default;pwd=6wS1Ah753ylT;Convert Zero Datetime=true;";
+        private string connectionString = "server=125.59.53.16;uid=user;database=default;pwd=f828Q9£C76$U;Convert Zero Datetime=true;";
         public MaterialRequirementForm()
         {
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace Material_Requirement_Form
         {
             private static readonly Database instance = new Database();
             private MySqlConnection connection;
-            private string connectionString = "server=125.59.53.16;uid=root;database=default;pwd=Vx|T77(6\"&bM;Convert Zero Datetime=true;";
+            private string connectionString = "server=125.59.53.16;uid=user;database=default;pwd=f828Q9£C76$U;Convert Zero Datetime=true;";
 
             private Database()
             {
@@ -104,8 +104,8 @@ namespace Material_Requirement_Form
                     con.Open();
                     using (MySqlCommand cmd = con.CreateCommand())
                     {
-                        cmd.CommandText = "INSERT INTO afterservicefeedback(MaterialFormID ,IssuanceDate, Product_ID,Product_Name,ProductType,Descriptions,Specification,MaterialID,MaterialAmount,PriorityLevel,DeliveryDate,Remarks) " +
-                                  "VALUES(@MaterialFormID, @IssuanceDate, @Product_ID,  @Product_Name, @ProductType, @Descriptions, @Specification, @MaterialID, @MaterialAmount, @PriorityLevel, @DeliveryDate, @Remarks)";
+                        cmd.CommandText = "INSERT INTO materialrequirementform(MaterialFormID ,IssuanceDate, Product_ID,Product_Name,ProductType,Descriptions,Specification,FormDestination,MaterialDestination,MaterialID,MaterialAmount,PriorityLevel,DeliveryDate,Remarks,StaffID) " +
+                                  "VALUES(@MaterialFormID, @IssuanceDate, @Product_ID,  @Product_Name, @ProductType, @Descriptions, @Specification, @FormDestination, @MaterialDestination, @MaterialID, @MaterialAmount, @PriorityLevel, @DeliveryDate, @Remarks, @StaffID)";
                         cmd.Parameters.AddWithValue("@MaterialFormID", newMaterialFormID);
                         cmd.Parameters.AddWithValue("@IssuanceDate", DateTime.TryParse(IsDate.Text.Trim(), out DateTime issuanceDate) ? issuanceDate : (object)DBNull.Value);
                         cmd.Parameters.AddWithValue("@Product_ID", MRPID.Text.Trim());
@@ -113,11 +113,14 @@ namespace Material_Requirement_Form
                         cmd.Parameters.AddWithValue("@ProductType", MRPType.Text.Trim());
                         cmd.Parameters.AddWithValue("@Descriptions", MRFDescriptions.Text.Trim());
                         cmd.Parameters.AddWithValue("@Specification", MRFSpecification.Text.Trim());
+                        cmd.Parameters.AddWithValue("@FormDestination", MRFDestinationLable.Text.Trim());
+                        cmd.Parameters.AddWithValue("@MaterialDestination", MaterialDestination.Text.Trim());
                         cmd.Parameters.AddWithValue("@MaterialID", MRFMID.Text.Trim());
                         cmd.Parameters.AddWithValue("@MaterialAmount", decimal.TryParse(MRDMAmount.Text.Trim(), out decimal materialAmount) ? materialAmount : (object)DBNull.Value);
                         cmd.Parameters.AddWithValue("@PriorityLevel", MRFPLevel.Text.Trim());
                         cmd.Parameters.AddWithValue("@DeliveryDate", DateTime.TryParse(MRFDDate.Text.Trim(), out DateTime deliveryDate) ? deliveryDate : (object)DBNull.Value);
                         cmd.Parameters.AddWithValue("@Remarks", MRFRemarks.Text.Trim());
+                        cmd.Parameters.AddWithValue("@StaffID", MRFStaffID.Text.Trim());
                         cmd.ExecuteNonQuery();
 
                     }
@@ -149,6 +152,8 @@ namespace Material_Requirement_Form
             MRFPLevel.SelectedIndex = -1;
             MRFDDate.Value = DateTime.Now;
             MRFRemarks.Clear();
+            MRFDestination.Clear();
+            MaterialDestination.Clear();
         }
     }
 }

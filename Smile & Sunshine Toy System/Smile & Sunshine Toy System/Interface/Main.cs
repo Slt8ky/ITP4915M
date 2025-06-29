@@ -1,25 +1,17 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
-using Material_Requirement_Form;
-using Mysqlx.Crud;
-using MySqlX.XDevAPI.Relational;
 using Smile___Sunshine_Toy_System.Controller;
 using Smile___Sunshine_Toy_System.Properties;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Resources;
 using System.Windows.Forms;
 using static System.Windows.Forms.ListViewItem;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using Button = System.Windows.Forms.Button;
 using CheckBox = System.Windows.Forms.CheckBox;
-using ComboBox = System.Windows.Forms.ComboBox;
 using Font = iTextSharp.text.Font;
 using GroupBox = System.Windows.Forms.GroupBox;
 using PdfWriter = iTextSharp.text.pdf.PdfWriter;
@@ -30,17 +22,19 @@ namespace Smile___Sunshine_Toy_System.Interface
 {
     public partial class Main : Form
     {
-        private MainController mainController;
         private String username;
+        private MainController mainController;
+        private GroupBox gbPDF_Column;
         private List<String> user;
         private List<String> table;
         private List<String> column;
-        private GroupBox gbPDF_Column;
+        private List<String> whiteList;
         private int dept_id;
-        List<String> whiteList;
         private int currentSortColumn = -1;
         private SortOrder currentSortOrder = SortOrder.None;
-        private bool isOpened = false;
+        private static InternalTransferForm internalTransferForm = null;
+        private static MaterialRequirementForm materialRequirementForm = null;
+
 
         public Main(string username)
         {
@@ -56,6 +50,20 @@ namespace Smile___Sunshine_Toy_System.Interface
             table = mainController.GetTable();
             loadTableAndColumn();
             Int32.TryParse(user[4], out dept_id);
+            if (dept_id == 2 || dept_id == 5 || dept_id == 1) 
+            {
+                gpMaterialRequirementForm.Visible = true;
+                groupBox5.Location = new Point(gpMaterialRequirementForm.Location.X + gpMaterialRequirementForm.Size.Width + 6, groupBox5.Location.Y);
+                groupBox5.Size = new Size(674, groupBox5.Size.Height);
+                rtbDisplay.Size = new Size(662, 180);
+            }
+            else
+            {
+                gpMaterialRequirementForm.Visible = false;
+                groupBox5.Location = new Point(gbProfile.Location.X + gbProfile.Size.Width + 6, groupBox5.Location.Y);
+                groupBox5.Size = new Size(884, groupBox5.Size.Height);
+                rtbDisplay.Size = new Size(872, 180);
+            }
             switch (dept_id)
             {
                 case 1: //Administrator 
@@ -94,7 +102,6 @@ namespace Smile___Sunshine_Toy_System.Interface
             {
                 case 1: //Administrator 
                     whiteList = new List<String> {
-                        "afterservicefeedback",
                         "clientinformation",
                         "customerorder",
                         "damagematerial",
@@ -102,9 +109,7 @@ namespace Smile___Sunshine_Toy_System.Interface
                         "event",
                         "facilities",
                         "finishedcomponent",
-                        "internaltransferform",
                         "material",
-                        "materialrequirementform",
                         "product",
                         "productorder",
                         "quotation",
@@ -142,7 +147,6 @@ namespace Smile___Sunshine_Toy_System.Interface
                         "facilities",
                         "finishedcomponent",
                         "material",
-                        "materialrequirementform",
                         "product",
                         "transportation",
                         "warehouse"
@@ -202,13 +206,13 @@ namespace Smile___Sunshine_Toy_System.Interface
                 cbColumn.SelectedIndex = 0;
             if (cbTable.SelectedItem.ToString() == "customerorder")
             {
+                gbProfile.Size = new Size(gbProfile.Size.Width, 146);
                 gpDeliveryNote.Visible = true;
-                gpMaterialRequirementForm.Size = new Size(gpMaterialRequirementForm.Size.Width, 59);
             }
             else
             {
+                gbProfile.Size = new Size(gbProfile.Size.Width, 202);
                 gpDeliveryNote.Visible = false;
-                gpMaterialRequirementForm.Size = new Size(gpMaterialRequirementForm.Size.Width, 113);
             }
         }
 
@@ -775,10 +779,38 @@ namespace Smile___Sunshine_Toy_System.Interface
             loginForm.Show();
         }
 
-        private void btnAddRequirementForm_Click(object sender, EventArgs e)
+        private void btnMaterialRequirementForm_Click(object sender, EventArgs e)
         {
-            MaterialRequirementForm materialRequirementForm = new MaterialRequirementForm();
-            materialRequirementForm.Show();
+            // Check if the form is already open
+            if (materialRequirementForm == null || materialRequirementForm.IsDisposed)
+            {
+                materialRequirementForm = new MaterialRequirementForm();
+                materialRequirementForm.FormClosed += (s, args) => materialRequirementForm = null; // Clear reference on close
+                materialRequirementForm.Show();
+            }
+            else
+            {
+                // Bring the existing form to the front
+                materialRequirementForm.BringToFront();
+                materialRequirementForm.Focus();
+            }
+        }
+
+        private void btnInternalTransferForm_Click(object sender, EventArgs e)
+        {
+            // Check if the form is already open
+            if (internalTransferForm == null || internalTransferForm.IsDisposed)
+            {
+                internalTransferForm = new InternalTransferForm();
+                internalTransferForm.FormClosed += (s, args) => internalTransferForm = null; // Clear reference on close
+                internalTransferForm.Show();
+            }
+            else
+            {
+                // Bring the existing form to the front
+                internalTransferForm.BringToFront();
+                internalTransferForm.Focus();
+            }
         }
     }
 }

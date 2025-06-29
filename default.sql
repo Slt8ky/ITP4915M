@@ -253,7 +253,7 @@ CREATE TABLE `materialrequirementform` (
   `Specification` varchar(1000) NOT NULL,
   `MaterialID` int(8) NOT NULL,
   `MaterialAmount` int(4) NOT NULL,
-  `PriorityLevel` enum('normal','emergency','','') NOT NULL,
+  `PriorityLevel` enum('normal','emergency') NOT NULL,
   `DeliveryDate` date NOT NULL DEFAULT current_timestamp(),
   `Remarks` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -598,7 +598,6 @@ CREATE TABLE internaltransferform (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 GRANT ALL PRIVILEGES ON `default`.* TO 'user'@'%' IDENTIFIED BY 'f828Q9£C76$U';
-GRANT ALL PRIVILEGES ON `projectdb`.* TO 'user'@'%' IDENTIFIED BY 'f828Q9£C76$U';
 FLUSH PRIVILEGES;
 
 COMMIT;
