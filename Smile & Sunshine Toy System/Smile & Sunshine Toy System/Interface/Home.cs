@@ -1,6 +1,5 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
-using Org.BouncyCastle.Bcpg;
 using Smile___Sunshine_Toy_System.Controller;
 using Smile___Sunshine_Toy_System.Properties;
 using System;
@@ -25,7 +24,7 @@ using TextBox = System.Windows.Forms.TextBox;
 
 namespace Smile___Sunshine_Toy_System.Interface
 {
-    public partial class Main : Form
+    public partial class Home : Form
     {
         private String username;
         private MainController mainController;
@@ -40,9 +39,8 @@ namespace Smile___Sunshine_Toy_System.Interface
         private static InternalTransferForm internalTransferForm = null;
         private static MaterialRequirementForm materialRequirementForm = null;
         private Dictionary<string, System.Net.Sockets.Socket> clientList = new Dictionary<string, System.Net.Sockets.Socket>();
-        private System.Net.Sockets.Socket socket;
 
-        public Main(string username)
+        public Home(string username)
         {
             InitializeComponent();
             this.username = username;
@@ -60,20 +58,6 @@ namespace Smile___Sunshine_Toy_System.Interface
             if (dept_id!=1)
             {
                 tc1.TabPages.Remove(tabPage3);
-                socket = new System.Net.Sockets.Socket(
-                    System.Net.Sockets.AddressFamily.InterNetwork,
-                    System.Net.Sockets.SocketType.Stream,
-                    System.Net.Sockets.ProtocolType.IP);
-                System.Net.IPAddress ip = System.Net.IPAddress.Parse("127.0.0.1");
-                System.Net.IPEndPoint point = new System.Net.IPEndPoint(ip, 123);
-                socket.Connect(point);
-
-                System.Threading.Thread thread = new System.Threading.Thread(ReciveMsgClient);
-                thread.IsBackground = true;
-                thread.Start(socket);
-            } else
-            {
-                tc1.TabPages.Remove(tabPage4);
             }
 
             if (dept_id == 2 || dept_id == 5 || dept_id == 1)
@@ -870,73 +854,6 @@ namespace Smile___Sunshine_Toy_System.Interface
             }
         }
 
-        public void ReciveMsgClient(object o)
-        {
-            System.Net.Sockets.Socket client = o as System.Net.Sockets.Socket;
-            if (client == null) return;
-
-            try
-            {
-                while (client.Connected)
-                {
-                    try
-                    {
-                        byte[] arrList = new byte[1024];
-                        int length = client.Receive(arrList);
-
-                        // Check if connection was gracefully closed
-                        if (length == 0)
-                        {
-                            UpdateChatDisplay($"{DateTime.Now}: Server closed the connection\r\n");
-                            break;
-                        }
-
-                        string receivedMessage = Encoding.UTF8.GetString(arrList, 0, length);
-                        UpdateChatDisplay($"{DateTime.Now}: {receivedMessage}\r\n");
-                    }
-                    catch (SocketException sex)
-                    {
-                        UpdateChatDisplay($"{DateTime.Now}: Connection error - {sex.Message}\r\n");
-                        break;
-                    }
-                    catch (Exception ex)
-                    {
-                        UpdateChatDisplay($"{DateTime.Now}: Error - {ex.Message}\r\n");
-                        break;
-                    }
-                }
-            }
-            finally
-            {
-                try
-                {
-                    if (client.Connected)
-                    {
-                        client.Shutdown(SocketShutdown.Both);
-                    }
-                    client.Close();
-                    client.Dispose();
-                }
-                catch { }
-
-                UpdateChatDisplay($"{DateTime.Now}: Disconnected from chat server\r\n");
-            }
-        }
-
-        // Helper method for thread-safe UI updates
-        private void UpdateChatDisplay(string message)
-        {
-            if (txtMsgDisplayClient.InvokeRequired)
-            {
-                txtMsgDisplayClient.Invoke(new Action<string>(UpdateChatDisplay), message);
-            }
-            else
-            {
-                txtMsgDisplayClient.AppendText(message);
-                txtMsgDisplayClient.ScrollToCaret();
-            }
-        }
-
         public void MySocket()
         {
             Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
@@ -981,12 +898,10 @@ namespace Smile___Sunshine_Toy_System.Interface
             }
         }
 
-        private void btnSendMsgClient_Click(object sender, EventArgs e)
+        private void btnJoinChatroom_Click(object sender, EventArgs e)
         {
-            if (txtMsgClient.Text != "")
-            {
-                byte[] arrMsg = Encoding.UTF8.GetBytes(txtMsgClient.Text);
-            }
+            SocketClient client = new SocketClient(user);
+            client.Show();
         }
     }
 }

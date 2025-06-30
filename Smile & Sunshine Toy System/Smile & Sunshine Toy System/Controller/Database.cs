@@ -4,7 +4,7 @@ public sealed class Database
 {
     private static readonly Database instance = new Database();
     private MySqlConnection connection;
-    private string connectionString = "server=127.0.0.1;uid=user;database=default;pwd=f828Q9£C76$U;Convert Zero Datetime=true;";
+    private string connectionString = "server=172.26.45.219;uid=user;database=default;pwd=f828Q9£C76$U;Convert Zero Datetime=true;";
 
     private Database()
     {

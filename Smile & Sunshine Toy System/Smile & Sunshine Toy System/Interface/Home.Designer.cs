@@ -1,6 +1,6 @@
 ﻿namespace Smile___Sunshine_Toy_System.Interface
 {
-    partial class Main
+    partial class Home
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbTable = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -42,26 +42,6 @@
             this.rtbDisplay = new System.Windows.Forms.RichTextBox();
             this.gbColumn = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnInsert = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.gbColumnPanel = new System.Windows.Forms.GroupBox();
-            this.tc1 = new System.Windows.Forms.TabControl();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.btnMsgSend = new System.Windows.Forms.Button();
-            this.txtMsg = new System.Windows.Forms.TextBox();
-            this.txtMsgDisplay = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnStartChatRoomService = new System.Windows.Forms.Button();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.btnSendMsgClient = new System.Windows.Forms.Button();
-            this.txtMsgClient = new System.Windows.Forms.TextBox();
-            this.txtMsgDisplayClient = new System.Windows.Forms.TextBox();
             this.btnExportToDeliveryNote = new System.Windows.Forms.Button();
             this.gbProfile = new System.Windows.Forms.GroupBox();
             this.btnSwitchUser = new System.Windows.Forms.Button();
@@ -72,21 +52,35 @@
             this.btnMaterialRequirementForm = new System.Windows.Forms.Button();
             this.btnInternalTransferForm = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnJoinChatroom = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnStartChatRoomService = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtMsgDisplay = new System.Windows.Forms.TextBox();
+            this.txtMsg = new System.Windows.Forms.TextBox();
+            this.btnMsgSend = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnInsert = new System.Windows.Forms.Button();
+            this.tc1 = new System.Windows.Forms.TabControl();
+            this.gbColumnPanel = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbColumn.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.tc1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.groupBox7.SuspendLayout();
             this.gbProfile.SuspendLayout();
             this.gpDeliveryNote.SuspendLayout();
             this.gpMaterialRequirementForm.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.tc1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -185,154 +179,6 @@
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.BackColor = System.Drawing.Color.White;
-            resources.ApplyResources(this.tabPage2, "tabPage2");
-            this.tabPage2.Name = "tabPage2";
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Controls.Add(this.gbColumnPanel);
-            resources.ApplyResources(this.tabPage1, "tabPage1");
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.btnInsert);
-            this.groupBox3.Controls.Add(this.btnUpdate);
-            this.groupBox3.Controls.Add(this.btnDelete);
-            resources.ApplyResources(this.groupBox3, "groupBox3");
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.TabStop = false;
-            // 
-            // btnInsert
-            // 
-            this.btnInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            resources.ApplyResources(this.btnInsert, "btnInsert");
-            this.btnInsert.Name = "btnInsert";
-            this.btnInsert.UseVisualStyleBackColor = false;
-            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            resources.ApplyResources(this.btnUpdate, "btnUpdate");
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.UseVisualStyleBackColor = false;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            resources.ApplyResources(this.btnDelete, "btnDelete");
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // gbColumnPanel
-            // 
-            this.gbColumnPanel.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.gbColumnPanel, "gbColumnPanel");
-            this.gbColumnPanel.Name = "gbColumnPanel";
-            this.gbColumnPanel.TabStop = false;
-            // 
-            // tc1
-            // 
-            this.tc1.Controls.Add(this.tabPage1);
-            this.tc1.Controls.Add(this.tabPage2);
-            this.tc1.Controls.Add(this.tabPage3);
-            this.tc1.Controls.Add(this.tabPage4);
-            resources.ApplyResources(this.tc1, "tc1");
-            this.tc1.Name = "tc1";
-            this.tc1.SelectedIndex = 0;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.groupBox6);
-            this.tabPage3.Controls.Add(this.groupBox4);
-            resources.ApplyResources(this.tabPage3, "tabPage3");
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.btnMsgSend);
-            this.groupBox6.Controls.Add(this.txtMsg);
-            this.groupBox6.Controls.Add(this.txtMsgDisplay);
-            resources.ApplyResources(this.groupBox6, "groupBox6");
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.TabStop = false;
-            // 
-            // btnMsgSend
-            // 
-            resources.ApplyResources(this.btnMsgSend, "btnMsgSend");
-            this.btnMsgSend.Name = "btnMsgSend";
-            this.btnMsgSend.UseVisualStyleBackColor = true;
-            this.btnMsgSend.Click += new System.EventHandler(this.btnSendMsg_Click);
-            // 
-            // txtMsg
-            // 
-            resources.ApplyResources(this.txtMsg, "txtMsg");
-            this.txtMsg.Name = "txtMsg";
-            // 
-            // txtMsgDisplay
-            // 
-            this.txtMsgDisplay.BackColor = System.Drawing.SystemColors.Control;
-            this.txtMsgDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            resources.ApplyResources(this.txtMsgDisplay, "txtMsgDisplay");
-            this.txtMsgDisplay.Name = "txtMsgDisplay";
-            this.txtMsgDisplay.ReadOnly = true;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.btnStartChatRoomService);
-            resources.ApplyResources(this.groupBox4, "groupBox4");
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.TabStop = false;
-            // 
-            // btnStartChatRoomService
-            // 
-            resources.ApplyResources(this.btnStartChatRoomService, "btnStartChatRoomService");
-            this.btnStartChatRoomService.Name = "btnStartChatRoomService";
-            this.btnStartChatRoomService.UseVisualStyleBackColor = true;
-            this.btnStartChatRoomService.Click += new System.EventHandler(this.btnStartChatRoomService_Click);
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.groupBox7);
-            resources.ApplyResources(this.tabPage4, "tabPage4");
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.btnSendMsgClient);
-            this.groupBox7.Controls.Add(this.txtMsgClient);
-            this.groupBox7.Controls.Add(this.txtMsgDisplayClient);
-            resources.ApplyResources(this.groupBox7, "groupBox7");
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.TabStop = false;
-            // 
-            // btnSendMsgClient
-            // 
-            resources.ApplyResources(this.btnSendMsgClient, "btnSendMsgClient");
-            this.btnSendMsgClient.Name = "btnSendMsgClient";
-            this.btnSendMsgClient.UseVisualStyleBackColor = true;
-            this.btnSendMsgClient.Click += new System.EventHandler(this.btnSendMsgClient_Click);
-            // 
-            // txtMsgClient
-            // 
-            resources.ApplyResources(this.txtMsgClient, "txtMsgClient");
-            this.txtMsgClient.Name = "txtMsgClient";
-            // 
-            // txtMsgDisplayClient
-            // 
-            resources.ApplyResources(this.txtMsgDisplayClient, "txtMsgDisplayClient");
-            this.txtMsgDisplayClient.Name = "txtMsgDisplayClient";
-            // 
             // btnExportToDeliveryNote
             // 
             resources.ApplyResources(this.btnExportToDeliveryNote, "btnExportToDeliveryNote");
@@ -342,6 +188,7 @@
             // 
             // gbProfile
             // 
+            this.gbProfile.Controls.Add(this.btnJoinChatroom);
             this.gbProfile.Controls.Add(this.btnSwitchUser);
             this.gbProfile.Controls.Add(this.cbLocalization);
             this.gbProfile.Controls.Add(this.label3);
@@ -400,7 +247,128 @@
             this.btnInternalTransferForm.UseVisualStyleBackColor = true;
             this.btnInternalTransferForm.Click += new System.EventHandler(this.btnInternalTransferForm_Click);
             // 
-            // Main
+            // btnJoinChatroom
+            // 
+            resources.ApplyResources(this.btnJoinChatroom, "btnJoinChatroom");
+            this.btnJoinChatroom.Name = "btnJoinChatroom";
+            this.btnJoinChatroom.UseVisualStyleBackColor = true;
+            this.btnJoinChatroom.Click += new System.EventHandler(this.btnJoinChatroom_Click);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.groupBox6);
+            this.tabPage3.Controls.Add(this.groupBox4);
+            resources.ApplyResources(this.tabPage3, "tabPage3");
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnStartChatRoomService);
+            resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.TabStop = false;
+            // 
+            // btnStartChatRoomService
+            // 
+            resources.ApplyResources(this.btnStartChatRoomService, "btnStartChatRoomService");
+            this.btnStartChatRoomService.Name = "btnStartChatRoomService";
+            this.btnStartChatRoomService.UseVisualStyleBackColor = true;
+            this.btnStartChatRoomService.Click += new System.EventHandler(this.btnStartChatRoomService_Click);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.btnMsgSend);
+            this.groupBox6.Controls.Add(this.txtMsg);
+            this.groupBox6.Controls.Add(this.txtMsgDisplay);
+            resources.ApplyResources(this.groupBox6, "groupBox6");
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.TabStop = false;
+            // 
+            // txtMsgDisplay
+            // 
+            this.txtMsgDisplay.BackColor = System.Drawing.SystemColors.Control;
+            this.txtMsgDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.txtMsgDisplay, "txtMsgDisplay");
+            this.txtMsgDisplay.Name = "txtMsgDisplay";
+            this.txtMsgDisplay.ReadOnly = true;
+            // 
+            // txtMsg
+            // 
+            resources.ApplyResources(this.txtMsg, "txtMsg");
+            this.txtMsg.Name = "txtMsg";
+            // 
+            // btnMsgSend
+            // 
+            resources.ApplyResources(this.btnMsgSend, "btnMsgSend");
+            this.btnMsgSend.Name = "btnMsgSend";
+            this.btnMsgSend.UseVisualStyleBackColor = true;
+            this.btnMsgSend.Click += new System.EventHandler(this.btnSendMsg_Click);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.tabPage2, "tabPage2");
+            this.tabPage2.Name = "tabPage2";
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox3);
+            this.tabPage1.Controls.Add(this.gbColumnPanel);
+            resources.ApplyResources(this.tabPage1, "tabPage1");
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnInsert);
+            this.groupBox3.Controls.Add(this.btnUpdate);
+            this.groupBox3.Controls.Add(this.btnDelete);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.TabStop = false;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            resources.ApplyResources(this.btnDelete, "btnDelete");
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            resources.ApplyResources(this.btnUpdate, "btnUpdate");
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnInsert
+            // 
+            this.btnInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            resources.ApplyResources(this.btnInsert, "btnInsert");
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.UseVisualStyleBackColor = false;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+            // 
+            // tc1
+            // 
+            this.tc1.Controls.Add(this.tabPage1);
+            this.tc1.Controls.Add(this.tabPage2);
+            this.tc1.Controls.Add(this.tabPage3);
+            resources.ApplyResources(this.tc1, "tc1");
+            this.tc1.Name = "tc1";
+            this.tc1.SelectedIndex = 0;
+            // 
+            // gbColumnPanel
+            // 
+            this.gbColumnPanel.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.gbColumnPanel, "gbColumnPanel");
+            this.gbColumnPanel.Name = "gbColumnPanel";
+            this.gbColumnPanel.TabStop = false;
+            // 
+            // Home
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -415,27 +383,24 @@
             this.Controls.Add(this.gbColumn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "Main";
+            this.Name = "Home";
             this.Load += new System.EventHandler(this.Main_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.gbColumn.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.tc1.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
             this.gbProfile.ResumeLayout(false);
             this.gbProfile.PerformLayout();
             this.gpDeliveryNote.ResumeLayout(false);
             this.gpMaterialRequirementForm.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.tc1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -453,14 +418,6 @@
         private System.Windows.Forms.RichTextBox rtbDisplay;
         private System.Windows.Forms.GroupBox gbColumn;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button btnInsert;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.GroupBox gbColumnPanel;
-        private System.Windows.Forms.TabControl tc1;
         private System.Windows.Forms.Button btnReload;
         private System.Windows.Forms.GroupBox gbProfile;
         private System.Windows.Forms.ComboBox cbLocalization;
@@ -472,17 +429,21 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button btnMaterialRequirementForm;
         private System.Windows.Forms.Button btnInternalTransferForm;
+        private System.Windows.Forms.Button btnJoinChatroom;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button btnStartChatRoomService;
         private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Button btnMsgSend;
         private System.Windows.Forms.TextBox txtMsg;
         private System.Windows.Forms.TextBox txtMsgDisplay;
-        private System.Windows.Forms.Button btnMsgSend;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Button btnSendMsgClient;
-        private System.Windows.Forms.TextBox txtMsgClient;
-        private System.Windows.Forms.TextBox txtMsgDisplayClient;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button btnStartChatRoomService;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnInsert;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.GroupBox gbColumnPanel;
+        private System.Windows.Forms.TabControl tc1;
     }
 }

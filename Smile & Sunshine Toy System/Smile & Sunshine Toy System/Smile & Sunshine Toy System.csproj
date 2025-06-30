@@ -146,11 +146,11 @@
     <Compile Include="Interface\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interface\Main.cs">
+    <Compile Include="Interface\Home.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Interface\Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
+    <Compile Include="Interface\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
     </Compile>
     <Compile Include="Interface\MaterialRequirementForm.cs">
       <SubType>Form</SubType>
@@ -181,11 +181,11 @@
     <EmbeddedResource Include="Interface\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Interface\Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
+    <EmbeddedResource Include="Interface\Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Interface\Main.zh-HK.resx">
-      <DependentUpon>Main.cs</DependentUpon>
+    <EmbeddedResource Include="Interface\Home.zh-HK.resx">
+      <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interface\MaterialRequirementForm.resx">
       <DependentUpon>MaterialRequirementForm.cs</DependentUpon>

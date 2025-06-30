@@ -576,7 +576,7 @@ CREATE TABLE materialrequirementform (
   MaterialDestination varchar(50) NOT NULL,
   MaterialID int(8) NOT NULL,
   MaterialAmount int(4) NOT NULL,
-  PriorityLevel enum('normal','emergency','','') NOT NULL,
+  PriorityLevel enum('normal','emergency') NOT NULL,
   DeliveryDate date NOT NULL DEFAULT current_timestamp(),
   Remarks varchar(1000) DEFAULT NULL,
   StaffID int(8) NOT NULL

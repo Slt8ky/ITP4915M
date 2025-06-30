@@ -7,7 +7,7 @@ namespace Smile___Sunshine_Toy_System.Interface
 {
     public partial class InternalTransferForm : Form
     {
-        private string connectionString = "server=125.59.53.16;uid=user;database=default;pwd=f828Q9£C76$U;Convert Zero Datetime=true;";
+        private string connectionString = "server=172.26.45.219;uid=user;database=default;pwd=f828Q9£C76$U;Convert Zero Datetime=true;";
         public InternalTransferForm()
         {
             InitializeComponent();
@@ -23,7 +23,7 @@ namespace Smile___Sunshine_Toy_System.Interface
         {
             private static readonly Database instance = new Database();
             private MySqlConnection connection;
-            private string connectionString = "server=125.59.53.16;uid=user;database=default;pwd=f828Q9£C76$U;Convert Zero Datetime=true;";
+            private string connectionString = "server=172.26.45.219;uid=user;database=default;pwd=f828Q9£C76$U;Convert Zero Datetime=true;";
 
             private Database()
             {

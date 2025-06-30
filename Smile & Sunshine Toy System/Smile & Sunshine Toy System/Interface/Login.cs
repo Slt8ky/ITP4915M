@@ -24,7 +24,7 @@ namespace Smile___Sunshine_Toy_System
                 {
                     this.Hide(); // Hide the login form
                     loginController.GetUser(txtUsername.Text);
-                    Main mainForm = new Main(txtUsername.Text.ToString()); // Create an instance of the main form
+                    Home mainForm = new Home(txtUsername.Text.ToString()); // Create an instance of the main form
                     mainForm.Show(); // Show the main form
                 }
                 else
