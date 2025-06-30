@@ -857,7 +857,7 @@ namespace Smile___Sunshine_Toy_System.Interface
         public void MySocket()
         {
             Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
-            IPAddress iP = IPAddress.Parse("127.0.0.1");
+            IPAddress iP = IPAddress.Parse("172.26.45.219");
             IPEndPoint endPoint = new IPEndPoint(iP, 123);
             server.Bind(endPoint);
             server.Listen(20);
